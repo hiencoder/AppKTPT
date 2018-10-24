@@ -19,7 +19,16 @@ public class SharedPrefUtils {
         return sharedPreferences.getBoolean(key,defValue);
     }
 
-    public void putInt(){
+    public void putInt(String key, int value){
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt(key,value);
+    }
 
+    public int getInt(String key, int defValue){
+        return sharedPreferences.getInt(key, defValue);
+    }
+
+    public void putLong(String key, long value){
+        SharedPreferences.Editor editor = sharedPreferences.edit();
     }
 }
