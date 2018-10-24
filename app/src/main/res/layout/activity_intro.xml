@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.intro.IntroActivity"
+    android:background="#26c6da">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_intro"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/cpi_intro"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/btn_skip"
+        fontPath="fonts/Roboto-Bold.ttf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:clickable="true"
+        android:padding="10dp"
+        android:text="Skip"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+
+<!--    <me.relex.circleindicator.CircleIndicator
+        android:id="@+id/ci_intro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        app:ci_drawable="@drawable/indicator_selected"
+        app:ci_drawable_unselected="@drawable/indicator_unselected"
+        app:ci_height="6dp"
+        app:ci_width="6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />-->
+
+    <com.viewpagerindicator.CirclePageIndicator
+        android:id="@+id/cpi_intro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginBottom="20dp"
+        android:padding="10dp"/>
+    <TextView
+        android:id="@+id/btn_ok"
+        android:clickable="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ok"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_skip"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="20dp"
+        fontPath="fonts/gtw.ttf"
+        android:visibility="gone"/>
+    <ImageView
+        android:clickable="true"
+        android:id="@+id/btn_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_skip"
+        app:srcCompat="@drawable/ic_next_white"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="20dp"/>
+</android.support.constraint.ConstraintLayout>
