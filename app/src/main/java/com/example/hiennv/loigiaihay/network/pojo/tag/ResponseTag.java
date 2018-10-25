@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.util.List;
 
-public class TagResponse implements Serializable{
+public class ResponseTag implements Serializable{
     @Expose
     @SerializedName("list_class")
     private List<ClassEntity> listClass;

@@ -6,43 +6,43 @@ import com.google.gson.annotations.SerializedName;
 public class Article {
     @Expose
     @SerializedName("articleId")
-    private int articleId;
+    protected int articleId;
 
     @Expose
     @SerializedName("catId")
-    private int catId;
+    protected int catId;
 
     @Expose
     @SerializedName("publishTime")
-    private long publishTime;
+    protected long publishTime;
 
     @Expose
     @SerializedName("typeEx")
-    private int typeEx;
+    protected int typeEx;
 
     @Expose
     @SerializedName("isHot")
-    private int isHot;
+    protected int isHot;
 
     @Expose
     @SerializedName("is_link")
-    private String isLink;
+    protected String isLink;
 
     @Expose
     @SerializedName("thumbnail")
-    private String thumbnail;
+    protected String thumbnail;
 
     @Expose
     @SerializedName("title")
-    private String title;
+    protected String title;
 
     @Expose
     @SerializedName("alias")
-    private String alias;
+    protected String alias;
 
     @Expose
     @SerializedName("introtext")
-    private String introtext;
+    protected String introtext;
 
     public int getArticleId() {
         return articleId;

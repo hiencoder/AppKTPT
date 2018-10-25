@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:startDestination="@+id/list_class_screen">
+    <!--Fragment list class-->
+    <fragment
+        android:id="@+id/list_class_screen"
+        android:name="com.example.hiennv.loigiaihay.ui.listclass.FragmentListClass"
+        android:label="list_class_screen"
+        tools:layout="@layout/fragment_list_class">
+        <!--chuyen den fragment chon mon-->
+        <action
+            android:id="@+id/action_list_class_to_choose_subject"
+            app:destination="@id/list_subject_screen"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"/>
+    </fragment>
+
+    <!--fragment list subject-->
+    <fragment
+        android:id="@+id/list_subject_screen"
+        android:name="com.example.hiennv.loigiaihay.ui.listclass.FragmentListSubject"
+        android:label="list_subject_screen"
+        tools:layout="@layout/fragment_list_subject">
+        <!--Fetch list subject-->
+        <argument android:name="subject"
+            android:defaultValue="name"/>
+    </fragment>
+</navigation>

@@ -1,4 +1,4 @@
-package com.example.hiennv.loigiaihay.network.pojo.tag;
+package com.example.hiennv.loigiaihay.network.pojo.subject;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

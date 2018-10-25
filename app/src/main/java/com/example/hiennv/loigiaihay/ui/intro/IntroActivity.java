@@ -1,5 +1,6 @@
 package com.example.hiennv.loigiaihay.ui.intro;
 
+import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,9 @@ import com.example.hiennv.loigiaihay.R;
 import com.example.hiennv.loigiaihay.adapter.IntroAdapter;
 import com.example.hiennv.loigiaihay.model.Intro;
 import com.example.hiennv.loigiaihay.ui.base.BaseActivity;
+import com.example.hiennv.loigiaihay.ui.home.MainActivity;
+import com.example.hiennv.loigiaihay.utils.AppConstants;
+import com.example.hiennv.loigiaihay.utils.SharedPrefUtils;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import java.util.ArrayList;
@@ -30,11 +34,13 @@ public class IntroActivity extends BaseActivity {
     TextView btnSkip;
     @BindView(R.id.btn_next)
     ImageView btnNext;
-
+    @BindView(R.id.btn_ok)
+    TextView btnOk;
     private IntroAdapter introAdapter;
     private List<Intro> listIntro;
 
     private int pageSelected;
+    private SharedPrefUtils sharedPrefUtils;
 
     @Override
     protected int getLayoutId() {
@@ -43,6 +49,7 @@ public class IntroActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        sharedPrefUtils = new SharedPrefUtils(this);
         listIntro = new ArrayList<>();
         listIntro.add(new Intro("Chọn môn, lớp", R.drawable.manual_1));
         listIntro.add(new Intro("Tìm kiếm nhanh", R.drawable.manual_3));
@@ -53,6 +60,31 @@ public class IntroActivity extends BaseActivity {
         vpIntro.setCurrentItem(pageSelected);
         vpIntro.setAdapter(introAdapter);
         ciIntro.setViewPager(vpIntro);
+
+        vpIntro.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                pageSelected = position;
+                if (pageSelected == listIntro.size() - 1){
+                    btnNext.setVisibility(View.GONE);
+                    btnOk.setVisibility(View.VISIBLE);
+                }else {
+                    btnNext.setVisibility(View.VISIBLE);
+                    btnOk.setVisibility(View.GONE);
+                }
+                sharedPrefUtils.putBoolean(AppConstants.IS_FIRST_LAUNCH,false);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     @Override
@@ -62,18 +94,34 @@ public class IntroActivity extends BaseActivity {
         ButterKnife.bind(this);*/
     }
 
-    @OnClick({R.id.btn_skip, R.id.btn_next})
+    @OnClick({R.id.btn_skip, R.id.btn_next, R.id.btn_ok})
     void doClick(View v) {
         switch (v.getId()) {
             case R.id.btn_skip:
                 handleSkip();
                 break;
             case R.id.btn_next:
+                handleNext();
+                break;
+            case R.id.btn_ok:
+                handleSkip();
                 break;
         }
     }
 
-    private void handleSkip() {
+    private void handleNext() {
+        if (pageSelected < listIntro.size() - 1){
+            pageSelected += 1;
+            vpIntro.setCurrentItem(pageSelected);
+        }else {
+            btnNext.setVisibility(View.GONE);
+            btnOk.setVisibility(View.VISIBLE);
+        }
+    }
 
+    private void handleSkip() {
+        //Save shared
+        sharedPrefUtils.putBoolean(AppConstants.IS_FIRST_LAUNCH,false);
+        startActivity(new Intent(this, MainActivity.class));
     }
 }

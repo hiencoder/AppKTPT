@@ -4,14 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.MainActivity">
-
+    tools:context=".ui.listclass.ListClassActivity"
+    android:background="@android:color/white">
     <fragment
-        android:id="@+id/fragment_main"
+        android:id="@+id/fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:name="androidx.navigation.fragment.NavHostFragment"
         app:defaultNavHost="true"
-        app:navGraph="@navigation/navigation"/>
-
+        app:navGraph="@navigation/navigation_list_class"/>
 </android.support.constraint.ConstraintLayout>

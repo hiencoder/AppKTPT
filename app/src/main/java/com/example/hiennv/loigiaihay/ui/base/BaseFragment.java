@@ -10,8 +10,12 @@ import android.view.ViewGroup;
 
 import butterknife.ButterKnife;
 
-public abstract class BaseFragment extends Fragment{
+public abstract class BaseFragment extends Fragment {
     protected abstract int getLayoutId();
+
+    protected abstract void initData();
+
+    protected View view;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -21,8 +25,9 @@ public abstract class BaseFragment extends Fragment{
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(getLayoutId(),container,false);
-        ButterKnife.bind(this,view);
+        view = inflater.inflate(getLayoutId(), container, false);
+        ButterKnife.bind(this, view);
+        initData();
         return view;
     }
 }
