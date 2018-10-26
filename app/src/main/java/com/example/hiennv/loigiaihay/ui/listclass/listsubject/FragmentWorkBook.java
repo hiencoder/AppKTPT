@@ -1,14 +1,43 @@
 package com.example.hiennv.loigiaihay.ui.listclass.listsubject;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+
 import com.example.hiennv.loigiaihay.R;
+import com.example.hiennv.loigiaihay.adapter.BookAdapter;
+import com.example.hiennv.loigiaihay.callback.ItemSubjectListener;
+import com.example.hiennv.loigiaihay.network.pojo.subject.Subject;
 import com.example.hiennv.loigiaihay.ui.base.BaseFragment;
 
-public class FragmentWorkBook extends BaseFragment{
-    public static FragmentWorkBook newInstance(){
-        FragmentWorkBook fragmentWorkBook = new FragmentWorkBook();
+import java.io.Serializable;
+import java.util.List;
 
+import butterknife.BindView;
+
+public class FragmentWorkBook extends BaseFragment implements ItemSubjectListener{
+    @BindView(R.id.rv_workbooks)
+    RecyclerView rvWorkbooks;
+    private BookAdapter bookAdapter;
+    private List<Subject> subjects;
+    public static FragmentWorkBook newInstance(List<Subject> subjects) {
+        FragmentWorkBook fragmentWorkBook = new FragmentWorkBook();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("sbt", (Serializable) subjects);
+        fragmentWorkBook.setArguments(bundle);
         return fragmentWorkBook;
     }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Bundle bundle = getArguments();
+        if (bundle != null){
+            subjects = (List<Subject>) bundle.getSerializable("sbt");
+        }
+    }
+
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_work_book;
@@ -16,6 +45,14 @@ public class FragmentWorkBook extends BaseFragment{
 
     @Override
     protected void initData() {
+        bookAdapter = new BookAdapter(getActivity(),subjects,this);
+        rvWorkbooks.setHasFixedSize(false);
+        rvWorkbooks.setLayoutManager(new GridLayoutManager(getActivity(),3));
+        rvWorkbooks.setAdapter(bookAdapter);
+    }
+
+    @Override
+    public void subjectClick(int itemId) {
 
     }
 }

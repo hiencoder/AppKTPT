@@ -8,7 +8,7 @@ import com.example.hiennv.loigiaihay.ui.base.BaseActivity;
 import com.example.hiennv.loigiaihay.utils.SharedPrefUtils;
 
 public class MainActivity extends BaseActivity {
-
+    //https://stackoverflow.com/questions/33284812/android-change-navigation-drawer-menu-items-text-programmatically
     @Override
     protected int getLayoutId() {
         return R.layout.activity_main;

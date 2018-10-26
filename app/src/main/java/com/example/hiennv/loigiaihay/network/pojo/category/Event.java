@@ -65,4 +65,8 @@ public class Event {
     public int getItemType() {
         return itemType;
     }
+
+    public List<SubItem> getSubItems() {
+        return subItems;
+    }
 }

@@ -17,6 +17,7 @@ public class SplashActivity extends BaseActivity {
     private SharedPrefUtils sharedPrefUtils;
     private boolean isFirstLaunch;
     private String className;
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_splash;
@@ -25,30 +26,28 @@ public class SplashActivity extends BaseActivity {
     @Override
     protected void initData() {
         sharedPrefUtils = new SharedPrefUtils(this);
-        isFirstLaunch = sharedPrefUtils.getBoolean(AppConstants.IS_FIRST_LAUNCH,false);
-        className = sharedPrefUtils.getString(AppConstants.KEY_CLASS_NAME,"");
-        if (isFirstLaunch){
+        isFirstLaunch = sharedPrefUtils.getBoolean(AppConstants.IS_FIRST_LAUNCH, true);
+        className = sharedPrefUtils.getString(AppConstants.KEY_CLASS_NAME, "");
+        if (isFirstLaunch) {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     startActivity(new Intent(SplashActivity.this, IntroActivity.class));
                 }
-            },2000);
-        }else {
+            }, 2000);
+        } else {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    if (className != null){
-                        if (!className.equals("")){
-                            //open main
-                            startActivity(new Intent(SplashActivity.this, MainActivity.class));
-                        }else {
-                            //Open list class
-                            startActivity(new Intent(SplashActivity.this, ListClassActivity.class));
-                        }
+                    if (className != null && !className.equals("")) {
+                        //open main
+                        startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                    } else {
+                        //Open list
+                        startActivity(new Intent(SplashActivity.this, ListClassActivity.class));
                     }
                 }
-            },2000);
+            }, 2000);
         }
     }
 

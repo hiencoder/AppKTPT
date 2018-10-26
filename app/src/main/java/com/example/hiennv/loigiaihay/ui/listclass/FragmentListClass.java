@@ -88,7 +88,7 @@ public class FragmentListClass extends BaseFragment implements ListClassContract
         switch (v.getId()){
             case R.id.btn_back:
                 //Open main activity
-
+                getActivity().onBackPressed();
                 break;
         }
     }

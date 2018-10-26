@@ -12,5 +12,7 @@ public interface ListSubjectContract {
 
     interface ListSubjectPresenter{
         void loadListSubject(String tagId);
+
+        void loadSubjectDetail(int itemId);
     }
 }

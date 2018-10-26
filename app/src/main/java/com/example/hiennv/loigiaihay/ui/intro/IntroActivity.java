@@ -13,6 +13,7 @@ import com.example.hiennv.loigiaihay.adapter.IntroAdapter;
 import com.example.hiennv.loigiaihay.model.Intro;
 import com.example.hiennv.loigiaihay.ui.base.BaseActivity;
 import com.example.hiennv.loigiaihay.ui.home.MainActivity;
+import com.example.hiennv.loigiaihay.ui.listclass.ListClassActivity;
 import com.example.hiennv.loigiaihay.utils.AppConstants;
 import com.example.hiennv.loigiaihay.utils.SharedPrefUtils;
 import com.viewpagerindicator.CirclePageIndicator;
@@ -122,6 +123,6 @@ public class IntroActivity extends BaseActivity {
     private void handleSkip() {
         //Save shared
         sharedPrefUtils.putBoolean(AppConstants.IS_FIRST_LAUNCH,false);
-        startActivity(new Intent(this, MainActivity.class));
+        startActivity(new Intent(this, ListClassActivity.class));
     }
 }

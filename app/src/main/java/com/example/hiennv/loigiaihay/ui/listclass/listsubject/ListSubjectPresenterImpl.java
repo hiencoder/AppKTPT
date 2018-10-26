@@ -35,4 +35,9 @@ public class ListSubjectPresenterImpl implements ListSubjectContract.ListSubject
             }
         });
     }
+
+    @Override
+    public void loadSubjectDetail(int itemId) {
+        //Call<>
+    }
 }
