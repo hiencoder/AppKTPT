@@ -1,5 +1,6 @@
-package com.example.hiennv.loigiaihay.ui.listclass;
+package com.example.hiennv.loigiaihay.ui.changeclass;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,17 +14,18 @@ import com.example.hiennv.loigiaihay.callback.ItemClassListener;
 import com.example.hiennv.loigiaihay.network.ApiClient;
 import com.example.hiennv.loigiaihay.network.ApiService;
 import com.example.hiennv.loigiaihay.network.pojo.tag.ClassEntity;
-import com.example.hiennv.loigiaihay.ui.base.BaseFragment;
+import com.example.hiennv.loigiaihay.ui.base.BaseActivity;
+import com.example.hiennv.loigiaihay.ui.changesubject.ChangeSubjectActivity;
+import com.example.hiennv.loigiaihay.utils.AppConstants;
+import com.example.hiennv.loigiaihay.utils.SharedPrefUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.navigation.Navigation;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class FragmentListClass extends BaseFragment implements ListClassContract.ListClassView,
-        ItemClassListener {
+public class ChangeClassActivity extends BaseActivity implements ChangeClassContract.ChangeClassView, ItemClassListener {
     @BindView(R.id.pb_loading)
     ProgressBar pbLoading;
     @BindView(R.id.rv_list_class)
@@ -32,29 +34,40 @@ public class FragmentListClass extends BaseFragment implements ListClassContract
     ImageView btnBack;
 
     private ApiService apiService;
-    private ListClassPresenterImpl listClassPresenter;
+    private ChangeClassPresenterImpl listClassPresenter;
     private List<ClassEntity> listClass;
     private ListClassAdapter adapter;
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_list_class;
+        return R.layout.activity_change_class;
     }
 
     @Override
     protected void initData() {
+        sharedPrefUtils = new SharedPrefUtils(this);
         listClass = new ArrayList<>();
         apiService = ApiClient.getClient().create(ApiService.class);
-        listClassPresenter = new ListClassPresenterImpl(this, apiService);
+        listClassPresenter = new ChangeClassPresenterImpl(this, apiService);
         listClassPresenter.loadListClass();
+    }
+
+    @Override
+    protected void setUpToolbar() {
+
+    }
+
+    @Override
+    protected void initEvents() {
+
     }
 
     @Override
     public void loadSuccess(List<ClassEntity> list) {
         if (list != null && list.size() > 0) {
             listClass.addAll(list);
-            adapter = new ListClassAdapter(getActivity(), listClass, this::classClick);
-            GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 3);
+            adapter = new ListClassAdapter(this, listClass, this::classClick);
+            GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
             rvListClass.setHasFixedSize(true);
             rvListClass.setLayoutManager(gridLayoutManager);
             rvListClass.setAdapter(adapter);
@@ -77,18 +90,22 @@ public class FragmentListClass extends BaseFragment implements ListClassContract
     }
 
     @Override
-    public void classClick(String classId) {
-        Bundle bundle = new Bundle();
-        bundle.putString("tagId",classId);
-        Navigation.findNavController(view).navigate(R.id.action_list_class_to_choose_subject,bundle);
+    public void classClick(ClassEntity classEntity) {
+        sharedPrefUtils.putString(AppConstants.KEY_CLASS_ID,classEntity.getTagId());
+        sharedPrefUtils.putString(AppConstants.KEY_CLASS_TITLE,classEntity.getTitle());
+        //Put classEntity -> ChangeSubjectActivity
+        /*Bundle bundle = new Bundle();
+        bundle.putSerializable("class_entity",classEntity);*/
+        Intent intent = new Intent(this, ChangeSubjectActivity.class);
+        intent.putExtra("class_entity",classEntity);
+        startActivity(intent);
     }
 
     @OnClick(R.id.btn_back)
     void doClick(View v){
         switch (v.getId()){
             case R.id.btn_back:
-                //Open main activity
-                getActivity().onBackPressed();
+                //Open MainActivity
                 break;
         }
     }

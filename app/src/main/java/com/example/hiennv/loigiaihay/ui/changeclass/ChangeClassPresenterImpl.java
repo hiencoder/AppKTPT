@@ -1,4 +1,4 @@
-package com.example.hiennv.loigiaihay.ui.listclass;
+package com.example.hiennv.loigiaihay.ui.changeclass;
 
 import com.example.hiennv.loigiaihay.network.ApiService;
 import com.example.hiennv.loigiaihay.network.pojo.tag.ClassEntity;
@@ -11,11 +11,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ListClassPresenterImpl implements ListClassContract.ListClassPresenter {
-    private ListClassContract.ListClassView listClassView;
+public class ChangeClassPresenterImpl implements ChangeClassContract.ChangeClassPresenter {
+    private ChangeClassContract.ChangeClassView listClassView;
     private ApiService apiService;
 
-    public ListClassPresenterImpl(ListClassContract.ListClassView listClassView, ApiService apiService) {
+    public ChangeClassPresenterImpl(ChangeClassContract.ChangeClassView listClassView, ApiService apiService) {
         this.listClassView = listClassView;
         this.apiService = apiService;
     }

@@ -1,18 +1,19 @@
-package com.example.hiennv.loigiaihay.ui.listclass.listsubject;
+package com.example.hiennv.loigiaihay.ui.changesubject;
 
 import com.example.hiennv.loigiaihay.network.ApiService;
 import com.example.hiennv.loigiaihay.network.pojo.subject.SubjectResponse;
+
 import com.example.hiennv.loigiaihay.utils.AppLogger;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ListSubjectPresenterImpl implements ListSubjectContract.ListSubjectPresenter{
-    private ListSubjectContract.ListSubjectView subjectView;
+public class ChangeSubjectPresenterImpl implements ChangeSubjectContract.ChangeSubjectPresenter{
+    private ChangeSubjectContract.ChangeSubjectView subjectView;
     private ApiService apiService;
 
-    public ListSubjectPresenterImpl(ListSubjectContract.ListSubjectView subjectView, ApiService apiService) {
+    public ChangeSubjectPresenterImpl(ChangeSubjectContract.ChangeSubjectView subjectView, ApiService apiService) {
         this.subjectView = subjectView;
         this.apiService = apiService;
     }

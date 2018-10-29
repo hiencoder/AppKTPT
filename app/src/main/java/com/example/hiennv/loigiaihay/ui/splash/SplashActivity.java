@@ -6,17 +6,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.hiennv.loigiaihay.R;
+import com.example.hiennv.loigiaihay.ui.Main2Activity;
 import com.example.hiennv.loigiaihay.ui.base.BaseActivity;
+import com.example.hiennv.loigiaihay.ui.changeclass.ChangeClassActivity;
 import com.example.hiennv.loigiaihay.ui.home.MainActivity;
 import com.example.hiennv.loigiaihay.ui.intro.IntroActivity;
-import com.example.hiennv.loigiaihay.ui.listclass.ListClassActivity;
 import com.example.hiennv.loigiaihay.utils.AppConstants;
 import com.example.hiennv.loigiaihay.utils.SharedPrefUtils;
 
+
 public class SplashActivity extends BaseActivity {
-    private SharedPrefUtils sharedPrefUtils;
     private boolean isFirstLaunch;
-    private String className;
+    private String classId;
+    private String classTitle;
+    private String subjectId;
 
     @Override
     protected int getLayoutId() {
@@ -27,28 +30,49 @@ public class SplashActivity extends BaseActivity {
     protected void initData() {
         sharedPrefUtils = new SharedPrefUtils(this);
         isFirstLaunch = sharedPrefUtils.getBoolean(AppConstants.IS_FIRST_LAUNCH, true);
-        className = sharedPrefUtils.getString(AppConstants.KEY_CLASS_NAME, "");
+        classId = sharedPrefUtils.getString(AppConstants.KEY_CLASS_ID, "");
+        classTitle = sharedPrefUtils.getString(AppConstants.KEY_CLASS_TITLE, "");
+        subjectId = sharedPrefUtils.getString(AppConstants.KEY_SUBJECT_ID, "");
+
         if (isFirstLaunch) {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     startActivity(new Intent(SplashActivity.this, IntroActivity.class));
+                    finish();
                 }
             }, 2000);
         } else {
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    if (className != null && !className.equals("")) {
+            if (subjectId != null && !subjectId.equals("")) {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
                         //open main
                         startActivity(new Intent(SplashActivity.this, MainActivity.class));
-                    } else {
-                        //Open list
-                        startActivity(new Intent(SplashActivity.this, ListClassActivity.class));
+                        finish();
                     }
-                }
-            }, 2000);
+                }, 2000);
+            } else {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        startActivity(new Intent(SplashActivity.this, ChangeClassActivity.class));
+                        finish();
+                    }
+                }, 2000);
+            }
+
         }
+    }
+
+    @Override
+    protected void setUpToolbar() {
+
+    }
+
+    @Override
+    protected void initEvents() {
+
     }
 
     @Override

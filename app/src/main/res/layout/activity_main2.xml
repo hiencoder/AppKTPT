@@ -4,8 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.splash.SplashActivity"
-    android:background="@drawable/banner_wellcome"
-    android:fitsSystemWindows="true">
+    tools:context=".ui.Main2Activity">
 
 </android.support.constraint.ConstraintLayout>

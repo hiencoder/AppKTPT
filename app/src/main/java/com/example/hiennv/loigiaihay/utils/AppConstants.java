@@ -24,8 +24,10 @@ public class AppConstants {
     //Data saved in shared
     public static final String PREF_NAME = "pref_name";
     public static final String IS_FIRST_LAUNCH = "first_launch";
-    public static final String KEY_CLASS_NAME = "class_name"; //classId
-
+    public static final String KEY_CLASS_ID = "tag_id";
+    public static final String KEY_CLASS_TITLE = "class_title"; //title class
+    public static final String KEY_SUBJECT_ID = "subject_id"; //item_id
+    public static final String KEY_SUBJECT_TITLE = "subject_title";//title subject
 
     public static final long REQUEST_TIMEOUT = 600l;
 }

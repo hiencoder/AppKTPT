@@ -1,16 +1,16 @@
-package com.example.hiennv.loigiaihay.ui.listclass.listsubject;
+package com.example.hiennv.loigiaihay.ui.changesubject;
 
 import com.example.hiennv.loigiaihay.network.pojo.subject.SubjectResponse;
 import com.example.hiennv.loigiaihay.ui.base.BaseView;
 
-public interface ListSubjectContract {
-    interface ListSubjectView extends BaseView{
+public interface ChangeSubjectContract {
+    interface ChangeSubjectView extends BaseView{
         void loadListSubjectSuccess(SubjectResponse subjectResponse);
 
         void loadListSubjectError();
     }
 
-    interface ListSubjectPresenter{
+    interface ChangeSubjectPresenter{
         void loadListSubject(String tagId);
 
         void loadSubjectDetail(int itemId);

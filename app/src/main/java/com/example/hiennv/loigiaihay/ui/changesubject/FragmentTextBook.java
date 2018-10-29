@@ -1,6 +1,7 @@
-package com.example.hiennv.loigiaihay.ui.listclass.listsubject;
+package com.example.hiennv.loigiaihay.ui.changesubject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
@@ -8,10 +9,12 @@ import android.support.v7.widget.RecyclerView;
 
 import com.example.hiennv.loigiaihay.R;
 import com.example.hiennv.loigiaihay.adapter.BookAdapter;
-import com.example.hiennv.loigiaihay.adapter.SubjectAdapter;
 import com.example.hiennv.loigiaihay.callback.ItemSubjectListener;
 import com.example.hiennv.loigiaihay.network.pojo.subject.Subject;
 import com.example.hiennv.loigiaihay.ui.base.BaseFragment;
+import com.example.hiennv.loigiaihay.ui.home.MainActivity;
+import com.example.hiennv.loigiaihay.utils.AppConstants;
+import com.example.hiennv.loigiaihay.utils.SharedPrefUtils;
 
 import java.io.Serializable;
 import java.util.List;
@@ -40,6 +43,7 @@ public class FragmentTextBook extends BaseFragment implements ItemSubjectListene
         if (bundle != null) {
             subjects = (List<Subject>) bundle.getSerializable("sgk");
         }
+        sharedPrefUtils = new SharedPrefUtils(getActivity());
     }
 
     @Override
@@ -51,7 +55,7 @@ public class FragmentTextBook extends BaseFragment implements ItemSubjectListene
     protected void initData() {
         bookAdapter = new BookAdapter(getActivity(), subjects, this);
         rvTextBooks.setHasFixedSize(false);
-        rvTextBooks.setLayoutManager(new GridLayoutManager(getActivity(),3));
+        rvTextBooks.setLayoutManager(new GridLayoutManager(getActivity(), 3));
         rvTextBooks.setAdapter(bookAdapter);
     }
 
@@ -62,7 +66,11 @@ public class FragmentTextBook extends BaseFragment implements ItemSubjectListene
 
 
     @Override
-    public void subjectClick(int itemId) {
-
+    public void subjectClick(Subject subject) {
+        //Save subject
+        sharedPrefUtils.putString(AppConstants.KEY_SUBJECT_ID, String.valueOf(subject.getItemId()));
+        //Open MainActivity
+        Intent intent = new Intent(getActivity(), MainActivity.class);
+        startActivity(intent);
     }
 }

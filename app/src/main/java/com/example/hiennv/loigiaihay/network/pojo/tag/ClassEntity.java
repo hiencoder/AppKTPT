@@ -3,7 +3,9 @@ package com.example.hiennv.loigiaihay.network.pojo.tag;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ClassEntity {
+import java.io.Serializable;
+
+public class ClassEntity implements Serializable{
     @Expose
     @SerializedName("tagId")
     private String tagId;

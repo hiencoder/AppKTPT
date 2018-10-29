@@ -8,8 +8,10 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.example.hiennv.loigiaihay.network.pojo.subject.SubjectResponse;
-import com.example.hiennv.loigiaihay.ui.listclass.listsubject.FragmentTextBook;
-import com.example.hiennv.loigiaihay.ui.listclass.listsubject.FragmentWorkBook;
+
+import com.example.hiennv.loigiaihay.ui.changesubject.FragmentTextBook;
+import com.example.hiennv.loigiaihay.ui.changesubject.FragmentWorkBook;
+
 
 public class SubjectAdapter extends FragmentPagerAdapter {
     private Context context;

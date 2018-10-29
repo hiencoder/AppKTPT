@@ -1,42 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
-
+        <item android:id="@+id/menu_group1"
+            android:title="">
+            <menu>
+                <item
+                    android:id="@+id/menu_home"
+                    android:icon="@drawable/home_icon_black"
+                    android:title="Trang chủ">
+                </item>
+                <item
+                    android:id="@+id/menu_search"
+                    android:icon="@drawable/search_icon_black"
+                    android:title="Tìm kiếm"/>
+            </menu>
+        </item>
+        <item android:id="@+id/menu_group2"
+            android:title="">
+            <menu>
+                <item
+                    android:id="@+id/menu_change_subject"
+                    android:icon="@drawable/icon_change_object_black"
+                    android:title="Đổi môn"/>
+                <item
+                    android:id="@+id/menu_change_class"
+                    android:icon="@drawable/change_class_icon_black"
+                    android:title="Đổi lớp"/>
+                <item
+                    android:id="@+id/menu_open_saved"
+                    android:icon="@drawable/save_icon_black"
+                    android:title="Bài viết đã lưu"/>
+                <item
+                    android:id="@+id/menu_save_offline"
+                    android:icon="@drawable/save_subject"
+                    android:title="Lưu offline"/>
+                <item
+                    android:id="@+id/menu_seen"
+                    android:icon="@drawable/history_icon_black"
+                    android:title="Bài viết đã xem"/>
+            </menu>
+        </item>
+        <item android:id="@+id/menu_group3"
+            android:title="">
+            <menu>
+                <item
+                    android:id="@+id/menu_rate"
+                    android:icon="@drawable/rate_icon_black"
+                    android:title="Bình chọn"/>
+                <item
+                    android:id="@+id/menu_share"
+                    android:icon="@drawable/share_icon_black"
+                    android:title="Chia sẻ ứng dụng"/>
+            </menu>
+        </item>
     </group>
-    <item
-        android:id="@+id/menu_home"
-        android:icon="@drawable/home_icon_black"
-        android:title="Trang chủ"></item>
-    <item
-        android:id="@+id/menu_search"
-        android:icon="@drawable/search_icon_black"
-        android:title="Tìm kiếm"></item>
-    <item
-        android:id="@+id/menu_change_subject"
-        android:icon="@drawable/icon_change_object_black"
-        android:title="Đổi môn"></item>
-    <item
-        android:id="@+id/menu_change_class"
-        android:icon="@drawable/change_class_icon_black"
-        android:title="Đổi lớp"></item>
-    <item
-        android:id="@+id/menu_open_saved"
-        android:icon="@drawable/save_icon_black"
-        android:title="Bài viết đã lưu"></item>
-    <item
-        android:id="@+id/menu_save_offline"
-        android:icon="@drawable/save_subject"
-        android:title="Lưu offline"></item>
-    <item
-        android:id="@+id/menu_seen"
-        android:icon="@drawable/history_icon_black"
-        android:title=""></item>
-    <item
-        android:id="@+id/menu_rate"
-        android:icon="@drawable/rate_icon_black"
-        android:title="Bình chọn"></item>
-    <item
-        android:id="@+id/menu_share"
-        android:icon="@drawable/share_icon_black"
-        android:title="Chia sẻ ứng dụng"></item>
 </menu>

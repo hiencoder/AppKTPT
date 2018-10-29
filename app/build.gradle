@@ -173,4 +173,8 @@ dependencies {
     //Viewpager Indicator
     implementation 'me.relex:circleindicator:2.1.0'
     implementation 'fr.avianey.com.viewpagerindicator:library:2.4.1.1@aar'
+
+    //Material drawer
+    //implementation "com.mikepenz:materialdrawer:6.1.1"
+
 }

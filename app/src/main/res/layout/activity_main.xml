@@ -5,11 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.MainActivity"
-    android:id="@+id/dl_main">
+    android:id="@+id/dl_main"
+    android:fitsSystemWindows="true">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:fitsSystemWindows="true">
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
@@ -18,11 +20,18 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+                <!--<ImageView
+                    android:id="@+id/btn_open_menu"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/menu_grey_192x192"/>-->
                 <TextView
                     android:clickable="true"
                     android:id="@+id/tv_title_subject"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="18sp"/>
                 <ImageView
                     android:id="@+id/iv_drop"
                     android:layout_width="30dp"
@@ -48,5 +57,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        app:headerLayout="@layout/header_nav"/>
+        app:headerLayout="@layout/header_nav"
+        app:menu="@menu/menu_nav"/>
 </android.support.v4.widget.DrawerLayout>

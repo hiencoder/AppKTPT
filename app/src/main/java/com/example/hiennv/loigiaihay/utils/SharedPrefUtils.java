@@ -13,8 +13,7 @@ public class SharedPrefUtils {
     }
 
     public void putBoolean(String key, boolean value) {
-
-        editor.putBoolean(key, value).apply();
+        editor.putBoolean(key, value).commit();
     }
 
     public boolean getBoolean(String key, boolean defValue) {
@@ -22,7 +21,7 @@ public class SharedPrefUtils {
     }
 
     public void putInt(String key, int value) {
-        editor.putInt(key, value).apply();
+        editor.putInt(key, value).commit();
     }
 
     public int getInt(String key, int defValue) {
@@ -30,7 +29,7 @@ public class SharedPrefUtils {
     }
 
     public void putLong(String key, long value) {
-        editor.putLong(key, value).apply();
+        editor.putLong(key, value).commit();
     }
 
     public long getLong(String key, long defValue) {
@@ -38,7 +37,7 @@ public class SharedPrefUtils {
     }
 
     public void putString(String key, String value) {
-        editor.putString(key, value).apply();
+        editor.putString(key, value).commit();
     }
 
     public String getString(String key, String defValue){
@@ -46,7 +45,7 @@ public class SharedPrefUtils {
     }
 
     public void putFloat(String key, float value){
-        editor.putFloat(key, value).apply();
+        editor.putFloat(key, value).commit();
     }
 
     public float getFloat(String key, float defValue){

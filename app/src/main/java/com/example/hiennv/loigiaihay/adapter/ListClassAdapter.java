@@ -42,7 +42,7 @@ public class ListClassAdapter extends RecyclerView.Adapter<ListClassAdapter.List
         ClassEntity classEntity = listClass.get(position);
         holder.bindClass(classEntity);
         holder.itemView.setOnClickListener(v -> {
-            itemClassListener.classClick(classEntity.getTagId());
+            itemClassListener.classClick(classEntity);
         });
     }
 
