@@ -11,6 +11,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -128,20 +129,27 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_home:
+                dlMain.closeDrawer(Gravity.NO_GRAVITY);
                 break;
             case R.id.menu_search:
+                dlMain.closeDrawer(Gravity.NO_GRAVITY);
                 break;
             case R.id.menu_change_subject:
                 startActivity(new Intent(MainActivity.this, ChangeSubjectActivity.class));
+                dlMain.closeDrawer(Gravity.NO_GRAVITY);
                 break;
             case R.id.menu_change_class:
                 startActivity(new Intent(MainActivity.this, ChangeClassActivity.class));
+                dlMain.closeDrawer(Gravity.NO_GRAVITY);
                 break;
             case R.id.menu_open_saved:
+                dlMain.closeDrawer(Gravity.NO_GRAVITY);
                 break;
             case R.id.menu_save_offline:
+                dlMain.closeDrawer(Gravity.NO_GRAVITY);
                 break;
             case R.id.menu_seen:
+                dlMain.closeDrawer(Gravity.NO_GRAVITY);
                 break;
             case R.id.menu_rate:
                 break;

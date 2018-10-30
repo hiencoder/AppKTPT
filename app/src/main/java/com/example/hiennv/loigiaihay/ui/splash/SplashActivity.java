@@ -48,8 +48,8 @@ public class SplashActivity extends BaseActivity {
                     @Override
                     public void run() {
                         //open main
-                        startActivity(new Intent(SplashActivity.this, MainActivity.class));
-                        finish();
+                        //startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                        //finish();
                     }
                 }, 2000);
             } else {
