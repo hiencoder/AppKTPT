@@ -12,10 +12,12 @@ import com.example.hiennv.loigiaihay.ui.changeclass.ChangeClassActivity;
 import com.example.hiennv.loigiaihay.ui.home.MainActivity;
 import com.example.hiennv.loigiaihay.ui.intro.IntroActivity;
 import com.example.hiennv.loigiaihay.utils.AppConstants;
+import com.example.hiennv.loigiaihay.utils.AppLogger;
 import com.example.hiennv.loigiaihay.utils.SharedPrefUtils;
 
 
 public class SplashActivity extends BaseActivity {
+    private static final String TAG = SplashActivity.class.getSimpleName();
     private boolean isFirstLaunch;
     private String classId;
     private String classTitle;
@@ -33,7 +35,7 @@ public class SplashActivity extends BaseActivity {
         classId = sharedPrefUtils.getString(AppConstants.KEY_CLASS_ID, "");
         classTitle = sharedPrefUtils.getString(AppConstants.KEY_CLASS_TITLE, "");
         subjectId = sharedPrefUtils.getString(AppConstants.KEY_SUBJECT_ID, "");
-
+        AppLogger.i(TAG, isFirstLaunch + "\n" + classTitle + "\n" + subjectId);
         if (isFirstLaunch) {
             new Handler().postDelayed(new Runnable() {
                 @Override
@@ -48,8 +50,8 @@ public class SplashActivity extends BaseActivity {
                     @Override
                     public void run() {
                         //open main
-                        //startActivity(new Intent(SplashActivity.this, MainActivity.class));
-                        //finish();
+                        startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                        finish();
                     }
                 }, 2000);
             } else {
@@ -75,8 +77,4 @@ public class SplashActivity extends BaseActivity {
 
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 }

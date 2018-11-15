@@ -10,8 +10,10 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -43,6 +45,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     TextView tvTitleSubject;
     @BindView(R.id.nv_menu)
     NavigationView nvMenu;
+    @BindView(R.id.rv_lessons)
+    RecyclerView rvLession;
     //Id class
     private String tagId;
     //Title class
@@ -55,6 +59,12 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private FragmentManager fragmentManager;
 
     private ActionBarDrawerToggle drawerToggle;
+
+    //Menu navigation viêw
+    private Menu menu;
+    private MenuItem itemChangeClass;
+    private MenuItem itemChangeSubject;
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_main;
@@ -63,8 +73,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @Override
     protected void initData() {
 
-        tagId = sharedPrefUtils.getString(AppConstants.KEY_CLASS_ID,"");
-        drawerToggle = new ActionBarDrawerToggle(this,dlMain,toolbar,R.string.txt_open,R.string.txt_close){
+        tagId = sharedPrefUtils.getString(AppConstants.KEY_CLASS_ID, "");
+
+        drawerToggle = new ActionBarDrawerToggle(this, dlMain, toolbar, R.string.txt_open, R.string.txt_close) {
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
@@ -77,14 +88,21 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         };
         dlMain.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
+
+        //Fetch title menu navigationview
+        menu = nvMenu.getMenu();
+        itemChangeClass = menu.findItem(R.id.menu_change_class);
+        itemChangeSubject = menu.findItem(R.id.menu_change_subject);
+        itemChangeClass.setTitle("Đổi môn (" + titleClass + "-" + titleSubject + ")");
+        itemChangeSubject.setTitle("Đổi lớp (" + titleClass + ")");
     }
 
     @Override
     protected void setUpToolbar() {
         sharedPrefUtils = new SharedPrefUtils(this);
-        setSupportActionBar(toolbar);
         titleClass = sharedPrefUtils.getString(AppConstants.KEY_CLASS_TITLE, "");
         titleSubject = sharedPrefUtils.getString(AppConstants.KEY_SUBJECT_TITLE, "");
+        setSupportActionBar(toolbar);
         tvTitleSubject.setText(titleClass + "-" + titleSubject);
     }
 
@@ -129,31 +147,33 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_home:
-                dlMain.closeDrawer(Gravity.NO_GRAVITY);
+                dlMain.closeDrawer(Gravity.LEFT);
                 break;
             case R.id.menu_search:
-                dlMain.closeDrawer(Gravity.NO_GRAVITY);
+                dlMain.closeDrawer(Gravity.LEFT);
                 break;
             case R.id.menu_change_subject:
                 startActivity(new Intent(MainActivity.this, ChangeSubjectActivity.class));
-                dlMain.closeDrawer(Gravity.NO_GRAVITY);
+                dlMain.closeDrawer(Gravity.LEFT);
                 break;
             case R.id.menu_change_class:
                 startActivity(new Intent(MainActivity.this, ChangeClassActivity.class));
-                dlMain.closeDrawer(Gravity.NO_GRAVITY);
+                dlMain.closeDrawer(Gravity.LEFT);
                 break;
             case R.id.menu_open_saved:
-                dlMain.closeDrawer(Gravity.NO_GRAVITY);
+                dlMain.closeDrawer(Gravity.LEFT);
                 break;
             case R.id.menu_save_offline:
-                dlMain.closeDrawer(Gravity.NO_GRAVITY);
+                dlMain.closeDrawer(Gravity.LEFT);
                 break;
             case R.id.menu_seen:
-                dlMain.closeDrawer(Gravity.NO_GRAVITY);
+                dlMain.closeDrawer(Gravity.LEFT);
                 break;
             case R.id.menu_rate:
+                dlMain.closeDrawer(Gravity.LEFT);
                 break;
             case R.id.menu_share:
+                dlMain.closeDrawer(Gravity.LEFT);
                 break;
         }
         return false;
@@ -172,7 +192,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     public void onBackPressed() {
-        if (doubleBackToExitApp){
+        if (doubleBackToExitApp) {
             super.onBackPressed();
             return;
         }
@@ -184,7 +204,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             public void run() {
                 doubleBackToExitApp = false;
             }
-        },2000);
+        }, 2000);
 
         /*if (this.getSupportFragmentManager().getBackStackEntryCount() >= 1) {
             this.getSupportFragmentManager().popBackStack();

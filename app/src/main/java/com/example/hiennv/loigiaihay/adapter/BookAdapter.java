@@ -41,7 +41,9 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookHolder> {
     public void onBindViewHolder(@NonNull BookHolder holder, int position) {
         Subject subject = subjects.get(position);
         holder.bindSubject(subject);
-        itemSubjectListener.subjectClick(subject);
+        holder.itemView.setOnClickListener(v -> {
+            itemSubjectListener.subjectClick(subject);
+        });
     }
 
     @Override

@@ -61,6 +61,7 @@ public class FragmentWorkBook extends BaseFragment implements ItemSubjectListene
     public void subjectClick(Subject subject) {
         //Save subject
         sharedPrefUtils.putString(AppConstants.KEY_SUBJECT_ID, String.valueOf(subject.getItemId()));
+        sharedPrefUtils.putString(AppConstants.KEY_SUBJECT_TITLE,subject.getTitle());
         //Open MainActivity
         Intent intent = new Intent(getActivity(), MainActivity.class);
         startActivity(intent);
