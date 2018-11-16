@@ -1,5 +1,6 @@
 package com.example.hiennv.loigiaihay.network;
 
+import com.example.hiennv.loigiaihay.network.pojo.category.ResponseCateGory;
 import com.example.hiennv.loigiaihay.network.pojo.subject.SubjectResponse;
 import com.example.hiennv.loigiaihay.network.pojo.tag.ResponseTag;
 
@@ -15,5 +16,11 @@ public interface ApiService {
     //Get list subject
     @GET("tags/{tagId}")
     Call<SubjectResponse> getListSubjectByTagId(@Path("tagId") String tagId);
+
+    //Get list Events()
+    @GET("categories/{subjectId}")
+    Call<ResponseCateGory> getResponseCategory(@Path("subjectId") String subjectId);
+
+
 
 }

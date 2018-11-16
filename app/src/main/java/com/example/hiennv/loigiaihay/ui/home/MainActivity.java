@@ -16,6 +16,7 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,8 +33,9 @@ import com.example.hiennv.loigiaihay.utils.SharedPrefUtils;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends BaseActivity {
     //https://stackoverflow.com/questions/33284812/android-change-navigation-drawer-menu-items-text-programmatically
+    //https://api.loigiaihay.com/v3/categories/47 api get main
     private static final String TAG = MainActivity.class.getSimpleName();
     @BindView(R.id.dl_main)
     DrawerLayout dlMain;
@@ -47,6 +49,35 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     NavigationView nvMenu;
     @BindView(R.id.rv_lessons)
     RecyclerView rvLession;
+
+    //Menu id
+    @BindView(R.id.menu_home)
+    LinearLayout menuHome;
+    @BindView(R.id.menu_search)
+    LinearLayout menuSearch;
+    @BindView(R.id.menu_change_subject)
+    LinearLayout menuChangeSubject;
+    @BindView(R.id.menu_change_class)
+    LinearLayout menuChangeClass;
+    @BindView(R.id.menu_open_saved)
+    LinearLayout menuOpenSaved;
+    @BindView(R.id.menu_save_offline)
+    LinearLayout menuSaveOffline;
+    @BindView(R.id.menu_seen)
+    LinearLayout menuSeen;
+    @BindView(R.id.menu_rate)
+    LinearLayout menuRate;
+    @BindView(R.id.menu_share)
+    LinearLayout menuShare;
+    @BindView(R.id.menu_feed_back)
+    LinearLayout menuFeedback;
+    @BindView(R.id.menu_notify)
+    LinearLayout menuNotify;
+
+    @BindView(R.id.tv_change_class)
+    TextView tvChangeClass;
+    @BindView(R.id.tv_change_subject)
+    TextView tvChangeSubject;
     //Id class
     private String tagId;
     //Title class
@@ -90,11 +121,13 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         drawerToggle.syncState();
 
         //Fetch title menu navigationview
-        menu = nvMenu.getMenu();
-        itemChangeClass = menu.findItem(R.id.menu_change_class);
+        //menu = nvMenu.getMenu();
+        /*itemChangeClass = menu.findItem(R.id.menu_change_class);
         itemChangeSubject = menu.findItem(R.id.menu_change_subject);
         itemChangeClass.setTitle("Đổi môn (" + titleClass + "-" + titleSubject + ")");
-        itemChangeSubject.setTitle("Đổi lớp (" + titleClass + ")");
+        itemChangeSubject.setTitle("Đổi lớp (" + titleClass + ")");*/
+        tvChangeSubject.setText("Đổi môn (" + titleClass + "-" + titleSubject + ")");
+        tvChangeClass.setText("Đổi lớp (" + titleClass + ")");
     }
 
     @Override
@@ -108,7 +141,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     protected void initEvents() {
-        nvMenu.setNavigationItemSelectedListener(this::onNavigationItemSelected);
+
     }
 
     @Override
@@ -143,49 +176,42 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         ft.commit();
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_home:
-                dlMain.closeDrawer(Gravity.LEFT);
-                break;
-            case R.id.menu_search:
-                dlMain.closeDrawer(Gravity.LEFT);
-                break;
-            case R.id.menu_change_subject:
-                startActivity(new Intent(MainActivity.this, ChangeSubjectActivity.class));
-                dlMain.closeDrawer(Gravity.LEFT);
-                break;
-            case R.id.menu_change_class:
-                startActivity(new Intent(MainActivity.this, ChangeClassActivity.class));
-                dlMain.closeDrawer(Gravity.LEFT);
-                break;
-            case R.id.menu_open_saved:
-                dlMain.closeDrawer(Gravity.LEFT);
-                break;
-            case R.id.menu_save_offline:
-                dlMain.closeDrawer(Gravity.LEFT);
-                break;
-            case R.id.menu_seen:
-                dlMain.closeDrawer(Gravity.LEFT);
-                break;
-            case R.id.menu_rate:
-                dlMain.closeDrawer(Gravity.LEFT);
-                break;
-            case R.id.menu_share:
-                dlMain.closeDrawer(Gravity.LEFT);
-                break;
-        }
-        return false;
-    }
 
-    @OnClick({/*R.id.btn_open_menu, */R.id.tv_title_subject})
+    @OnClick({/*R.id.btn_open_menu, */R.id.tv_title_subject, R.id.menu_home, R.id.menu_search, R.id.menu_change_subject,
+            R.id.menu_change_class, R.id.menu_open_saved, R.id.menu_save_offline, R.id.menu_seen, R.id.menu_rate,
+            R.id.menu_share, R.id.menu_feed_back, R.id.menu_notify})
     void doClick(View v) {
         switch (v.getId()) {
             /*case R.id.btn_open_menu:
 
                 break;*/
             case R.id.tv_title_subject:
+                break;
+            case R.id.menu_home:
+                break;
+            case R.id.menu_search:
+                break;
+            case R.id.menu_change_subject:
+                startActivity(new Intent(this,ChangeSubjectActivity.class));
+                dlMain.closeDrawer(Gravity.LEFT);
+                break;
+            case R.id.menu_change_class:
+                startActivity(new Intent(this,ChangeClassActivity.class));
+                dlMain.closeDrawer(Gravity.LEFT);
+                break;
+            case R.id.menu_open_saved:
+                break;
+            case R.id.menu_save_offline:
+                break;
+            case R.id.menu_seen:
+                break;
+            case R.id.menu_rate:
+                break;
+            case R.id.menu_share:
+                break;
+            case R.id.menu_feed_back:
+                break;
+            case R.id.menu_notify:
                 break;
         }
     }

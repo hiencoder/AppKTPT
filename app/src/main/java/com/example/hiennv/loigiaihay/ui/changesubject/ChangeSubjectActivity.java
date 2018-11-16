@@ -12,6 +12,7 @@ import com.example.hiennv.loigiaihay.network.ApiService;
 import com.example.hiennv.loigiaihay.network.pojo.subject.SubjectResponse;
 import com.example.hiennv.loigiaihay.network.pojo.tag.ClassEntity;
 import com.example.hiennv.loigiaihay.ui.base.BaseActivity;
+import com.example.hiennv.loigiaihay.utils.AppConstants;
 import com.example.hiennv.loigiaihay.utils.SharedPrefUtils;
 import com.viewpagerindicator.TabPageIndicator;
 
@@ -43,7 +44,8 @@ public class ChangeSubjectActivity extends BaseActivity implements ChangeSubject
         classEntity = (ClassEntity) getIntent().getSerializableExtra("class_entity");
         if (classEntity != null) {
             tagId = classEntity.getTagId();
-
+        } else {
+            tagId = sharedPrefUtils.getString(AppConstants.KEY_CLASS_ID, "");
         }
         apiService = ApiClient.getClient().create(ApiService.class);
         changeSubjectPresenter = new ChangeSubjectPresenterImpl(this, apiService);
