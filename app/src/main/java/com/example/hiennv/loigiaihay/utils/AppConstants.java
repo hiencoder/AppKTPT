@@ -21,6 +21,8 @@ public class AppConstants {
     //https://api.loigiaihay.com/v3/article/search?limit=8&page=" + sPStringValue4 + "&keyword=" + sPStringValue + "&catId=" + sPStringValue2;
     //https://api.loigiaihay.com/v3/article/search?limit=8&page=1&keyword=hinh%20hoc&catId=47
 
+    //Image
+    //https://www.youtube.com/watch?v=H0QFyXQ7H14
     //Data saved in shared
     public static final String PREF_NAME = "pref_name";
     public static final String IS_FIRST_LAUNCH = "first_launch";
