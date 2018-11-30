@@ -12,6 +12,6 @@ public interface MainContract {
     }
 
     interface MainPresenter{
-
+        void loadListSession(String subjectId);
     }
 }

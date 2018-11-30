@@ -21,6 +21,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.hiennv.loigiaihay.R;
+import com.example.hiennv.loigiaihay.adapter.SubjectDetailAdapter;
+import com.example.hiennv.loigiaihay.network.pojo.category.Event;
 import com.example.hiennv.loigiaihay.ui.base.BaseActivity;
 
 
@@ -29,6 +31,8 @@ import com.example.hiennv.loigiaihay.ui.changesubject.ChangeSubjectActivity;
 import com.example.hiennv.loigiaihay.utils.AppConstants;
 import com.example.hiennv.loigiaihay.utils.SharedPrefUtils;
 
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -96,6 +100,9 @@ public class MainActivity extends BaseActivity {
     private MenuItem itemChangeClass;
     private MenuItem itemChangeSubject;
 
+    //Adapter
+    private SubjectDetailAdapter subjectDetailAdapter;
+    private List<Event> listEvents;
     @Override
     protected int getLayoutId() {
         return R.layout.activity_main;
@@ -200,18 +207,25 @@ public class MainActivity extends BaseActivity {
                 dlMain.closeDrawer(Gravity.LEFT);
                 break;
             case R.id.menu_open_saved:
+                dlMain.closeDrawer(Gravity.LEFT);
                 break;
             case R.id.menu_save_offline:
+                dlMain.closeDrawer(Gravity.LEFT);
                 break;
             case R.id.menu_seen:
+                dlMain.closeDrawer(Gravity.LEFT);
                 break;
             case R.id.menu_rate:
+                dlMain.closeDrawer(Gravity.LEFT);
                 break;
             case R.id.menu_share:
+                dlMain.closeDrawer(Gravity.LEFT);
                 break;
             case R.id.menu_feed_back:
+                dlMain.closeDrawer(Gravity.LEFT);
                 break;
             case R.id.menu_notify:
+                dlMain.closeDrawer(Gravity.LEFT);
                 break;
         }
     }
