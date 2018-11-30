@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.hiennv.loigiaihay.R;
-import com.example.hiennv.loigiaihay.ui.Main2Activity;
+
 import com.example.hiennv.loigiaihay.ui.base.BaseActivity;
 import com.example.hiennv.loigiaihay.ui.changeclass.ChangeClassActivity;
 import com.example.hiennv.loigiaihay.ui.home.MainActivity;
