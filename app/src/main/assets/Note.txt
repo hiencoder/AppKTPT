@@ -39,3 +39,4 @@ Note:
 	+ Variable topButtonCanvas: Mở ra các option để chuyển đến các màn hình.
 	+ GameObject topButton1: Ẩn hiện Top 1.
 	+ Funtion: ChangeToTopOne(): Open màn hình top one.
+	http://git.rikkei.org/d3/18031d3_pq_wea
