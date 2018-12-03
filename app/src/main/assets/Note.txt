@@ -1,0 +1,41 @@
+Clase BaseAgent: class cha , 
+TypeAgent class con kế thừa BaseAgent. Chứa danh sách MachineAgent có thuộc name. Furigana
+
+MachineAgent kế thừa BaseAgent. : Đối tượng máy chơi game có biến là daiban(lưu số của máy)
+ 
+*TOP 0 MÀN HÌNH MS VÀO
+- OptionButton: Open SEARCH_NAME và SEARCH NUMBER.
+	+ Icon ông tiến sĩ,
+	+ ExplainButton: Open Dialog Tutorial.
+	+ BoxImage Open choose
+
+*TOP 1: MÀN HÌNH TOP 1
+	+ Button 0: Back top 0.
+	+ Button 1: 
+	+ Button 2 - Button(5): Mở top 2: Tìm kiếm từ Pachinko.
+	+ Button 3: Button(4): Mở top 2: Tìm kiếm từ slot.
+	+ Button 4: Button(3): Mở tìm kiếm từ category.
+	+ Button 5: Button(2): Mở Tìm kiếm từ data(search_pro).
+	+ Button 6: Button: Mở search_name.
+	+ Button 7: Button(1): Mở search number.
+	
+1. SEARCH NAME: Nhập ký tự thì tìm kiếm máy có tên như nhập vào.
+2 SEARCH NUMBER: Nhập số filter kết quả. nhấn vào item -> Màn hình detail Machine .
+- Nhấn vào typeagent hien thi danh sach machine cua type .
+
+3. SEARCH PRO: Lọc thêm nhiều đk 
+- Design man hinh SEARCH PRO.
+
+
+Sort: TopButtonContainer
+Hide: Delete OptionButton
+TutorialShowButton?: bottom-center
+- EmptySeatToggle: 
+- BackButton: DetailUI. -> Back to top0
+
+Note:
+- File Tutorial.cs: Quản lý dialog Tutorial.
+- File ButtonManager.cs: Event Button.:
+	+ Variable topButtonCanvas: Mở ra các option để chuyển đến các màn hình.
+	+ GameObject topButton1: Ẩn hiện Top 1.
+	+ Funtion: ChangeToTopOne(): Open màn hình top one.
