@@ -218,4 +218,41 @@ Api:
 
 6. Api search theo itemType và item_id
 http://api.loigiaihay.com/v3/items?item_type=2&item_id=1852
-	
+
+7. Thông tin lưu shared
+<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+<map>
+    <string name="product_id">toan_lop_12_c47</string>
+    <string name="support.fanpage">https://www.facebook.com/Loigiaihay/</string>
+    <string name="fileNameSlideChange">Môn Toán Lớp 12</string>
+    <boolean name="skip_intro_app_screen" value="true" />
+    <string name="ADMOB_AD_UNIT_ID_EVENT">ca-app-pub-8529835372050931/7406887709</string>
+    <string name="ad.adsense.popup.unit_id">ca-app-pub-8529835372050931/2161779402</string>
+    <string name="page_Object">0</string>
+    <string name="ADMOB_AD_INTERSTITIAL_ID">ca-app-pub-8529835372050931/2741937409</string>
+    <string name="success_request_post">true</string>
+    <long name="last_cfg_time" value="1521866679" />
+    <string name="ADMOB_AD_UNIT_ID_DETAIL_TOP">ca-app-pub-8529835372050931/8604898230</string>
+    <string name="number_class">12</string>
+    <string name="check_object">false</string>
+    <string name="item_type">1</string>
+    <string name="ad.adsense.detail_bottom.unit_id">ca-app-pub-8529835372050931/9927553003</string>
+    <string name="item_id">47</string>
+    <string name="title_object">Lớp 12 - Môn Toán</string>
+    <string name="support.email">loigiaihay.com@gmail.com</string>
+    <string name="X-book-type">sgk</string>
+    <string name="so_mon_mot_lop">38</string>
+    <string name="title_class">Lớp 12</string>
+    <string name="ADMOB_AD_UNIT_ID_DETAIL_BOTTOM">ca-app-pub-8529835372050931/1883637630</string>
+    <string name="item_id_home">351</string>
+    <string name="ad.popup_frequency">0</string>
+    <string name="pre_id_ar">2674</string>
+</map>
+
+android_metadata	CREATE TABLE android_metadata (locale TEXT)
+search	CREATE TABLE search(id_search INTEGER PRIMARY KEY,id_mon_search TEXT,type_mon_search TEXT,name_search TEXT,name_ko_dau_search TEXT,articleId_search TEXT,isLink_search TEXT,redirecLink_search TEXT)
+save	CREATE TABLE save(id_save INTEGER PRIMARY KEY,name_save TEXT,intro_save TEXT,body_save TEXT,url_save TEXT,articleId_save TEXT)
+history	CREATE TABLE history(id_his INTEGER PRIMARY KEY,name_his TEXT,intro_his TEXT,avatar_his TEXT,url_his TEXT,articleId_his TEXT)
+notification_table	CREATE TABLE notification_table(id_notifi INTEGER PRIMARY KEY,title_notifi TEXT,content_notifi TEXT,url_notifi TEXT,date_notifi TEXT,status_notifi TEXT)
+ticked_table	CREATE TABLE ticked_table(id_ticked INTEGER PRIMARY KEY,id_mon_tai TEXT,ten_mon_tai TEXT)
+oder_id_table	CREATE TABLE oder_id_table(id_oder_id INTEGER PRIMARY KEY,name_oder_id TEXT)
