@@ -211,7 +211,10 @@ Api: https://api.loigiaihay.com/v3/categories/{item_id} : item_id: id môn học
 	* Click vào bài học truyển vào itemId -> mở ra màn hình danh sách các bài học của chương - MH4.
 	
 4. Màn hình 4: (MH4) Màn hình danh sách bài học theo chương.
-Api.
+// Click vào tiêu đề của phần (Vd: Phần giải tích) thì gọi api
+https://api.loigiaihay.com/v3/events/{itemId} //itemId lấy ở listEvents.
+https://api.loigiaihay.com/v3/events/5200
+//Click vào phần chương 
 
 5. Màn hình 5: (MH5) Chi tiết bài học
 Api:
@@ -248,7 +251,36 @@ http://api.loigiaihay.com/v3/items?item_type=2&item_id=1852
     <string name="ad.popup_frequency">0</string>
     <string name="pre_id_ar">2674</string>
 </map>
+product_id: bai học dang hoc
+support.fanpage: support fanpage
+fileNameSlideChange: Tiêu đề môn học //Sử dụng khi cần mua mon hoc 
+skip_intro_app_screen: bỏ qua intro screen.
+ADMOB_AD_UNIT_ID_EVENT: admob .
+ad.adsense.popup.unit_id: 
+page_Object: 
+ADMOB_AD_INTERSTITIAL_ID: 
+success_request_post: 
+last_cfg_time: 
+ADMOB_AD_UNIT_ID_DETAIL_TOP: 
+number_class: tag_id / dùng khi change class load ra danh sách môn học của lớp
+check_object: 
+itemType: 
+ad.adsense.detail_bottom.unit_id: 
+item_id: categoryId.
+title_object: Tiêu đề 
+support.email: 
+X-book-type: book-type
+so_mon_mot_lop:
+title_class:
+ADMOB_AD_UNIT_ID_DETAIL_BOTTOM:
+item_id_home: bài học đc lưu khi mở home
+ad.popup_frequency:
+pre_id_ar: articleId - Mở ra thông tin chi tiết bài học.
 
+
+
+
+8. Database Sqlite
 android_metadata	CREATE TABLE android_metadata (locale TEXT)
 search	CREATE TABLE search(id_search INTEGER PRIMARY KEY,id_mon_search TEXT,type_mon_search TEXT,name_search TEXT,name_ko_dau_search TEXT,articleId_search TEXT,isLink_search TEXT,redirecLink_search TEXT)
 save	CREATE TABLE save(id_save INTEGER PRIMARY KEY,name_save TEXT,intro_save TEXT,body_save TEXT,url_save TEXT,articleId_save TEXT)

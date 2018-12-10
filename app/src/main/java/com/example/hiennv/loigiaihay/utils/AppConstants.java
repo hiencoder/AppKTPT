@@ -25,11 +25,16 @@ public class AppConstants {
     //https://www.youtube.com/watch?v=H0QFyXQ7H14
     //Data saved in shared
     public static final String PREF_NAME = "pref_name";
-    public static final String IS_FIRST_LAUNCH = "first_launch";
-    public static final String KEY_CLASS_ID = "tag_id";
+    public static final String IS_FIRST_LAUNCH = "first_launch";//Lan dau chay app
+    public static final String KEY_CLASS_ID = "tag_id"; //id lop
     public static final String KEY_CLASS_TITLE = "class_title"; //title class
     public static final String KEY_SUBJECT_ID = "subject_id"; //item_id
     public static final String KEY_SUBJECT_TITLE = "subject_title";//title subject
+
+    public static final String KEY_PRODUCT_ID = "product_id"; //Thông tin bài học đang học
+    public static final String KEY_SUPPORT_FANPAGE = "support_fanpage";
+    public static final String KEY_AD_MOB = "admob_ad_unit_id_event";
+    public static final String KEY_AD_POPUP = "ad.adsense.popup.unit_id";
     //abc
     public static final long REQUEST_TIMEOUT = 600l;
 }
