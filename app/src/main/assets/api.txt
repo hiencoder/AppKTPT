@@ -212,8 +212,10 @@ Api: https://api.loigiaihay.com/v3/categories/{item_id} : item_id: id môn học
 	
 4. Màn hình 4: (MH4) Màn hình danh sách bài học theo chương.
 // Click vào tiêu đề của phần (Vd: Phần giải tích) thì gọi api
-https://api.loigiaihay.com/v3/events/{itemId} //itemId lấy ở listEvents.
+https://api.loigiaihay.com/v3/events/{itemId} //itemId lấy ở listEvents. (hoặc item chương đc click)
 https://api.loigiaihay.com/v3/events/5200
+https://api.loigiaihay.com/v3/events/417
+
 //Click vào phần chương 
 
 5. Màn hình 5: (MH5) Chi tiết bài học
