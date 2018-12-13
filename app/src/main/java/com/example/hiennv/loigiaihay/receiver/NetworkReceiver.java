@@ -19,6 +19,7 @@ public class NetworkReceiver extends BroadcastReceiver{
         }
     }
 
+    //Interface to listen status network change
     public interface ConnectivityReceiverListener{
         void onNetworkConnectionChanged(boolean isConnected);
     }

@@ -3,4 +3,11 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!--Array Edit color-->
+    <color name="colorTranslationText">#3F51B5</color>
+    <color name="colorShare">#3F51B5</color>
+    <color name="colorComment">#3F51B5</color>
+    <color name="colorHelpView">#3F51B5</color>
+    <!--End array color-->
 </resources>

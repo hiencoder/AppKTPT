@@ -23,6 +23,12 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+                <me.grantland.widget.AutofitTextView
+                    android:id="@+id/atv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="18sp"/>
                 <!--<ImageView
                     android:id="@+id/btn_open_menu"
                     android:layout_width="30dp"
@@ -34,8 +40,19 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:clickable="true"
-                    android:textSize="18sp" />
-
+                    android:textSize="18sp"
+                    android:visibility="invisible"/>
+                <com.example.hiennv.loigiaihay.ui.customview.MyAutoCompleteTextView
+                    android:id="@+id/mact_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#222222"
+                    android:textColorHint="#777777"
+                    android:background="@drawable/bg_et_search"
+                    android:visibility="gone"
+                    android:layout_toStartOf="@+id/iv_search"
+                    android:hint="Search"
+                    android:layout_marginRight="3dp"/>
                 <ImageView
                     android:id="@+id/iv_drop"
                     android:layout_width="30dp"
