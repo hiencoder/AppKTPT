@@ -37,4 +37,26 @@ public class AppConstants {
     public static final String KEY_AD_POPUP = "ad.adsense.popup.unit_id";
     //abc
     public static final long REQUEST_TIMEOUT = 600l;
+
+    //Table search
+    public static final String TABLE_SEARCH = "tb_search";
+    public static final String SEARCH_ID = "search_id";
+    public static final String SEARCH_SUBJECT_ID = "search_subject_id";
+    public static final String SEARCH_SUBJECT_TYPE = "search_subject_type";
+    public static final String SEARCH_NAME_TEXT = "search_name_text";
+    public static final String SEARCH_NAME_NOT_SIGNED = "search_name_not_signed";
+    public static final String SEARCH_ARTICLE_ID = "search_article_id";
+    public static final String SEARCH_IS_LINK = "search_is_link";
+    public static final String SEARCH_REDIRECT_LINK = "search_redirect_link";
+
+    /*
+    * save	CREATE TABLE save(id_save INTEGER PRIMARY KEY,name_save TEXT,intro_save TEXT,body_save TEXT,url_save TEXT,articleId_save TEXT)
+    history	CREATE TABLE history(id_his INTEGER PRIMARY KEY,name_his TEXT,intro_his TEXT,avatar_his TEXT,url_his TEXT,articleId_his TEXT)
+    notification_table	CREATE TABLE notification_table(id_notifi INTEGER PRIMARY KEY,title_notifi TEXT,content_notifi TEXT,url_notifi TEXT,date_notifi TEXT,status_notifi TEXT)
+    ticked_table	CREATE TABLE ticked_table(id_ticked INTEGER PRIMARY KEY,id_mon_tai TEXT,ten_mon_tai TEXT)
+    order_id_table	CREATE TABLE oder_id_table(id_oder_id INTEGER PRIMARY KEY,name_oder_id TEXT)*/
+    //Table save
+    public static final String TABLE_SAVE = "tb_save";
+    public static final String SAVE_ID = "save_id";
+    //public static final String
 }

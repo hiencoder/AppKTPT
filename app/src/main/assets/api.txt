@@ -263,7 +263,7 @@ page_Object:
 ADMOB_AD_INTERSTITIAL_ID: 
 success_request_post: 
 last_cfg_time: 
-ADMOB_AD_UNIT_ID_DETAIL_TOP: 
+ADMOB_AD_UNIT_ID_DETAIL_TOP:
 number_class: tag_id / dùng khi change class load ra danh sách môn học của lớp
 check_object: 
 itemType: 
