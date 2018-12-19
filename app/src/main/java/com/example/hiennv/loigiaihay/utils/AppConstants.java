@@ -1,5 +1,7 @@
 package com.example.hiennv.loigiaihay.utils;
 
+import java.sql.Struct;
+
 public class AppConstants {
     public static final String BASE_URL = "https://api.loigiaihay.com/v3/";
     //Get list class
@@ -55,8 +57,45 @@ public class AppConstants {
     notification_table	CREATE TABLE notification_table(id_notifi INTEGER PRIMARY KEY,title_notifi TEXT,content_notifi TEXT,url_notifi TEXT,date_notifi TEXT,status_notifi TEXT)
     ticked_table	CREATE TABLE ticked_table(id_ticked INTEGER PRIMARY KEY,id_mon_tai TEXT,ten_mon_tai TEXT)
     order_id_table	CREATE TABLE oder_id_table(id_oder_id INTEGER PRIMARY KEY,name_oder_id TEXT)*/
+
+    public static final String DATABASE_NAME = "ktht_db";
+    public static final int DATABASE_VERSION = 1;
     //Table save
     public static final String TABLE_SAVE = "tb_save";
     public static final String SAVE_ID = "save_id";
-    //public static final String
+    public static final String SAVE_NAME = "save_name";
+    public static final String SAVE_INTRO = "save_intro";
+    public static final String SAVE_BODY = "save_body";
+    public static final String SAVE_URL = "save_url";
+    public static final String SAVE_ARTICLE_ID = "save_article_id";
+
+    //TABLE HISTORY
+    public static final String TABLE_HISTORY = "tb_history";
+    public static final String HISTORY_ID = "history_id";
+    public static final String HISTORY_NAME = "history_name";
+    public static final String HISTORY_INTRO = "history_intro";
+    public static final String HISTORY_AVATAR = "history_avatar";
+    public static final String HISTORY_URL = "history_url";
+    public static final String HISTORY_ARTICLE_ID = "history_article_id";
+
+    //TABLE NOTIFICATION
+    public static final String TABLE_NOTIFICATION = "tb_notification";
+    public static final String NOTIFICATION_ID = "notification_id";
+    public static final String NOTIFICATION_TITLE = "notification_title";
+    public static final String NOTIFICATION_CONTENT = "notification_content";
+    public static final String NOTIFICATION_URL = "notification_url";
+    public static final String NOTIFICATION_DATE = "notification_date";
+    public static final String NOTIFICATION_STATUS = "notification_status";
+
+    //TABLE TICKED
+    public static final String TABLE_TICKED = "tb_ticked";
+    public static final String TICKED_ID = "ticked_id";
+    public static final String TICKED_SUBJECT_ID = "ticked_subject_id";
+    public static final String TICKED_SUBJECT_DOWNLOAD = "ticked_subject_download";
+
+    //TABLE ORDERI_D
+    public static final String TABLE_ORDER_ID = "tb_order_id";
+    public static final String ORDER_ID = "order_id";
+    public static final String ORDER_ID_NAME = "order_id_name";
+
 }
