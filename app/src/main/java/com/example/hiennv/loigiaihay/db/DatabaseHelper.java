@@ -6,7 +6,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.hiennv.loigiaihay.utils.AppConstants;
 
-import androidx.annotation.Nullable;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     public DatabaseHelper(Context context) {
@@ -15,7 +14,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
+        /*String createTableSave = "CREATE TABLE " + AppConstants.TABLE_SAVE + "(" +
+        AppConstants.SAVE_ID + " INTEGER PRIMARY KEY, " +
+        AppConstants.SAVE_NAME + " TEXT NOT NULL, " +
+        AppConstants.SAVE_INTRO + " TEXT NOT NULL, " +
+        AppConstants.S*/
     }
 
     @Override
