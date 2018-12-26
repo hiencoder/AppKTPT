@@ -1,0 +1,111 @@
+MainScreen:
+* Slide menu(Navigation): 2 group:
+   - Menu tham chiếu:
+       + Tham chiếu cá thể
+       + Tham chiếu thông tin cần lưu ý.
+   - Menu đăng ký:
+       + Đăng ký thông tin cá thể.
+       + Đăng ký thông tin pd.
+       + Đăng ký thông tin mang thai.
+       + Đăng ký thông tin gp.
+       + Đăng ký thông tin chữa trị.
+       + Đăng ký thông chữa trị.
+       + Đăng ký thông tinh vắc xin.
+       + Di chuyển cá thể
+
+* Giao diện thông tin app:
+ - Hiển thị thông tin về app
+
+ Đăng ký thông tin cai sữa:
+ - Đăng ký thông tin cai sữa cho cá thể (Bảng 1- 20 t_WeaningInfo).
+ - Lấy thông tin cá thể thông qua IC tag (Bảng 1-13 p_m_Pig hiển thị LocalHomeNoLeft).
+ - Điền thông tin ngày cai sữa (WeaningDate).
+ - Điền thông tin số cai sữa (WeaningTotal).
+ - Điền thông tin tổng trọng lượng các cá thể cai sữa (WeaningTotalWeight).
+
+ Tham chiếu cá thể:
+ - Lấy thông tin cá thể (Bảng 1-13 p_m_Pig, mã quản lý 1(LocalHomeNoLeft), mã quản lý 2 (LocalSystemNoLeft), mã phân biệt cá thể (PigNoRight), ngày sinh(BirthDate), tuổi đời, ngày bắt đầu nuôi(ManagementDate), ngày kết thúc nuôi dưỡng (MovementDate)).
+ - Lịch sử tiêm vắc xin (Bảng 1-14 p_t_PigInjectionInfo, tuổi đời khi tiêm (AfterBirth), ngày tiêm (InjectionDateFrom), tên vắc xin (InjectionNo)).
+ - Lấy thông tin AI cá thể lần gần nhât (AiLastDate) (Bảng 1-23 t_AiInfo).
+ - Lấy thông tin ngày dự tính pd (ReMatingSeasonDate) (Bảng 1-24-1 t_Mate, ).
+ - Lấy thông tin ngày pd làn trước (MatingSeasonDate) (Bảng 1-24-1 t_Mate).
+ - Lấy thông tin ngày đo(GrowthDate) và thể trọng (GrowthWeight) lần gần nhất (Bảng 1-21 t_GrowInfo ).
+
+ Đăng ký thông tin pd:
+ - Đăng ký thông tin pd của cá thể (Bảng 1-24-1 t_Mate).
+ - Lấy thông tin các thể thông qua IC tag (Bảng 1-13 p_m_Pig hiển thị LocalHomeNoLeft).
+ - Lấy thông tin người phát hiện (Bảng 1-5 m_Charge).
+ - Điền thông tin ngày pd (MatingSeasonDate).
+ - Điền thông tin phân loại (MatingSeasonDivision).
+ - Điền thông tin người đăng ký (MatingCharge).
+
+Đăng ký thông tin gp:
+- Đăng ký thông tin gp của cá thể (Bảng 1- 24 t_CrossInfo).
+- Lấy thông tin cá thể qua IC tag (Bảng 1-13 p_m_Pig hiển thị LocalHomeNoLeft).
+- Lấy ngày pd gần nhất thông qua IC tag (Bảng 1-24-1 t_Mate hiển thị MatingSeasonDate).
+- Nhập ngày gp (CrossDate).
+- Hiển thị số lần gp (PigMatingCrossSeq).
+- Hiển thị kiểu gp(CrossDivision).
+- Chọn loại sp(ProductionDivision).
+- Nhập lượng (SpermQuantity).
+- Chọn người thực hiện (ChargeNo).
+
+Tham chiếu thông tin cần lưu ý:
+- Tham chiếu thông tin cần lưu ý về cá thể (Bảng 1-26 t_ContactInfomation).
+- Lấy thông tin cá thể (Bảng 1-13 p_m_Pig hiển thị LocalHomeNoLeft).
+- Hiển thị trạng thái (Condition).
+
+Đăng ký thông tin chữa trị:
+- Đăng ký thông tin chữa trị (Bảng 1-14 p_t_PigInjectionInfo).
+- Lấy thông tin chuồng và khu chăn nuôi thông qua IC tag (Bảng 1-13 p_m_Pig hiển thị LocalHomeNoLeft).
+- Hiển thị số ngày tuổi (AfterBirth).
+- Hiển thị thông tin chuồng và khu từ IC tag (StableName, PigHouseName).
+- Lấy thông tin bệnh (Bảng 1-16 m_Diseable hiển thị tên loại bệnh DiseaseName, insert DiseaseNo).
+- Lấy thông tin loại thuốc (Bảng 1-4 m_Classification hiển thị tên loại thuốc ClassificationNo).
+- Lấy thông tin thuốc (Bảng 1-3 m_Injection hiển thị tên thuốc InjectionNo).
+- Lấy ra đối tượng điều trị (Bảng 1-28 m_InjectionPurpose chọn InjectionPurposeNo ).
+- Lấy ra thông tin người phụ trách điều trị (Bảng 1-5 m_Charge hiển thị InjectionCharge).
+- Nhập lượng thuốc (InjectionAmount).
+
+Đăng ký thông tin cá thể:
+- Đăng ký thông tin cá thể (Bảng 1-13 p_m_Pig).
+- Lấy thông tin các chuồng và phân khu đang có (Bảng 1-1 m_Stable, Bảng ).
+- Lấy thông tin trạng thái cá thể từ bảng trạng thái (Bảng 1-30 m_Stage)
+- Lấy thông tin giống lợn (Bảng 1-9 m_Breed).
+
+Di chuyển cá thể:
+- Lấy thông tin chuồng và phân khu hiện tại của cá thể qua IC tag(Bảng 1-13 p_m_Pig).
+- Lấy thông tin chuồng và phân khu hiện có (Bảng 1-1 m_Stable , 1-2 m_PigHouse).
+
+Đăng ký thông tin vắc xin:
+- Đăng ký thông tin vắc xin cho cá thể (Bảng 1- 29 t_VaccineInfo).
+- Lấy ra thông tin mã quản lý 1 số chuồng và khu chăn nuôi thông qua IC tag (Bảng 1-13 p_m_Pig hiển thị LocalHomeNo Left, StableName, PigHouseName).
+- Lấy thông tin loại bệnh từ bảng (Bảng 1-16 m_Diseable hiển thị tên loại bệnh DiseableName).
+- Lấy thông tin loại thuốc (Bảng 1-4 m_Classification chọn loại thuốc ClassificationName).
+- Lấy ra thông tin thuốc vắc xin (Bảng 1-3 m_Injection chọn tên thuốc InjectionName).
+- Lấy ra đơn vị thuốc (Bảng 1-27 m_Unit lấy tên đơn vị UnitName).
+- Lấy thông tin người phụ trách (Bảng m_Charge lấy tên người ChargeName).
+-
+
+Đăng ký AI:
+- Đăng ký thông tin AI cho cá thể (Bảng 1-23 t_AiInfo).
+- Lấy ra thông tin Ai lần trước của cá thể thông qua IC tag (Bảng 1-23 t_AiInfo).
+- Hiển thị ngày lấy Ai mới nhất (AiLastDate).
+- Nhập số lượng (AiPick).
+- Nhập số tỉ lệ sống (AiSurvivalRate).
+- Nhập số tỉ lệ dị tật (AiDeformityRate).
+- Chọn chất lượng (AiVitality).
+
+Đăng ký thông tin mang thai:
+- Đăng ký thông tin mang thai cho cá thể (Bảng 1-25 t_DeliveryInfo).
+- Lấy thông tin cá thể thông qua IC tag (Bảng 1-13 p_m_Pig hiển thị LocalHomeNoLeft).
+- Nhập ngày đẻ (DeliveryDate).
+- Chọn kết quả đẻ (Result).
+- Chọn thời gian đẻ (DeliveryTime).
+- Hiển thị tổng số lợn con sinh được (TotalDelivery).
+- Nhập số lợn còn sống (TotalSurvival).
+- Nhập số xác ướp (TotalMummy).
+- Nhập số trắng (TotalWhite).
+- Nhập số đen (TotalBlack).
+- Nhập số khác chết (TotalPressedDeath).
+- Nhập tổng số cân nặng (TotalWeight).
