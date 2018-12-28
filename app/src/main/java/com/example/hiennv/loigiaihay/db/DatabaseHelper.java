@@ -9,6 +9,9 @@ import com.example.hiennv.loigiaihay.db.model.Save;
 import com.example.hiennv.loigiaihay.db.model.Search;
 import com.example.hiennv.loigiaihay.utils.AppConstants;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private SQLiteDatabase database;
@@ -89,8 +92,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(AppConstants.SEARCH_ID, search.getSearchId());
         values.put(AppConstants.SEARCH_SUBJECT_ID, search.getSearchSubjectId());
         values.put(AppConstants.SEARCH_SUBJECT_TYPE, search.getSearchSubjectType());
+        values.put(AppConstants.SEARCH_ARTICLE_ID, search.getSearchArticleId());
+        values.put(AppConstants.SEARCH_IS_LINK, search.getSearchIsLink());
+        values.put(AppConstants.SEARCH_NAME_TEXT, search.getSearchNameText());
+        values.put(AppConstants.SEARCH_NAME_NOT_SIGNED, search.getSearchNameNotSigned());
+        values.put(AppConstants.SEARCH_REDIRECT_LINK, search.getSearchRedirectLink());
         long result = database.insert(AppConstants.TABLE_SEARCH, null, values);
         return (result != 0) ? true : false;
+    }
+
+    /**
+     * @return
+     */
+    public List<Search> getListSearch() {
+       List<Search> list = new ArrayList<>();
+       String query = "SELECT * FROM " + AppConstants.TABLE_SEARCH;
+
+       return list;
     }
 
     /**
@@ -100,7 +118,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean insertSave(Save save) {
         this.getWritableDatabase();
         ContentValues values = new ContentValues();
-
+        values.put(AppConstants.SAVE_ID, save.getSaveId());
+        values.put(AppConstants.SAVE_ARTICLE_ID, save.getSaveArticleId());
+        values.put(AppConstants.SAVE_BODY, save.getSaveBody());
+        values.put(AppConstants.SAVE_NAME, save.getSaveName());
+        values.put(AppConstants.SAVE_INTRO, save.getSaveIntro());
+        values.put(AppConstants.SAVE_URL, save.getSaveUrl());
         long result = database.insert(AppConstants.TABLE_SAVE, null, values);
         return (result != 0) ? true : false;
     }
