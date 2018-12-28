@@ -30,9 +30,8 @@ public class MyApplication extends Application{
         LeakCanary.install(this);
 
         //Config realm
-        RealmConfiguration configuration = new RealmConfiguration.Builder(this)
-                .name(Realm.DEFAULT_REALM_NAME)
-                .schemaVersion(0)
+        Realm.init(getApplicationContext());
+        RealmConfiguration configuration = new RealmConfiguration.Builder()
                 .deleteRealmIfMigrationNeeded()
                 .build();
         Realm.setDefaultConfiguration(configuration);
