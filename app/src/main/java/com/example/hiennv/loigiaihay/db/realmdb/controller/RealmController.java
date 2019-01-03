@@ -8,6 +8,7 @@ import android.util.Log;
 import com.example.hiennv.loigiaihay.db.model.History;
 import com.example.hiennv.loigiaihay.db.realmdb.realmobject.HistoryRealm;
 import com.example.hiennv.loigiaihay.db.realmdb.realmobject.NotifyRealm;
+import com.example.hiennv.loigiaihay.utils.LogUtils;
 
 import org.w3c.dom.DocumentFragment;
 
@@ -100,25 +101,25 @@ public class RealmController {
     }
 
     //Query History
-    public RealmResults<HistoryRealm> queryHistory(String query){
+    public RealmResults<HistoryRealm> queryHistory(String query) {
         return realm.where(HistoryRealm.class)
-                .contains("historyName",query)
+                .contains("historyName", query)
                 .or()
-                .contains("historyIntro",query)
+                .contains("historyIntro", query)
                 .findAll();
     }
 
     //Insert new History
-    public void insertHistory(HistoryRealm historyRealm){
+    public void insertHistory(HistoryRealm historyRealm) {
         realm.insert(historyRealm);
     }
 
     //Update history
-    public void updateHistory(String id, HistoryRealm newHistory){
+    public void updateHistory(String id, HistoryRealm newHistory) {
         realm.executeTransactionAsync(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
-                HistoryRealm history = realm.where(HistoryRealm.class).equalTo("historyId",id).findFirst();
+                HistoryRealm history = realm.where(HistoryRealm.class).equalTo("historyId", id).findFirst();
                 history.setHistoryName(newHistory.getHistoryName());
                 history.setHistoryIntro(newHistory.getHistoryIntro());
                 history.setHistoryArticleId(newHistory.getHistoryArticleId());
@@ -139,10 +140,10 @@ public class RealmController {
     }
 
     //Delete History
-    public void deleteHistory(String id){
+    public void deleteHistory(String id) {
         RealmResults<HistoryRealm> results = realm.where(HistoryRealm.class).findAll();
-        HistoryRealm history = results.where().equalTo("historyId",id).findFirst();
-        if (history != null){
+        HistoryRealm history = results.where().equalTo("historyId", id).findFirst();
+        if (history != null) {
             realm.beginTransaction();
         }
         history.deleteFromRealm();
@@ -151,14 +152,71 @@ public class RealmController {
 
 
     //TABLE NOTIFY
-    public void clearNotify(){
+    public void clearNotify() {
         realm.beginTransaction();
         realm.delete(NotifyRealm.class);
         realm.commitTransaction();
     }
 
-    public RealmResults<NotifyRealm> getAllNotify(){
+    public RealmResults<NotifyRealm> getAllNotify() {
         return realm.where(NotifyRealm.class).findAll();
     }
 
+    public NotifyRealm getNotifyById(String id) {
+        return realm.where(NotifyRealm.class).equalTo("notifyId", id).findFirst();
+    }
+
+    public boolean hasNotify() {
+        return realm.where(NotifyRealm.class).findAll().isEmpty();
+    }
+
+    public RealmResults<NotifyRealm> queryNotify(String query) {
+        return realm.where(NotifyRealm.class)
+                .contains("notifyTitle", query)
+                .or()
+                .contains("notifyContent", query)
+                .findAll();
+    }
+
+    public void insertNotify(NotifyRealm notifyRealm) {
+        realm.insert(notifyRealm);
+    }
+
+    public void updateNotify(String notifyId, NotifyRealm notifyRealm) {
+        realm.executeTransactionAsync(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                NotifyRealm notify = realm.where(NotifyRealm.class).equalTo("notifyId",notifyId).findFirst();
+                //Update
+                notify.setNotifyTitle(notifyRealm.getNotifyTitle());
+                notify.setNotifyContent(notifyRealm.getNotifyContent());
+                notify.setNotifyDate(notifyRealm.getNotifyDate());
+                notify.setNotifyStatus(notifyRealm.getNotifyStatus());
+                notify.setNotifyUrl(notifyRealm.getNotifyUrl());
+            }
+        }, new Realm.Transaction.OnSuccess() {
+            @Override
+            public void onSuccess() {
+                LogUtils.i(TAG, "Success");
+            }
+        }, new Realm.Transaction.OnError() {
+            @Override
+            public void onError(Throwable error) {
+                LogUtils.e(TAG, error.getMessage());
+            }
+        });
+    }
+
+    public void deleteNotify(String notifyId){
+        RealmResults<NotifyRealm> results = realm.where(NotifyRealm.class).findAll();
+        NotifyRealm notifyRealm = results.where().equalTo("notifyId",notifyId).findFirst();
+        if (notifyRealm != null){
+            realm.beginTransaction();
+        }
+        notifyRealm.deleteFromRealm();
+        realm.commitTransaction();
+    }
+
+    //TABLE ORDERID
+    
 }
