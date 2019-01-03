@@ -6,8 +6,10 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 
 import com.example.hiennv.loigiaihay.db.model.History;
+import com.example.hiennv.loigiaihay.db.model.OrderId;
 import com.example.hiennv.loigiaihay.db.realmdb.realmobject.HistoryRealm;
 import com.example.hiennv.loigiaihay.db.realmdb.realmobject.NotifyRealm;
+import com.example.hiennv.loigiaihay.db.realmdb.realmobject.OrderIdRealm;
 import com.example.hiennv.loigiaihay.utils.LogUtils;
 
 import org.w3c.dom.DocumentFragment;
@@ -218,5 +220,44 @@ public class RealmController {
     }
 
     //TABLE ORDERID
-    
+    public void clearOrderId(){
+        realm.beginTransaction();
+        realm.delete(OrderIdRealm.class);
+        realm.commitTransaction();
+    }
+
+    public RealmResults<OrderIdRealm> getAllOrderId(){
+        return realm.where(OrderIdRealm.class).findAll();
+    }
+
+    public OrderIdRealm getOrderIdById(String orderId){
+        return realm.where(OrderIdRealm.class).equalTo("orderId",orderId).findFirst();
+    }
+
+    public boolean hasOrderId(){
+        return realm.where(OrderIdRealm.class).findAll().isEmpty();
+    }
+
+    public void insertOrderId(OrderIdRealm orderIdRealm){
+        realm.insert(orderIdRealm);
+    }
+
+    public void updateOrderId(String orderId, OrderIdRealm orderIdRealm){
+        realm.executeTransactionAsync(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+
+            }
+        }, new Realm.Transaction.OnSuccess() {
+            @Override
+            public void onSuccess() {
+
+            }
+        }, new Realm.Transaction.OnError() {
+            @Override
+            public void onError(Throwable error) {
+
+            }
+        });
+    }
 }

@@ -307,7 +307,7 @@
 	BirthDate: text pkey
 	PigMateSeq: text pkey not null (mã bản ghi)
 	MatingSeasonDate: text pkey not null(YYYYMMDD) (Ngày phát)
-	MatingSeasonDivision: text (Phân loại: 1:Tái phát , 2: xảy thai)
+	MatingSeasonDivision: text (Phân loại: 1:Tái phát , 2: sảy thai)
 	ReMatingSeasonDate: text(YYYYMMDD) (Ngày tái phát)
 	MatingCharge: text not null (người đăng ký)
 	EntryDate: text(default value: now) not null (Ngày tạo dữ liệu)
