@@ -211,10 +211,12 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.menu_change_subject:
                 startActivity(new Intent(this,ChangeSubjectActivity.class));
+                overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
                 dlMain.closeDrawer(Gravity.LEFT);
                 break;
             case R.id.menu_change_class:
                 startActivity(new Intent(this,ChangeClassActivity.class));
+                overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
                 dlMain.closeDrawer(Gravity.LEFT);
                 break;
             case R.id.menu_open_saved:
