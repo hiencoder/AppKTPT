@@ -61,6 +61,7 @@ public abstract class BaseActivity extends AppCompatActivity
         }
     }
 
+//    https://stackoverflow.com/questions/4165414/how-to-hide-soft-keyboard-on-android-after-clicking-outside-edittext?rq=1
     //Check network
     protected boolean checkNetwork(){
         if (((ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE))
