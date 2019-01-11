@@ -290,3 +290,5 @@ history	CREATE TABLE history(id_his INTEGER PRIMARY KEY,name_his TEXT,intro_his 
 notification_table	CREATE TABLE notification_table(id_notifi INTEGER PRIMARY KEY,title_notifi TEXT,content_notifi TEXT,url_notifi TEXT,date_notifi TEXT,status_notifi TEXT)
 ticked_table	CREATE TABLE ticked_table(id_ticked INTEGER PRIMARY KEY,id_mon_tai TEXT,ten_mon_tai TEXT)
 oder_id_table	CREATE TABLE oder_id_table(id_oder_id INTEGER PRIMARY KEY,name_oder_id TEXT)
+
+https://blog.iamsuleiman.com/techniques-to-display-text-overlay-background-images/
