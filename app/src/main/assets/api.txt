@@ -279,7 +279,7 @@ item_id_home: bài học đc lưu khi mở home
 ad.popup_frequency:
 pre_id_ar: articleId - Mở ra thông tin chi tiết bài học.
 
-
+//Do not add fragment home to back stack
 
 
 8. Database Sqlite
@@ -292,3 +292,5 @@ ticked_table	CREATE TABLE ticked_table(id_ticked INTEGER PRIMARY KEY,id_mon_tai 
 oder_id_table	CREATE TABLE oder_id_table(id_oder_id INTEGER PRIMARY KEY,name_oder_id TEXT)
 
 https://blog.iamsuleiman.com/techniques-to-display-text-overlay-background-images/
+https://github.com/survivingwithandroid/Surviving-with-android
+http://tapintonfc.blogspot.com/2012/07/the-above-footage-from-our-nfc-workshop.html

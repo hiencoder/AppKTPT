@@ -203,7 +203,7 @@
 	PigNoLeft: text not null Pkey (rfid)
 	PigNoRight: text 
 	BirthDate: text pkey
-	PigDiseaseSeq: text not null pkey
+	PigDiseaseSeq: text not null pkey(mã quản lý số 1 LocalHomeNoLeft)
 	AfterBirth: Integer (Số ngày tuổi)
 	DiseaseDate: text not null pkey (Ngày phát hiện bệnh)
 	DiseaseNo1: Integer not null (Bệnh số 1)
@@ -251,7 +251,7 @@
 	PigNoLeft: text pkey not null (rfid)
 	PigNoRight: text 
 	BirthDate: text
-	PigGrowthSeq: text pkey not null (Mã bản ghi bắt đầu từ 1)
+	PigGrowthSeq: text pkey not null (Mã quản lý 1)
 	GrowthDate: text pkey not null (YYYYMMDD) (Ngày đo cân nặng)
 	GrowthWeight: Integer not null (Cân nặng, 2 chữ số)
 	EntryDate: text(default value: now) not null (Ngày tạo dữ liệu)
@@ -305,7 +305,7 @@
 	PigNoLeft: text pkey not null (rfid)
 	PigNoRight: text 
 	BirthDate: text pkey
-	PigMateSeq: text pkey not null (mã bản ghi)
+	PigMateSeq: text pkey not null (mã quản lý số 1)
 	MatingSeasonDate: text pkey not null(YYYYMMDD) (Ngày phát)
 	MatingSeasonDivision: text (Phân loại: 1:Tái phát , 2: sảy thai)
 	ReMatingSeasonDate: text(YYYYMMDD) (Ngày tái phát)
@@ -317,7 +317,7 @@
 	PigNoLeft: text pkey not null (rfid)
 	PigNoRight: text 
 	BirthDate: text pkey
-	PigDeliverySeq: text pkey not null (Mã bản ghi)
+	PigDeliverySeq: text pkey not null (Mã quản lý 1)
 	DeliveryDate: text not null(YYYYMMDD) (Ngày sinh)
 	Result: text not null (Kết quả chuyển dạ: 1: bình thường, 2: bất thường, 9: sảy thai)
 	TotalDelivery: Integer not null (Tổng số heo con)
@@ -383,11 +383,8 @@
 	ModifyDate: text(default value: now) not null (Ngày cập nhật dữ liệu)
 	
 1-30: Table m_Stage (Bảng giai đoạn của lợn)
-	Stage: text pkey not null (001: Ngày bắt đầu cai sữa, 
-	002: Ngày cai sữa - Dự định ngày kết thúc
-	003: Ngày gp - ngày dự kiến có thai
-	004: Ngày xác nhận có thai - ngày sinh)
-	StageDays: Integer not null (Số ngày trước khi bắt đầu giai đoạn tiếp theo)
+	Stage: text pkey not null (001: Ngày bắt đầu cai sữa, 002: Ngày cai sữa - Dự định ngày kết thúc,003: Ngày gp - ngày dự kiến có thai,004: Ngày xác nhận có thai - ngày sinh)
+	StageDays: Integer not null (Số ngày trước khi bắt đầu giai đoạn tiếp theo)//Ngày chuyển đổi
 	StageName: text not null (Tên giai đoạn)
 	Charge: text (Người phụ trách)
 	EntryDate: text(default value: now) not null (Ngày tạo dữ liệu)

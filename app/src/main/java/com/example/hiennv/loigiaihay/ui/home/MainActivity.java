@@ -106,6 +106,7 @@ public class MainActivity extends BaseActivity {
     //Adapter
     private SubjectDetailAdapter subjectDetailAdapter;
     private List<Event> listEvents;
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_main;
@@ -210,54 +211,58 @@ public class MainActivity extends BaseActivity {
                 mactSearch.setVisibility(View.VISIBLE);
                 break;
             case R.id.menu_change_subject:
-                startActivity(new Intent(this,ChangeSubjectActivity.class));
-                overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
-                dlMain.closeDrawer(Gravity.LEFT);
+                startActivity(new Intent(this, ChangeSubjectActivity.class));
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                dlMain.closeDrawer(Gravity.START);
                 break;
             case R.id.menu_change_class:
-                startActivity(new Intent(this,ChangeClassActivity.class));
-                overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
-                dlMain.closeDrawer(Gravity.LEFT);
+                startActivity(new Intent(this, ChangeClassActivity.class));
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                dlMain.closeDrawer(Gravity.START);
                 break;
             case R.id.menu_open_saved:
-                dlMain.closeDrawer(Gravity.LEFT);
+                dlMain.closeDrawer(Gravity.START);
                 break;
             case R.id.menu_save_offline:
-                dlMain.closeDrawer(Gravity.LEFT);
+                dlMain.closeDrawer(Gravity.START);
                 break;
             case R.id.menu_seen:
-                dlMain.closeDrawer(Gravity.LEFT);
+                dlMain.closeDrawer(Gravity.START);
                 break;
             case R.id.menu_rate:
-                dlMain.closeDrawer(Gravity.LEFT);
+                dlMain.closeDrawer(Gravity.START);
                 break;
             case R.id.menu_share:
-                dlMain.closeDrawer(Gravity.LEFT);
+                dlMain.closeDrawer(Gravity.START);
                 break;
             case R.id.menu_feed_back:
-                dlMain.closeDrawer(Gravity.LEFT);
+                dlMain.closeDrawer(Gravity.START);
                 break;
             case R.id.menu_notify:
-                dlMain.closeDrawer(Gravity.LEFT);
+                dlMain.closeDrawer(Gravity.START);
                 break;
         }
     }
 
     @Override
     public void onBackPressed() {
-        if (doubleBackToExitApp) {
-            super.onBackPressed();
-            return;
-        }
-        this.doubleBackToExitApp = true;
-        Toast.makeText(this, "Please click back again to exit", Toast.LENGTH_SHORT).show();
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                doubleBackToExitApp = false;
+        if (dlMain.isDrawerOpen(Gravity.START)) {
+            dlMain.closeDrawer(Gravity.START);
+        } else {
+            if (doubleBackToExitApp) {
+                super.onBackPressed();
+                return;
             }
-        }, 2000);
+            this.doubleBackToExitApp = true;
+            Toast.makeText(this, "Please click back again to exit", Toast.LENGTH_SHORT).show();
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    doubleBackToExitApp = false;
+                }
+            }, 2000);
+        }
 
         /*if (this.getSupportFragmentManager().getBackStackEntryCount() >= 1) {
             this.getSupportFragmentManager().popBackStack();
