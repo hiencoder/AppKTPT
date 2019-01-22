@@ -294,3 +294,4 @@ oder_id_table	CREATE TABLE oder_id_table(id_oder_id INTEGER PRIMARY KEY,name_ode
 https://blog.iamsuleiman.com/techniques-to-display-text-overlay-background-images/
 https://github.com/survivingwithandroid/Surviving-with-android
 http://tapintonfc.blogspot.com/2012/07/the-above-footage-from-our-nfc-workshop.html
+https://www.survivingwithandroid.com/2016/01/nfc-tag-writer-android.html
