@@ -2,6 +2,7 @@
 	StableNo: text Not null Primary key (Pig stock number)
 	StableName: text Not null (Tên khu)
 	StableDivision: text( value: 1,2,3,4) Not null (Phân loại 1: , 2: Nhà quản lý, 3: Chuồng lợn cái, 4: Chuồng lợn đực)
+	DeleteFlg: text (value: 0,1)(master có, data pda k có)
 	EntryDate: text(default value: Now) Not null (ngày tạo dữ liệu)
 	ModifyDate: text(default value: Now) Not null (Ngày cập nhật dữ liệu)
 
@@ -9,6 +10,7 @@
 	StableNo: text Not null primary key (Pig stock number)
 	PigHouseNo: text Not null primary key (Số chuồng)
 	PigHouseName: text Not null  (Tên chuồng)
+	DeleteFlg: text Not null(value: 0,1 master có pda k có)
 	EntryDate: text(default value: Now) Not null (Ngày tạo dữ liệu)
 	ModifyDate: text(default value: Now) Not null (Ngày cập nhật dữ liệu)
 	
@@ -19,6 +21,10 @@
 	ClassificationNo: text not null (Số phân loại)
 	UnitNo: text not null (Mã đơn vị)
 	WashOutPeriod: Integer(default value 0) not null (Thời gian nghỉ thuốc (ngày))
+	InjectionPurpose: text
+	InjectionAmount: Real(ex: 4.2) not null.
+	Method: text
+	DeleteFlg: text not null(value: 0,1 master có trên pda k có).
 	EntryDate: text(default value now) not null (ngày tạo dữ liệu)
 	ModifyDate: text(default value now) not null (ngày cập nhật dữ liệu)
 	
@@ -26,12 +32,14 @@
 	ClassificationDivision: text(default value :1 ) not null pkey (1: feeding, 2: medication)
 	ClassificationNo: text not null pkey (Mã số)
 	ClassificationName: text not null (tên phân loại)
+	DeleteFlg: text not null(value: 0,1 master có pda k có). 
 	EntryDate: text(default value: now) not null; (ngày tạo dữ liệu)
 	ModifyDate: text(default value: now) not null; (ngày cập nhật)
 	
 1-5 Table Charge m_Charge(Người phụ trách - nhân viên)
 	ChargeNo: text not null pkey (Mã người phụ trách)
 	ChargeName: text not null (Tên phụ trách)
+	DeleteFlg: text not null (value: 0,1 master có pda k có)
 	EntryDate: text(default value: now) not null (Ngày tạo dữ liệu)
 	ModifyDate: text(default value: now) not null (ngày cập nhật dữ liệu)
 	
@@ -81,11 +89,13 @@
 	ConceptionDate: text(YYYYMMDD) (ngày dự kiến mang thai)
 	DeliveryDate: text(YYYYMMDD) (ngày dự kiến sinh)
 	PregnancyDate: text(YYYYMMDD) (Ngày xác nhận mang thai)
+	HealingDate: text
+	ID: autonumber.
 	
 1-9: Table m_Breed (Bảng giống lợn)
 	BreedNo: text not null pkey
 	BreedName: text not null
-	DeleteFlg: Integer(value: 0,1) not null
+	DeleteFlg: Integer(value: 0(in use),1(deleted), default:0 ) not null
 	EntryDate: text(default value: now) not null
 	ModifyDate: text(default value: now) not null
 	
@@ -94,15 +104,16 @@
 	PigNoRight: text 
 	BirthDate: text pkey
 	AfterBirth: Integer (Số ngày tuổi)
-	PigInjectionSeq: Integer(default value0) pkey not null (id)
-	PigHouseSeq: Integer not null
-	InjectionSeq: text(default value 1) not null pkey
+	PigInjectionSeq: Integer(default value 1) pkey not null (id)
+	//PigHouseSeq: Integer not null
+	//InjectionSeq: text(default value 1) not null pkey
 	InjectionNo: text not null
 	InjectionDateFrom: text not null(YYYYMMDD) 
 	InjectionDateTo: text not null (YYYYMMDD)
-	DiseaseNo: Integer
-	InjectionPurpose: text 
+	DiseaseNo: Integer (default 0)
+	InjectionPurpose: text(master có, pda k có) 
 	InjectionAmount: Integer(default value: 0) not null ()
+	Period: Integer(Thời gian nghỉ default: 0).
 	InjectionCharge: text not null ()
 	EntryDivision: text(value: 0,1,2,3) not null
 	EntryDate: text(default value: now) not null
@@ -148,7 +159,7 @@
 	MotherBirthDate: text(YYYYMMDD)
 	FatherUID: text
 	FatherBirthDate: text
-	PigBelongSeq: Integer not null
+	PigBelongSeq: Integer not null (default value: 1)
 	ManagementHistoryFlg: Integer(default value: 1) not null
 	Condition: Integer(value: 1,2,3,4,5,6) 
 	EntryDate: text not null(YYYYMMDD)
@@ -158,7 +169,7 @@
 	ConceptionDate: text(YYYYMMDD)
 	DeliveryDate: text(YYYYMMDD)
 	PregnancyDate: text(YYYYMMDD)
-	
+	HealingDate: text (YYYYMMDD)
 1-14: Table p_t_PigInjectionInfo(Bảng Thông tin tiêm)
 	PigNoLeft: text not null pkey (rfid)
 	PigNoRight: text
@@ -190,11 +201,12 @@
 	EntryDate: text not null(YYYYMMDD)
 	ModifyDate: text not null(YYYYMMDD)
 	
-1-16: Table m_Diseable (Bảng bệnh )
+1-16 same 1-34: Table m_Diseable (Bảng bệnh )
 	DiseaseNo: Integer not null pkey (mã bệnh bắt đầu từ 1)
 	DiseaseAbbreviation: text not null (tên bệnh 8 chữ cái)
 	DiseaseName: text not null (tên chính thức bệnh)
 	DiseaseCondition: text (điều kiện y tế)
+	DeleteFlg: text not null(value: 0,1 default value: 0)
 	EntryDate: text(default value: now) not null (ngày khởi tạo)
 	ModifyDate: text(default value: now) not null (ngày cập nhật)
 	
@@ -214,9 +226,10 @@
 	ModifyDate: text(default value: now) not null (ngày cập nhật dữ liệu)
 
 1-18: Table: m_DeathReason (Bảng nguyên nhân tử vong)
-	DeathReasonNo: Integer pkey not null (Mã tử vong bắt đầu từ 1)
+	DeathReasonNo: Integer pkey auto increment not null (Mã tử vong bắt đầu từ 1)
 	InShortReason: text not null (Mô tả ngắn gọn lý do chết)
 	DeathReason: text not null (Nguyên do tử vong)
+	DeleteFlg: text not null(value: 0,1 default:0, master có, pda k có)
 	EntryDate: text(default value: now) not null (Ngày tạo dữ liệu)
 	ModifyDate: text(default value: now) not null (Ngày cập nhật dữ liệu)
 	
@@ -224,7 +237,7 @@
 	PigNoLeft: text pkey not null (rfid)
 	PigNoRight: text 
 	BirthDate: text pkey not null (k dùng, chỉ dùng khi rfid error)
-	PigDeathSeq: text pkey not null () (Mã bản ghi)
+	//PigDeathSeq: text pkey not null () (Mã bản ghi)
 	DeathDate: text pkey not null (YYYYMMDD) (Ngày tử vong)
 	DeathDivision: text not null (Phân loại tử vong)
 	DeathReasonNo: Integer not null (Nguyên do tử vong)
@@ -235,11 +248,11 @@
 1-20: Table t_WeaningInfo (Bảng thông tin cai sữa)
 	PigNoLeft: text pkey not null (rfid)
 	PigNoRight: text 
-	PigWeaningSeq: text pkey not null (mã bản ghi)
+	//PigWeaningSeq: text pkey not null (mã bản ghi)
 	BirthDate: text
-	MotherPigNoLeft: text 
-	MotherPigWeaningSeq: text
-	MotherBirthDate: text
+	//MotherPigNoLeft: text 
+	//MotherPigWeaningSeq: text
+	//MotherBirthDate: text
 	WeaningDate: text not null (ngày cai sữa)
 	WeaningTotal: Integer (số cai sữa)
 	WeaningTotalweight: Integer (cân nặng heo khi cai sữa, 2 chữ số)
@@ -251,7 +264,7 @@
 	PigNoLeft: text pkey not null (rfid)
 	PigNoRight: text 
 	BirthDate: text
-	PigGrowthSeq: text pkey not null (Mã quản lý 1)
+	//PigGrowthSeq: text pkey not null (Mã quản lý 1)
 	GrowthDate: text pkey not null (YYYYMMDD) (Ngày đo cân nặng)
 	GrowthWeight: Integer not null (Cân nặng, 2 chữ số)
 	EntryDate: text(default value: now) not null (Ngày tạo dữ liệu)
@@ -261,7 +274,7 @@
 	PigNoLeft: text pkey not null (rfid)
 	PigNoRight: text 
 	BirthDate: text pkey
-	PigInspectionSeq: text pkey (mã kiểm tra)
+	//PigInspectionSeq: text pkey (mã kiểm tra)
 	InspectionDate: text pkey not null(YYYYMMDD) (ngày kiểm tra)
 	InspectionWeight: Integer not null (Cân nặng khi kiểm tra, 2 chữ số)
 	InspectionLard: Integer not null (Lượng mỡ, 2 chữ số)
@@ -274,7 +287,7 @@
 	PigNoLeft: text pkey not null (rfid)
 	PigNoRight: text 
 	BirthDate: text pkey
-	PigAiSeq: text pkey not null(mã bản ghi)
+	//PigAiSeq: text pkey not null(mã bản ghi)
 	AiLastDate: text (Ngày thu thập AI)
 	AiDate: text pkey(YYYYMMDD) 
 	AiPick: Integer not null (Lượng AI, 1 chữ số)
@@ -283,12 +296,13 @@
 	AiVitality: text not null (Tính chất - sức sống của td １：[－]、２：[＋]、３：[＋＋]、４：[＋＋＋])
 	EntryDate: text(default value: now) not null (Ngày tạo dữ liệu)
 	ModifyDate: text(default value: now) not null (Ngày cập nhật dữ liệu)
+	AiSperm: Integer()
 
 1-24: Table t_CrossInfo(Bảng thông tin giao phối)
 	PigNoLeft: text pkey not null (rfid)
 	PigNoRight: text 
 	BirthDate: text pkey
-	PigCrossSeq: text pkey not null (mã bản ghi)
+	//PigCrossSeq: text pkey not null (mã bản ghi)
 	MatingSeasonDate: text pkey not null(YYYYMMDD) (Ngày động dục)
 	CrossDate: text pkey not null(YYYYMMDD) (Ngày giao phối)
 	PigMatingCrossSeq: Integer pkey not null 
@@ -305,7 +319,7 @@
 	PigNoLeft: text pkey not null (rfid)
 	PigNoRight: text 
 	BirthDate: text pkey
-	PigMateSeq: text pkey not null (mã quản lý số 1)
+	//PigMateSeq: text pkey not null (mã quản lý số 1)
 	MatingSeasonDate: text pkey not null(YYYYMMDD) (Ngày phát)
 	MatingSeasonDivision: text (Phân loại: 1:Tái phát , 2: sảy thai)
 	ReMatingSeasonDate: text(YYYYMMDD) (Ngày tái phát)
@@ -317,7 +331,7 @@
 	PigNoLeft: text pkey not null (rfid)
 	PigNoRight: text 
 	BirthDate: text pkey
-	PigDeliverySeq: text pkey not null (Mã quản lý 1)
+	//PigDeliverySeq: text pkey not null (Mã quản lý 1)
 	DeliveryDate: text not null(YYYYMMDD) (Ngày sinh)
 	Result: text not null (Kết quả chuyển dạ: 1: bình thường, 2: bất thường, 9: sảy thai)
 	TotalDelivery: Integer not null (Tổng số heo con)
@@ -339,13 +353,21 @@
 1-26: Table t_ContactInfomation (Thông tin lưu ý)
 	ContactNo: Integer pkey not null (mã bắt đầu từ 1)
 	PigNoLeft: text pkey not null (rfid)
-	LocalHomeNoLeft: text (mã vùng)
-	LocalSystemNoLeft: text
+	//LocalHomeNoLeft: text (mã vùng)
+	//LocalSystemNoLeft: text
 	PigNoRight: text
-	LocalHomeNoRight: text
-	LocalSystemNoRight: text
-	StableNo: text (chuồng chính)
-	PigHouseNo: text (chuồng)
+	//LocalHomeNoRight: text
+	//LocalSystemNoRight: text
+	//StableNo: text (chuồng chính)
+	//PigHouseNo: text (chuồng)
+	//Thêm
+	RecordDivision1: Integer default value 0
+	Record1: Integer default value 0
+	RecordDivision2: Integer default value 0
+	Record2: Integer default value 0
+	RecordDivision3: Integer default value 0
+	Record3: Integer default value 0
+	//End thêm
 	Condition: Integer (Trạng thái: 1: đang pd, 2: đã pd, 3: mang thai, 4: cho con bú, cai sữa)
 	LevelContact: text(value: 1-5) (Mức độ )
 	ContactContents: text not null (Nội dung )
@@ -359,7 +381,8 @@
 	EntryDate: text(default value: now) not null (Ngày tạo dữ liệu)
 	ModifyDate: text(default value: now) not null (Ngày cập nhật dữ liệu)
 	
-1-28: Table m_InjectionPurpose ((Bảng mục đích trị liệu) )
+	
+1-28: Table m_InjectionPurpose ((Bảng mục đích trị liệu) Unused)
 	InjectionPurposeNo: text not null (Mã bản ghi)
 	InjectionPurpose: text not null (Đối tượng điều trị)
 	EntryDate: text(default value: now) not null (Ngày tạo dữ liệu)
@@ -371,8 +394,8 @@
 	BirthDate: text pkey
 	AfterBirth: Integer not null (Số ngày tuổi)
 	PigVaccineSeq: Integer pkey not null (Mã bản ghi)
-	StableNo: text not null (Số Chuồng lợn chính đang ở)
-	PigHouseNo: text not null (Số chuồng lợn đang ở)
+	//StableNo: text not null (Số Chuồng lợn chính đang ở)
+	//PigHouseNo: text not null (Số chuồng lợn đang ở)
 	DeseaseNo: Integer (Mã số bệnh)
 	VaccineNo: text not null (mã vắc xin)
 	VaccineDate: text not null(YYYYMMDD) (Ngày điều trị)
@@ -403,4 +426,21 @@
 	EntryDate: text(default value: now) not null (ngày tạo dữ liệu)
 	ModifyDate: text(default value: now) not null (Ngày cập nhật dữ liệu)
 	
+1-33: Table m_Scheduled
+
+//1-14 m_DiseaseDivision
+	DivisionNo: Pkey not null autoincrement
+	DivisionName: text not null
+	DeleteFlg: text not null
+	EntryDate: text not null
+	ModifyDate: text not null
 	
+//1-16 m_Patient
+	PatientNo: Integer pkey not null 
+	DivisionNo: Integer not null(default value: 0)
+	PatientAbbreviation: text not null
+	Patient: text not null
+	DeleteFlg: text not null(default value 0)
+	EntryDate: text not null(default now)
+	ModifyDate: text not null(default now)
+

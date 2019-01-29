@@ -295,3 +295,4 @@ https://blog.iamsuleiman.com/techniques-to-display-text-overlay-background-image
 https://github.com/survivingwithandroid/Surviving-with-android
 http://tapintonfc.blogspot.com/2012/07/the-above-footage-from-our-nfc-workshop.html
 https://www.survivingwithandroid.com/2016/01/nfc-tag-writer-android.html
+https://www.survivingwithandroid.com/2015/03/android-nfc-app-android-nfc-tutorial.html
