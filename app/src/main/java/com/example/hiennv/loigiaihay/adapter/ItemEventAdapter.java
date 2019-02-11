@@ -6,11 +6,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.hiennv.loigiaihay.R;
 import com.example.hiennv.loigiaihay.network.pojo.category.SubItem;
+import com.example.hiennv.loigiaihay.utils.CommonUtils;
 
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class ItemEventAdapter extends RecyclerView.Adapter<ItemEventAdapter.ItemEventHolder> {
     private Context context;
@@ -39,8 +45,17 @@ public class ItemEventAdapter extends RecyclerView.Adapter<ItemEventAdapter.Item
     }
 
     public class ItemEventHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.iv_subject)
+        ImageView ivSubject;
+        @BindView(R.id.tv_subject)
+        TextView tvSubject;
         public ItemEventHolder(View itemView) {
             super(itemView);
+            ButterKnife.bind(this,itemView);
+        }
+
+        public void bindSubItem(SubItem subItem){
+            //CommonUtils.loadImage(context,subItem.get);
         }
     }
 }

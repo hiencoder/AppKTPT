@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="General Settings">
+        <CheckBoxPreference
+            android:title="Continuous Preview"
+            android:key="pref_capture_continuous"
+            android:entries="@array/capture_mode"/>
+        <ListPreference android:entries="@array/language_name"
+            android:title="Recognize"
+            android:key="source_lang_code"
+            android:entryValues="@array/iso_6393"/>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="Translation Settings">
+        <CheckBoxPreference android:title="Translate"
+            android:key="pref_translation_toggle"/>
+        <ListPreference
+            android:entries="@array/translate_lang_google"
+            android:title="Translate to"
+            android:key="target_lang_code_translation"
+            android:dependency="pref_translation_toggle"
+            android:entryValues="@array/trans_target_iso_6391"/>
+
+    </PreferenceCategory>
+</PreferenceScreen>

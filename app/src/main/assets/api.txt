@@ -1,0 +1,299 @@
+1. Màn hình đổi lớp: (MH1)
+//Api: Lấy danh sách lớp.
+	https://api.loigiaihay.com/v3/tags
+	
+- Response: 
+	{
+    "list_class": [
+        {
+            "tagId": "1",
+            "title": "Lớp 1",
+            "picture": "https://img.loigiaihay.com/picture/2016/0727/icon-class1-0.png",
+            "product_id": null
+        },
+        {
+            "tagId": "2",
+            "title": "Lớp 2",
+            "picture": "https://img.loigiaihay.com/picture/2016/0727/icon-class2-0.png",
+            "product_id": null
+        },
+		...
+		],
+		"cfg_info": {
+        "last_cfg_time": "1521866679",
+        "ad.popup_frequency": "0",
+        "ad.adsense.detail_bottom.unit_id": "ca-app-pub-8529835372050931/9927553003",
+        "ad.adsense.popup.unit_id": "ca-app-pub-8529835372050931/2161779402",
+        "current.force.update.version": "2",
+        "support.email": "loigiaihay.com@gmail.com",
+        "support.fanpage": "https://www.facebook.com/Loigiaihay/",
+        "popup_rating_after": "86400",
+        "admob.app_id": "ca-app-pub-8529835372050931~4358271409",
+        "admob.unit.article_detail_bottom": "ca-app-pub-8529835372050931/1883637630",
+        "admob.unit.article_detail_top": "ca-app-pub-8529835372050931/8604898230",
+        "admob.unit.event_article_top": "ca-app-pub-8529835372050931/7406887709",
+        "admob.unit.interestial": "ca-app-pub-8529835372050931/2741937409",
+        "latest_version": "1.3.9",
+        "force_update": false
+		}
+	}
+	
+	+ tagId: String - id của lớp.
+	+ title: String - tên hiển thị lớp ở màn hình danh sách lớp.
+	+ picture: icon hiển thị lớp.
+	+ product_id: k biết.
+
+	* Chọn 1 lớp -> MH2 để chọn môn học.
+2. Màn hình danh sách môn học của lớp(MH2)
+// Api lấy danh sách môn học theo lớp: tagId: id của lớp
+	https://api.loigiaihay.com/v3/tags/{tagId}
+	https://api.loigiaihay.com/v3/tags/1
+- Response: 
+{
+    "list_data": [
+        {
+            "book_type": "sgk",
+            "title": "Sách giáo khoa",
+            "tab_color_code": "#fea500",
+            "base_url": "https://loigiaihay.com",
+            "list_subject": [
+                {
+                    "item_id": 111,
+                    "item_type": 1,
+                    "title": "Môn Toán",
+                    "alias": "toan-lop-1",
+                    "picture": "https://img.loigiaihay.com/picture/2016/0712/montoan-0.png",
+                    "is_link": 0,
+                    "redirect_link": "",
+                    "product_id": "toan_lop_1_c111"
+                },
+                {
+                    "item_id": 232,
+                    "item_type": 1,
+                    "title": "Family & Friends Special",
+                    "alias": "family-friend-special-grade-1",
+                    "picture": "https://img.loigiaihay.com/picture/2016/0712/monanh-0.png",
+                    "is_link": 0,
+                    "redirect_link": "",
+                    "product_id": "family_and_friends_special_grade_1"
+                }
+            ]
+        }
+    ],
+    "cfg_info": {
+        "last_cfg_time": "1521866679",
+        "ad.popup_frequency": "0",
+        "ad.adsense.detail_bottom.unit_id": "ca-app-pub-8529835372050931/9927553003",
+        "ad.adsense.popup.unit_id": "ca-app-pub-8529835372050931/2161779402",
+        "current.force.update.version": "2",
+        "support.email": "loigiaihay.com@gmail.com",
+        "support.fanpage": "https://www.facebook.com/Loigiaihay/",
+        "popup_rating_after": "86400",
+        "admob.app_id": "ca-app-pub-8529835372050931~4358271409",
+        "admob.unit.article_detail_bottom": "ca-app-pub-8529835372050931/1883637630",
+        "admob.unit.article_detail_top": "ca-app-pub-8529835372050931/8604898230",
+        "admob.unit.event_article_top": "ca-app-pub-8529835372050931/7406887709",
+        "admob.unit.interestial": "ca-app-pub-8529835372050931/2741937409",
+        "latest_version": "1.3.9",
+        "force_update": false
+    }
+}
+	+ book_type: String - kiểu sách (sgk, sbt) . Có bao nhiêu book_type tương ứng vs số tab.
+	+ title: String - Tiêu đề của kiểu sách.
+	+ "tab_color_code": String - Màu sắc tab.
+	+ base_url: String - Link website.
+	+ list_subject: JSONArray - Danh sách các môn học theo book_type.
+	
+	+ item_id: int - id môn học.
+	+ item_type: int - 
+	+ title: String - tên sách.
+	+ alias: String - .
+	+ picture: String - icon sách.
+	+ is_link: int - 
+	+ redirect_link: String - 
+	+ product_id: String - 
+	
+	* Chọn môn học -> màn hình hiển thị danh sách bài học của môn học.(truyển vào item_id : id môn học)
+	
+3. Màn hình danh sách các bài học của môn học(MH3)
+Api: https://api.loigiaihay.com/v3/categories/{item_id} : item_id: id môn học 
+	https://api.loigiaihay.com/v3/categories/47
+-Response:
+ {
+    "catInfo": {
+        "picture": "",
+        "title": "Toán lớp 12",
+        "alias": "toan-lop-12",
+        "description": "",
+        "contentBoxAbove": "Giải bài tập toán lớp 12 như là cuốn để học tốt Toán lớp 12. Tổng hợp công thức, lý thuyết, phương pháp giải bài tập giải tích và hình học SGK Toán lớp 12, giúp ôn luyện thi THPT Quốc gia. Giai toan 12 xem mục lục giai toan lop 12 sach giao khoa duoi day",
+        "contentBoxBelow": "",
+        "app_note": "",
+        "zip_status": 0,
+        "last_zip_time": 1541066911,
+        "itemId": 47,
+        "itemType": 1,
+        "product_id": "toan_lop_12_c47"
+    },
+	listEvents": [
+        {
+            "title": "PHẦN GIẢI TÍCH - TOÁN 12",
+            "catId": 47,
+            "is_link": 0,
+            "alias": "phan-giai-tich-toan-12",
+            "introtext": "",
+            "itemId": 5200,
+            "itemType": 2,
+            "subItems": [
+                {
+                    "title": "CHƯƠNG I. ỨNG DỤNG ĐẠO HÀM ĐỂ KHẢO SÁT VÀ VẼ ĐỒ THỊ CỦA HÀM SỐ",
+                    "catId": 47,
+                    "is_link": 0,
+                    "alias": "chuong-i-ung-dung-dao-ham-de-khao-sat-va-ve-do-thi-cua-ham-so",
+                    "introtext": "",
+                    "itemId": 417,
+                    "itemType": 2
+                },
+                {
+                    "title": "CHƯƠNG II. HÀM SỐ LŨY THỪA HÀM SỐ MŨ VÀ HÀM SỐ LÔGARIT",
+                    "catId": 47,
+                    "is_link": 0,
+                    "alias": "chuong-ii-ham-so-luy-thua-ham-so-mu-va-ham-so-logarit",
+                    "introtext": "",
+                    "itemId": 1775,
+                    "itemType": 2
+                },
+				...
+				]
+		},
+		...
+		],
+		
+	}
+
+	+ catInfo: JSONObject - Info Category.
+	{
+		+ picture : String - 
+		+ title: String - Tiêu đề mon học.
+		+ alias: String - 
+		+ description: String - 
+		+ contentBoxAbove: String - 
+		+ contentBoxBelow: String - 
+		+ app_note: String
+		+ zip_status: int - 
+		+ last_zip_time: String - 
+		+ itemId: int - id category
+		+ itemType: int - 
+		+ product_id: int - 
+	}
+	+ listEvents: JSONArray - Các phần của môn học. 
+	[
+		{
+			+ title: String - 
+			+ catId: int - id category (id môn học)
+			+ is_link: int -
+			+ alias: String - 
+			+ itemId: int - id phần bài học.
+			+ itemType: int - 
+			
+			+ subItems: JSONArray - Danh sách chương và bài học
+			[
+				{
+					+ title: String - Tên bài học.
+					+ catId: int - id môn học.
+					+ is_link: String - 
+					+ introtext: String - 
+					+ itemId: int - id bài học.
+					+ itemType: int - 
+				}
+			]
+	]
+
+	* Click vào bài học truyển vào itemId -> mở ra màn hình danh sách các bài học của chương - MH4.
+	
+4. Màn hình 4: (MH4) Màn hình danh sách bài học theo chương.
+// Click vào tiêu đề của phần (Vd: Phần giải tích) thì gọi api
+https://api.loigiaihay.com/v3/events/{itemId} //itemId lấy ở listEvents. (hoặc item chương đc click)
+https://api.loigiaihay.com/v3/events/5200
+https://api.loigiaihay.com/v3/events/417
+
+//Click vào phần chương 
+
+5. Màn hình 5: (MH5) Chi tiết bài học
+Api:
+
+6. Api search theo itemType và item_id
+http://api.loigiaihay.com/v3/items?item_type=2&item_id=1852
+
+7. Thông tin lưu shared
+<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+<map>
+    <string name="product_id">toan_lop_12_c47</string>
+    <string name="support.fanpage">https://www.facebook.com/Loigiaihay/</string>
+    <string name="fileNameSlideChange">Môn Toán Lớp 12</string>
+    <boolean name="skip_intro_app_screen" value="true" />
+    <string name="ADMOB_AD_UNIT_ID_EVENT">ca-app-pub-8529835372050931/7406887709</string>
+    <string name="ad.adsense.popup.unit_id">ca-app-pub-8529835372050931/2161779402</string>
+    <string name="page_Object">0</string>
+    <string name="ADMOB_AD_INTERSTITIAL_ID">ca-app-pub-8529835372050931/2741937409</string>
+    <string name="success_request_post">true</string>
+    <long name="last_cfg_time" value="1521866679" />
+    <string name="ADMOB_AD_UNIT_ID_DETAIL_TOP">ca-app-pub-8529835372050931/8604898230</string>
+    <string name="number_class">12</string>
+    <string name="check_object">false</string>
+    <string name="item_type">1</string>
+    <string name="ad.adsense.detail_bottom.unit_id">ca-app-pub-8529835372050931/9927553003</string>
+    <string name="item_id">47</string>
+    <string name="title_object">Lớp 12 - Môn Toán</string>
+    <string name="support.email">loigiaihay.com@gmail.com</string>
+    <string name="X-book-type">sgk</string>
+    <string name="so_mon_mot_lop">38</string>
+    <string name="title_class">Lớp 12</string>
+    <string name="ADMOB_AD_UNIT_ID_DETAIL_BOTTOM">ca-app-pub-8529835372050931/1883637630</string>
+    <string name="item_id_home">351</string>
+    <string name="ad.popup_frequency">0</string>
+    <string name="pre_id_ar">2674</string>
+</map>
+product_id: bai học dang hoc
+support.fanpage: support fanpage
+fileNameSlideChange: Tiêu đề môn học //Sử dụng khi cần mua mon hoc 
+skip_intro_app_screen: bỏ qua intro screen.
+ADMOB_AD_UNIT_ID_EVENT: admob .
+ad.adsense.popup.unit_id: 
+page_Object: 
+ADMOB_AD_INTERSTITIAL_ID: 
+success_request_post: 
+last_cfg_time: 
+ADMOB_AD_UNIT_ID_DETAIL_TOP:
+number_class: tag_id / dùng khi change class load ra danh sách môn học của lớp
+check_object: 
+itemType: 
+ad.adsense.detail_bottom.unit_id: 
+item_id: categoryId.
+title_object: Tiêu đề 
+support.email: 
+X-book-type: book-type
+so_mon_mot_lop:
+title_class:
+ADMOB_AD_UNIT_ID_DETAIL_BOTTOM:
+item_id_home: bài học đc lưu khi mở home
+ad.popup_frequency:
+pre_id_ar: articleId - Mở ra thông tin chi tiết bài học.
+
+//Do not add fragment home to back stack
+- Khi dong app thi luu lai thong tin bai hoc trong fragment home
+- Man hinh home chay api https://api.loigiaihay.com/v3/categories/47
+8. Database Sqlite
+android_metadata	CREATE TABLE android_metadata (locale TEXT)
+search	CREATE TABLE search(id_search INTEGER PRIMARY KEY,id_mon_search TEXT,type_mon_search TEXT,name_search TEXT,name_ko_dau_search TEXT,articleId_search TEXT,isLink_search TEXT,redirecLink_search TEXT)
+save	CREATE TABLE save(id_save INTEGER PRIMARY KEY,name_save TEXT,intro_save TEXT,body_save TEXT,url_save TEXT,articleId_save TEXT)
+history	CREATE TABLE history(id_his INTEGER PRIMARY KEY,name_his TEXT,intro_his TEXT,avatar_his TEXT,url_his TEXT,articleId_his TEXT)
+notification_table	CREATE TABLE notification_table(id_notifi INTEGER PRIMARY KEY,title_notifi TEXT,content_notifi TEXT,url_notifi TEXT,date_notifi TEXT,status_notifi TEXT)
+ticked_table	CREATE TABLE ticked_table(id_ticked INTEGER PRIMARY KEY,id_mon_tai TEXT,ten_mon_tai TEXT)
+oder_id_table	CREATE TABLE oder_id_table(id_oder_id INTEGER PRIMARY KEY,name_oder_id TEXT)
+
+https://blog.iamsuleiman.com/techniques-to-display-text-overlay-background-images/
+https://github.com/survivingwithandroid/Surviving-with-android
+http://tapintonfc.blogspot.com/2012/07/the-above-footage-from-our-nfc-workshop.html
+https://www.survivingwithandroid.com/2016/01/nfc-tag-writer-android.html
+https://www.survivingwithandroid.com/2015/03/android-nfc-app-android-nfc-tutorial.html
+https://android.jlelse.eu/android-networking-in-2019-retrofit-with-kotlins-coroutines-aefe82c4d777

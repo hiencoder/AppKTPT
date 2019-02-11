@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class ResponseCateGory {
+public class ResponseCategory {
     @Expose
     @SerializedName("cfg_info")
     private ConfigInfo configInfo;

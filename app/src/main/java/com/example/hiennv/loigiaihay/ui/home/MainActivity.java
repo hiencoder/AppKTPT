@@ -1,18 +1,18 @@
 package com.example.hiennv.loigiaihay.ui.home;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,19 +24,21 @@ import com.example.hiennv.loigiaihay.R;
 import com.example.hiennv.loigiaihay.adapter.SubjectDetailAdapter;
 import com.example.hiennv.loigiaihay.network.pojo.category.Event;
 import com.example.hiennv.loigiaihay.ui.base.BaseActivity;
-
-
 import com.example.hiennv.loigiaihay.ui.changeclass.ChangeClassActivity;
 import com.example.hiennv.loigiaihay.ui.changesubject.ChangeSubjectActivity;
+import com.example.hiennv.loigiaihay.ui.customview.MyAutoCompleteTextView;
 import com.example.hiennv.loigiaihay.utils.AppConstants;
 import com.example.hiennv.loigiaihay.utils.SharedPrefUtils;
-
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-
+import es.dmoral.toasty.Toasty;
+import me.grantland.widget.AutofitTextView;
+//https://stackoverflow.com/questions/31367270/exporting-sqlite-database-to-csv-file-in-android
+//https://stackoverflow.com/questions/43055661/reading-csv-file-in-android-app
+//http://codesfor.in/how-to-export-sqlite-database-to-a-csv-file/
 public class MainActivity extends BaseActivity {
     //https://stackoverflow.com/questions/33284812/android-change-navigation-drawer-menu-items-text-programmatically
     //https://api.loigiaihay.com/v3/categories/47 api get main
@@ -49,6 +51,10 @@ public class MainActivity extends BaseActivity {
     Toolbar toolbar;
     @BindView(R.id.tv_title_subject)
     TextView tvTitleSubject;
+    @BindView(R.id.atv_title)
+    AutofitTextView atvTitle;
+    @BindView(R.id.mact_search)
+    MyAutoCompleteTextView mactSearch;
     @BindView(R.id.nv_menu)
     NavigationView nvMenu;
     @BindView(R.id.rv_lessons)
@@ -95,7 +101,7 @@ public class MainActivity extends BaseActivity {
 
     private ActionBarDrawerToggle drawerToggle;
 
-    //Menu navigation viêw
+    //Menu navigation view
     private Menu menu;
     private MenuItem itemChangeClass;
     private MenuItem itemChangeSubject;
@@ -103,6 +109,7 @@ public class MainActivity extends BaseActivity {
     //Adapter
     private SubjectDetailAdapter subjectDetailAdapter;
     private List<Event> listEvents;
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_main;
@@ -134,6 +141,7 @@ public class MainActivity extends BaseActivity {
         itemChangeClass.setTitle("Đổi môn (" + titleClass + "-" + titleSubject + ")");
         itemChangeSubject.setTitle("Đổi lớp (" + titleClass + ")");*/
         tvChangeSubject.setText("Đổi môn (" + titleClass + "-" + titleSubject + ")");
+
         tvChangeClass.setText("Đổi lớp (" + titleClass + ")");
     }
 
@@ -148,7 +156,13 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initEvents() {
-
+        //Event for autocompletetextview
+        mactSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                return false;
+            }
+        });
     }
 
     @Override
@@ -186,7 +200,7 @@ public class MainActivity extends BaseActivity {
 
     @OnClick({/*R.id.btn_open_menu, */R.id.tv_title_subject, R.id.menu_home, R.id.menu_search, R.id.menu_change_subject,
             R.id.menu_change_class, R.id.menu_open_saved, R.id.menu_save_offline, R.id.menu_seen, R.id.menu_rate,
-            R.id.menu_share, R.id.menu_feed_back, R.id.menu_notify})
+            R.id.menu_share, R.id.menu_feed_back, R.id.menu_notify, R.id.mact_search})
     void doClick(View v) {
         switch (v.getId()) {
             /*case R.id.btn_open_menu:
@@ -197,54 +211,62 @@ public class MainActivity extends BaseActivity {
             case R.id.menu_home:
                 break;
             case R.id.menu_search:
+                mactSearch.setVisibility(View.VISIBLE);
                 break;
             case R.id.menu_change_subject:
-                startActivity(new Intent(this,ChangeSubjectActivity.class));
-                dlMain.closeDrawer(Gravity.LEFT);
+                startActivity(new Intent(this, ChangeSubjectActivity.class));
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                dlMain.closeDrawer(Gravity.START);
                 break;
             case R.id.menu_change_class:
-                startActivity(new Intent(this,ChangeClassActivity.class));
-                dlMain.closeDrawer(Gravity.LEFT);
+                startActivity(new Intent(this, ChangeClassActivity.class));
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                dlMain.closeDrawer(Gravity.START);
                 break;
             case R.id.menu_open_saved:
-                dlMain.closeDrawer(Gravity.LEFT);
+                dlMain.closeDrawer(Gravity.START);
                 break;
             case R.id.menu_save_offline:
-                dlMain.closeDrawer(Gravity.LEFT);
+                dlMain.closeDrawer(Gravity.START);
                 break;
             case R.id.menu_seen:
-                dlMain.closeDrawer(Gravity.LEFT);
+                dlMain.closeDrawer(Gravity.START);
                 break;
             case R.id.menu_rate:
-                dlMain.closeDrawer(Gravity.LEFT);
+                dlMain.closeDrawer(Gravity.START);
                 break;
             case R.id.menu_share:
-                dlMain.closeDrawer(Gravity.LEFT);
+                dlMain.closeDrawer(Gravity.START);
                 break;
             case R.id.menu_feed_back:
-                dlMain.closeDrawer(Gravity.LEFT);
+                dlMain.closeDrawer(Gravity.START);
                 break;
             case R.id.menu_notify:
-                dlMain.closeDrawer(Gravity.LEFT);
+                dlMain.closeDrawer(Gravity.START);
                 break;
         }
     }
 
     @Override
     public void onBackPressed() {
-        if (doubleBackToExitApp) {
-            super.onBackPressed();
-            return;
-        }
-        this.doubleBackToExitApp = true;
-        Toast.makeText(this, "Please click back again to exit", Toast.LENGTH_SHORT).show();
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                doubleBackToExitApp = false;
+        if (dlMain.isDrawerOpen(Gravity.START)) {
+            dlMain.closeDrawer(Gravity.START);
+        } else {
+            if (doubleBackToExitApp) {
+                super.onBackPressed();
+                return;
             }
-        }, 2000);
+            this.doubleBackToExitApp = true;
+            //Toast.makeText(this, "Please click back again to exit", Toast.LENGTH_SHORT).show();
+            Toasty.info(this, "Please click back again to exit", Toast.LENGTH_SHORT).show();
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    doubleBackToExitApp = false;
+                }
+            }, 2000);
+        }
 
         /*if (this.getSupportFragmentManager().getBackStackEntryCount() >= 1) {
             this.getSupportFragmentManager().popBackStack();
