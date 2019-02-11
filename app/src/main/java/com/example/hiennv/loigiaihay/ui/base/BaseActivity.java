@@ -20,6 +20,7 @@ import com.example.hiennv.loigiaihay.receiver.NetworkReceiver;
 import com.example.hiennv.loigiaihay.utils.SharedPrefUtils;
 
 import butterknife.ButterKnife;
+import es.dmoral.toasty.Toasty;
 
 public abstract class BaseActivity extends AppCompatActivity
         implements NetworkReceiver.ConnectivityReceiverListener {
@@ -111,9 +112,9 @@ public abstract class BaseActivity extends AppCompatActivity
     @Override
     public void onNetworkConnectionChanged(boolean isConnected) {
         if (!isConnected) {
-            Toast.makeText(this, "No connection!", Toast.LENGTH_SHORT).show();
+            Toasty.error(this, "No connection!", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, "Connecting", Toast.LENGTH_SHORT).show();
+            Toasty.info(this, "Connecting", Toast.LENGTH_SHORT).show();
         }
     }
 

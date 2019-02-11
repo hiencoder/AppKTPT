@@ -35,6 +35,8 @@
         <activity android:name=".ui.home.MainActivity">
 
         </activity>
+        <activity android:name=".ui.event.EventActivity" />
+
         <receiver android:name=".receiver.NetworkReceiver"
             android:enabled="true">
             <intent-filter>

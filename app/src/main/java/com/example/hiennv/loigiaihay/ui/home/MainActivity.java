@@ -34,6 +34,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import es.dmoral.toasty.Toasty;
 import me.grantland.widget.AutofitTextView;
 //https://stackoverflow.com/questions/31367270/exporting-sqlite-database-to-csv-file-in-android
 //https://stackoverflow.com/questions/43055661/reading-csv-file-in-android-app
@@ -256,7 +257,8 @@ public class MainActivity extends BaseActivity {
                 return;
             }
             this.doubleBackToExitApp = true;
-            Toast.makeText(this, "Please click back again to exit", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Please click back again to exit", Toast.LENGTH_SHORT).show();
+            Toasty.info(this, "Please click back again to exit", Toast.LENGTH_SHORT).show();
 
             new Handler().postDelayed(new Runnable() {
                 @Override

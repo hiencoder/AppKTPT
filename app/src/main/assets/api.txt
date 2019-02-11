@@ -280,8 +280,8 @@ ad.popup_frequency:
 pre_id_ar: articleId - Mở ra thông tin chi tiết bài học.
 
 //Do not add fragment home to back stack
-
-
+- Khi dong app thi luu lai thong tin bai hoc trong fragment home
+- Man hinh home chay api https://api.loigiaihay.com/v3/categories/47
 8. Database Sqlite
 android_metadata	CREATE TABLE android_metadata (locale TEXT)
 search	CREATE TABLE search(id_search INTEGER PRIMARY KEY,id_mon_search TEXT,type_mon_search TEXT,name_search TEXT,name_ko_dau_search TEXT,articleId_search TEXT,isLink_search TEXT,redirecLink_search TEXT)
@@ -296,3 +296,4 @@ https://github.com/survivingwithandroid/Surviving-with-android
 http://tapintonfc.blogspot.com/2012/07/the-above-footage-from-our-nfc-workshop.html
 https://www.survivingwithandroid.com/2016/01/nfc-tag-writer-android.html
 https://www.survivingwithandroid.com/2015/03/android-nfc-app-android-nfc-tutorial.html
+https://android.jlelse.eu/android-networking-in-2019-retrofit-with-kotlins-coroutines-aefe82c4d777

@@ -188,7 +188,7 @@ public class RealmController {
         realm.executeTransactionAsync(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
-                NotifyRealm notify = realm.where(NotifyRealm.class).equalTo("notifyId",notifyId).findFirst();
+                NotifyRealm notify = realm.where(NotifyRealm.class).equalTo("notifyId", notifyId).findFirst();
                 //Update
                 notify.setNotifyTitle(notifyRealm.getNotifyTitle());
                 notify.setNotifyContent(notifyRealm.getNotifyContent());
@@ -209,10 +209,10 @@ public class RealmController {
         });
     }
 
-    public void deleteNotify(String notifyId){
+    public void deleteNotify(String notifyId) {
         RealmResults<NotifyRealm> results = realm.where(NotifyRealm.class).findAll();
-        NotifyRealm notifyRealm = results.where().equalTo("notifyId",notifyId).findFirst();
-        if (notifyRealm != null){
+        NotifyRealm notifyRealm = results.where().equalTo("notifyId", notifyId).findFirst();
+        if (notifyRealm != null) {
             realm.beginTransaction();
         }
         notifyRealm.deleteFromRealm();
@@ -220,29 +220,29 @@ public class RealmController {
     }
 
     //TABLE ORDERID
-    public void clearOrderId(){
+    public void clearOrderId() {
         realm.beginTransaction();
         realm.delete(OrderIdRealm.class);
         realm.commitTransaction();
     }
 
-    public RealmResults<OrderIdRealm> getAllOrderId(){
+    public RealmResults<OrderIdRealm> getAllOrderId() {
         return realm.where(OrderIdRealm.class).findAll();
     }
 
-    public OrderIdRealm getOrderIdById(String orderId){
-        return realm.where(OrderIdRealm.class).equalTo("orderId",orderId).findFirst();
+    public OrderIdRealm getOrderIdById(String orderId) {
+        return realm.where(OrderIdRealm.class).equalTo("orderId", orderId).findFirst();
     }
 
-    public boolean hasOrderId(){
+    public boolean hasOrderId() {
         return realm.where(OrderIdRealm.class).findAll().isEmpty();
     }
 
-    public void insertOrderId(OrderIdRealm orderIdRealm){
+    public void insertOrderId(OrderIdRealm orderIdRealm) {
         realm.insert(orderIdRealm);
     }
 
-    public void updateOrderId(String orderId, OrderIdRealm orderIdRealm){
+    public void updateOrderId(String orderId, OrderIdRealm orderIdRealm) {
         realm.executeTransactionAsync(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
@@ -256,7 +256,7 @@ public class RealmController {
         }, new Realm.Transaction.OnError() {
             @Override
             public void onError(Throwable error) {
-
+                LogUtils.e(TAG, error.getMessage());
             }
         });
     }
