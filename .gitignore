@@ -1,0 +1,13 @@
+# Created by .ignore support plugin (hsz.mobi)
+.gitignore
+.gradle/
+.idea/libraries/
+.idea/modules.xml
+.idea/workspace.xml
+LoiGiaiHay.iml
+app/app.iml
+app/libs/
+app/src/main/java/com/example/hiennv/loigiaihay/ui/saved/
+app/src/main/java/com/example/hiennv/loigiaihay/ui/search/
+app/src/main/res/animator/
+local.properties
