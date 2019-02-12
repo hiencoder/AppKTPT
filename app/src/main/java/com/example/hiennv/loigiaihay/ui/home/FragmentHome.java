@@ -8,18 +8,22 @@ import com.example.hiennv.loigiaihay.R;
 import com.example.hiennv.loigiaihay.adapter.ChapAdapter;
 import com.example.hiennv.loigiaihay.network.pojo.category.Event;
 import com.example.hiennv.loigiaihay.ui.base.BaseFragment;
+import com.example.hiennv.loigiaihay.utils.AppLogger;
 
 import java.util.List;
 
 import butterknife.BindView;
+import timber.log.Timber;
 
 public class FragmentHome extends BaseFragment implements MainContract.MainView {
+    private static final String TAG = FragmentHome.class.getSimpleName();
     //https://api.loigiaihay.com/v3/categories/47
     @BindView(R.id.elv_subject)
     ExpandableListView elvSubject;
     private int itemId;
     private ChapAdapter chapAdapter;
     private MainPresenterImpl mainPresenter;
+    private List<Event> listEvent;
 
     public static FragmentHome newInstance(int itemId) {
         FragmentHome fragmentHome = new FragmentHome();
@@ -48,16 +52,19 @@ public class FragmentHome extends BaseFragment implements MainContract.MainView 
     @Override
     protected void initData() {
         mainPresenter = new MainPresenterImpl(this);
+        mainPresenter.loadListSession(itemId);
     }
 
     @Override
     public void loadListSessionSuccess(List<Event> events) {
         //Fetch data
+        chapAdapter = new ChapAdapter(getActivity(), listEvent);
+        elvSubject.setAdapter(chapAdapter);
     }
 
     @Override
     public void loadListSessionError(String message) {
-
+        Timber.e(TAG, message);
     }
 
     @Override

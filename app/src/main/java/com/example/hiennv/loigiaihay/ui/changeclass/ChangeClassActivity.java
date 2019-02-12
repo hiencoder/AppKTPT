@@ -76,7 +76,7 @@ public class ChangeClassActivity extends BaseActivity implements ChangeClassCont
 
     @Override
     public void loadError() {
-
+        pbLoading.setVisibility(View.GONE);
     }
 
     @Override

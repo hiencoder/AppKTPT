@@ -7,7 +7,7 @@ public interface ChangeSubjectContract {
     interface ChangeSubjectView extends BaseView{
         void loadListSubjectSuccess(SubjectResponse subjectResponse);
 
-        void loadListSubjectError();
+        void loadListSubjectError(String message);
     }
 
     interface ChangeSubjectPresenter{

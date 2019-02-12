@@ -32,7 +32,7 @@ public class ChangeSubjectPresenterImpl implements ChangeSubjectContract.ChangeS
 
             @Override
             public void onFailure(Call<SubjectResponse> call, Throwable t) {
-                AppLogger.e("Error",t);
+                subjectView.loadListSubjectError(t.getMessage());
             }
         });
     }

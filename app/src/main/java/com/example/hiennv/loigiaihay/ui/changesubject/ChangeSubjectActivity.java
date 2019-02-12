@@ -16,7 +16,10 @@ import com.example.hiennv.loigiaihay.utils.AppConstants;
 import com.example.hiennv.loigiaihay.utils.SharedPrefUtils;
 import com.viewpagerindicator.TabPageIndicator;
 
+import java.sql.Time;
+
 import butterknife.BindView;
+import timber.log.Timber;
 
 public class ChangeSubjectActivity extends BaseActivity implements ChangeSubjectContract.ChangeSubjectView {
     private static final String TAG = ChangeSubjectActivity.class.getSimpleName();
@@ -47,6 +50,7 @@ public class ChangeSubjectActivity extends BaseActivity implements ChangeSubject
         } else {
             tagId = sharedPrefUtils.getString(AppConstants.KEY_CLASS_ID, "");
         }
+        Timber.d("TagId: %s", tagId);
         apiService = ApiClient.getClient().create(ApiService.class);
         changeSubjectPresenter = new ChangeSubjectPresenterImpl(this, apiService);
         changeSubjectPresenter.loadListSubject(tagId);
@@ -74,8 +78,8 @@ public class ChangeSubjectActivity extends BaseActivity implements ChangeSubject
     }
 
     @Override
-    public void loadListSubjectError() {
-
+    public void loadListSubjectError(String message) {
+        Timber.e("ChangeSubject: %s", message);
     }
 
     @Override

@@ -36,6 +36,8 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import es.dmoral.toasty.Toasty;
 import me.grantland.widget.AutofitTextView;
+import timber.log.Timber;
+
 //https://stackoverflow.com/questions/31367270/exporting-sqlite-database-to-csv-file-in-android
 //https://stackoverflow.com/questions/43055661/reading-csv-file-in-android-app
 //http://codesfor.in/how-to-export-sqlite-database-to-a-csv-file/
@@ -94,7 +96,8 @@ public class MainActivity extends BaseActivity {
     private String titleClass;
     //Title subject
     private String titleSubject;
-
+    //item id
+    private int itemId;
     private boolean doubleBackToExitApp = false;
 
     private FragmentManager fragmentManager;
@@ -141,8 +144,14 @@ public class MainActivity extends BaseActivity {
         itemChangeClass.setTitle("Đổi môn (" + titleClass + "-" + titleSubject + ")");
         itemChangeSubject.setTitle("Đổi lớp (" + titleClass + ")");*/
         tvChangeSubject.setText("Đổi môn (" + titleClass + "-" + titleSubject + ")");
-
         tvChangeClass.setText("Đổi lớp (" + titleClass + ")");
+
+        fragmentManager = getSupportFragmentManager();
+        //get subject id
+        itemId = Integer.parseInt(sharedPrefUtils.getString(AppConstants.KEY_SUBJECT_ID, ""));
+        Timber.d("ItemId - " + itemId);
+        replaceFragment(FragmentHome.newInstance(itemId), "fragment_home");
+
     }
 
     @Override
