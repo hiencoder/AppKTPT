@@ -1,13 +1,17 @@
 package com.example.hiennv.loigiaihay.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.widget.ExpandableListView;
 
 import com.example.hiennv.loigiaihay.R;
 import com.example.hiennv.loigiaihay.adapter.ChapAdapter;
+import com.example.hiennv.loigiaihay.callback.ItemEventListener;
 import com.example.hiennv.loigiaihay.network.pojo.category.Event;
 import com.example.hiennv.loigiaihay.ui.base.BaseFragment;
+import com.example.hiennv.loigiaihay.ui.event.EventActivity;
+import com.example.hiennv.loigiaihay.utils.AppConstants;
 
 import java.util.List;
 
@@ -65,12 +69,24 @@ public class FragmentHome extends BaseFragment implements MainContract.MainView 
             for (int i = 0; i < chapAdapter.getGroupCount(); i++) {
                 elvSubject.expandGroup(i);
             }
+
+            //Event
+            chapAdapter.setItemEventListener(event -> {
+                Intent intent = new Intent(getActivity(),EventActivity.class);
+                intent.putExtra(AppConstants.KEY_ITEM_ID, event.getItemId());
+                startActivity(intent);
+            });
+            chapAdapter.setSubItemClickListener(subItem -> {
+                Intent intent = new Intent(getActivity(),EventActivity.class);
+                intent.putExtra(AppConstants.KEY_ITEM_ID, subItem.getItemId());
+                startActivity(intent);
+            });
         }
     }
 
     @Override
     public void loadListSessionError(String message) {
-
+        Timber.e("%s", message);
     }
 
     @Override

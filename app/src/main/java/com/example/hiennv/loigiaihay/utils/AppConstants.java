@@ -37,6 +37,8 @@ public class AppConstants {
     public static final String KEY_SUPPORT_FANPAGE = "support_fanpage";
     public static final String KEY_AD_MOB = "admob_ad_unit_id_event";
     public static final String KEY_AD_POPUP = "ad.adsense.popup.unit_id";
+
+    public static final String KEY_ITEM_ID = "item_id";
     //abc
     public static final long REQUEST_TIMEOUT = 600l;
 

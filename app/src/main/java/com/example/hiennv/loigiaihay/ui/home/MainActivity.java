@@ -136,7 +136,7 @@ public class MainActivity extends BaseActivity {
         itemChangeSubject = menu.findItem(R.id.menu_change_subject);
         itemChangeClass.setTitle("Đổi môn (" + titleClass + "-" + titleSubject + ")");
         itemChangeSubject.setTitle("Đổi lớp (" + titleClass + ")");*/
-        tvChangeSubject.setText("Đổi môn (" + titleClass + "-" + titleSubject + ")");
+        tvChangeSubject.setText("Đổi môn (" + titleClass + " - " + titleSubject + ")");
 
         tvChangeClass.setText("Đổi lớp (" + titleClass + ")");
         fragmentManager = getSupportFragmentManager();
@@ -150,7 +150,7 @@ public class MainActivity extends BaseActivity {
         titleClass = sharedPrefUtils.getString(AppConstants.KEY_CLASS_TITLE, "");
         titleSubject = sharedPrefUtils.getString(AppConstants.KEY_SUBJECT_TITLE, "");
         setSupportActionBar(toolbar);
-        tvTitleSubject.setText(titleClass + "-" + titleSubject);
+        tvTitleSubject.setText(titleClass + " - " + titleSubject);
     }
 
     @Override
