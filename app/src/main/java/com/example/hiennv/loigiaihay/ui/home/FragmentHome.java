@@ -12,6 +12,7 @@ import com.example.hiennv.loigiaihay.ui.base.BaseFragment;
 import java.util.List;
 
 import butterknife.BindView;
+import timber.log.Timber;
 
 public class FragmentHome extends BaseFragment implements MainContract.MainView {
     //https://api.loigiaihay.com/v3/categories/47
@@ -48,11 +49,23 @@ public class FragmentHome extends BaseFragment implements MainContract.MainView 
     @Override
     protected void initData() {
         mainPresenter = new MainPresenterImpl(this);
+        mainPresenter.loadListSession(itemId);
     }
 
     @Override
     public void loadListSessionSuccess(List<Event> events) {
         //Fetch data
+        if (events.size() > 0) {
+            Timber.i("%s", events.size());
+            for (int i = 0; i < events.size(); i++) {
+                Timber.i("%s", events.get(i).getTitle());
+            }
+            chapAdapter = new ChapAdapter(getActivity(), events);
+            elvSubject.setAdapter(chapAdapter);
+            for (int i = 0; i < chapAdapter.getGroupCount(); i++) {
+                elvSubject.expandGroup(i);
+            }
+        }
     }
 
     @Override

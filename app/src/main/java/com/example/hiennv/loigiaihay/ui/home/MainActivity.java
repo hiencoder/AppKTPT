@@ -36,6 +36,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import es.dmoral.toasty.Toasty;
 import me.grantland.widget.AutofitTextView;
+
 //https://stackoverflow.com/questions/31367270/exporting-sqlite-database-to-csv-file-in-android
 //https://stackoverflow.com/questions/43055661/reading-csv-file-in-android-app
 //http://codesfor.in/how-to-export-sqlite-database-to-a-csv-file/
@@ -57,9 +58,6 @@ public class MainActivity extends BaseActivity {
     MyAutoCompleteTextView mactSearch;
     @BindView(R.id.nv_menu)
     NavigationView nvMenu;
-    @BindView(R.id.rv_lessons)
-    RecyclerView rvLession;
-
     //Menu id
     @BindView(R.id.menu_home)
     LinearLayout menuHome;
@@ -106,9 +104,7 @@ public class MainActivity extends BaseActivity {
     private MenuItem itemChangeClass;
     private MenuItem itemChangeSubject;
 
-    //Adapter
-    private SubjectDetailAdapter subjectDetailAdapter;
-    private List<Event> listEvents;
+    private String itemId;
 
     @Override
     protected int getLayoutId() {
@@ -143,6 +139,9 @@ public class MainActivity extends BaseActivity {
         tvChangeSubject.setText("Đổi môn (" + titleClass + "-" + titleSubject + ")");
 
         tvChangeClass.setText("Đổi lớp (" + titleClass + ")");
+        fragmentManager = getSupportFragmentManager();
+        itemId = sharedPrefUtils.getString(AppConstants.KEY_SUBJECT_ID,"");
+        replaceFragment(FragmentHome.newInstance(Integer.parseInt(itemId)), "fragment_home");
     }
 
     @Override
@@ -157,22 +156,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initEvents() {
         //Event for autocompletetextview
-        mactSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                return false;
-            }
-        });
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        /*fragmentManager = getSupportFragmentManager();
-        if (savedInstanceState == null) {
-            replaceFragment(FragmentHome.newInstance(), "fragment_home");
-        }*/
-
+        mactSearch.setOnEditorActionListener((textView, i, keyEvent) -> false);
     }
 
     /**

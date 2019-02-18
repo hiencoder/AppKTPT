@@ -5,8 +5,5 @@
     android:orientation="vertical">
     <include
         layout="@layout/header_subject_detail"/>
-<!--    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_chaps"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>-->
+
 </LinearLayout>

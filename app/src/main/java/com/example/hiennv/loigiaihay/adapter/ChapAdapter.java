@@ -16,6 +16,7 @@ import com.example.hiennv.loigiaihay.network.pojo.category.SubItem;
 import java.util.List;
 
 import butterknife.ButterKnife;
+import timber.log.Timber;
 
 public class ChapAdapter extends BaseExpandableListAdapter {
     //Group -> Event
@@ -60,12 +61,12 @@ public class ChapAdapter extends BaseExpandableListAdapter {
 
     @Override
     public long getGroupId(int groupPosition) {
-        return 0;
+        return groupPosition;
     }
 
     @Override
     public long getChildId(int groupPosition, int childPosition) {
-        return 0;
+        return childPosition;
     }
 
     @Override
@@ -92,6 +93,7 @@ public class ChapAdapter extends BaseExpandableListAdapter {
         View view = LayoutInflater.from(context).inflate(R.layout.content_subject_detail, parent, false);
         TextView tvChapTitle = view.findViewById(R.id.tv_subject_title);
         SubItem subItem = getChild(groupPosition, childPosition);
+        Timber.i("%s", subItem.getTitle());
         tvChapTitle.setText(subItem.getTitle());
         view.setOnClickListener(v -> {
             if (subItemClickListener != null) {
@@ -103,6 +105,6 @@ public class ChapAdapter extends BaseExpandableListAdapter {
 
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
-        return false;
+        return true;
     }
 }
