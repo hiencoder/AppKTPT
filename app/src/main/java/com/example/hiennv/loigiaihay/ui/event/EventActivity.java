@@ -9,6 +9,7 @@ import com.example.hiennv.loigiaihay.network.pojo.category.SubItem;
 import com.example.hiennv.loigiaihay.network.pojo.event.Article;
 import com.example.hiennv.loigiaihay.network.pojo.event.MostView;
 import com.example.hiennv.loigiaihay.network.pojo.event.ResponseEvent;
+import com.example.hiennv.loigiaihay.network.pojo.event.SubEvent;
 import com.example.hiennv.loigiaihay.ui.base.BaseActivity;
 import com.example.hiennv.loigiaihay.utils.AppConstants;
 import com.example.hiennv.loigiaihay.utils.SharedPrefUtils;
@@ -34,7 +35,8 @@ public class EventActivity extends BaseActivity implements EventContract.EventVi
 
     private List<Article> articles;
     private List<MostView> mostViews;
-    private List<SubItem> subItems;
+    private List<SubEvent> subEvents;
+
 
     private EventPresenterImpl eventPresenter;
 
@@ -67,7 +69,13 @@ public class EventActivity extends BaseActivity implements EventContract.EventVi
 
     @Override
     public void loadEventSuccess(ResponseEvent event) {
+        if (event != null){
+            articles = event.getListArticles();
+            mostViews = event.getMostViews();
+            subEvents = event.getSubEvents();
 
+
+        }
     }
 
     @Override
