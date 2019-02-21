@@ -297,3 +297,8 @@ http://tapintonfc.blogspot.com/2012/07/the-above-footage-from-our-nfc-workshop.h
 https://www.survivingwithandroid.com/2016/01/nfc-tag-writer-android.html
 https://www.survivingwithandroid.com/2015/03/android-nfc-app-android-nfc-tutorial.html
 https://android.jlelse.eu/android-networking-in-2019-retrofit-with-kotlins-coroutines-aefe82c4d777
+//coordinatormenu
+https://github.com/Ramotion/circle-menu-android
+
+//Marker
+https://www.pinterest.com/pin/656399714409113120/?lp=true

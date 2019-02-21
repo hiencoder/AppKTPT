@@ -37,6 +37,8 @@
         </activity>
         <activity android:name=".ui.event.EventActivity" />
 
+        <activity android:name=".ui.event.EventActivityVer2"
+            android:launchMode="singleInstance"/>
         <receiver android:name=".receiver.NetworkReceiver"
             android:enabled="true">
             <intent-filter>
