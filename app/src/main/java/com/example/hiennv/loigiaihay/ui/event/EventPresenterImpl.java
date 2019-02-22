@@ -36,6 +36,7 @@ public class EventPresenterImpl implements EventContract.EventPresenter {
             public void onFailure(Call<ResponseEvent> call, Throwable t) {
                 eventView.hideLoading();
                 AppLogger.d("Error", t.getMessage());
+                eventView.loadEventError(t.getMessage());
             }
         });
     }

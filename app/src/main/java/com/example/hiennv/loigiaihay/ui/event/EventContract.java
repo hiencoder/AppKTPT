@@ -7,7 +7,7 @@ public interface EventContract {
     interface EventView extends BaseView {
         void loadEventSuccess(ResponseEvent event);
 
-        void loadEventError();
+        void loadEventError(String message);
     }
 
     interface EventPresenter {

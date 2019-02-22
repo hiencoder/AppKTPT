@@ -3,50 +3,56 @@ package com.example.hiennv.loigiaihay.ui.event;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.hiennv.loigiaihay.R;
-import com.example.hiennv.loigiaihay.adapter.ArticleAdapter;
-import com.example.hiennv.loigiaihay.adapter.MostViewAdapter;
-import com.example.hiennv.loigiaihay.adapter.SubEventAdapter;
+import com.example.hiennv.loigiaihay.adapter.EventViewAdapter;
 import com.example.hiennv.loigiaihay.callback.ItemArticleListener;
+import com.example.hiennv.loigiaihay.callback.ItemBaseEventListener;
 import com.example.hiennv.loigiaihay.callback.ItemMostViewListener;
 import com.example.hiennv.loigiaihay.callback.ItemSubEventListener;
-import com.example.hiennv.loigiaihay.network.pojo.category.SubItem;
 import com.example.hiennv.loigiaihay.network.pojo.event.Article;
+import com.example.hiennv.loigiaihay.network.pojo.event.BaseEvent;
 import com.example.hiennv.loigiaihay.network.pojo.event.MostView;
 import com.example.hiennv.loigiaihay.network.pojo.event.ResponseEvent;
 import com.example.hiennv.loigiaihay.network.pojo.event.SubEvent;
 import com.example.hiennv.loigiaihay.ui.base.BaseActivity;
+import com.example.hiennv.loigiaihay.ui.customview.MyAutoCompleteTextView;
 import com.example.hiennv.loigiaihay.utils.AppConstants;
 import com.example.hiennv.loigiaihay.utils.SharedPrefUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import me.grantland.widget.AutofitTextView;
+import timber.log.Timber;
 
 public class EventActivity extends BaseActivity implements EventContract.EventView,
-        ItemArticleListener,ItemMostViewListener,ItemSubEventListener {
+        ItemBaseEventListener {
     //Fetch data when click Event
     public static final String TAG = EventActivity.class.getSimpleName();
     @BindView(R.id.tv_title_subject)
     TextView tvTitleSubject;
+    @BindView(R.id.atv_title)
+    AutofitTextView atvTitle;
+    @BindView(R.id.mact_search)
+    MyAutoCompleteTextView mactSearch;
     @BindView(R.id.tv_event_title)
     TextView tvEventTitle;
-    @BindView(R.id.rv_articles)
-    RecyclerView rvArticles;
-    @BindView(R.id.rv_most_views)
-    RecyclerView rvMostViews;
-    @BindView(R.id.rv_list_subItem)
-    RecyclerView rvListSubItem;
+    @BindView(R.id.rv_event)
+    RecyclerView rvEvent;
+    @BindView(R.id.pb_loading)
+    ProgressBar pbLoading;
 
     private List<Article> articles;
     private List<MostView> mostViews;
     private List<SubEvent> subEvents;
-    private ArticleAdapter articleAdapter;
-    private SubEventAdapter subEventAdapter;
-    private MostViewAdapter mostViewAdapter;
+    private List<BaseEvent> baseEvents;
+
+    private EventViewAdapter eventViewAdapter;
 
     private EventPresenterImpl eventPresenter;
 
@@ -55,7 +61,7 @@ public class EventActivity extends BaseActivity implements EventContract.EventVi
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_event_detail;
+        return R.layout.activity_event;
     }
 
     @Override
@@ -69,71 +75,65 @@ public class EventActivity extends BaseActivity implements EventContract.EventVi
     protected void setUpToolbar() {
         sharedPrefUtils = new SharedPrefUtils(this);
         String subjectName = sharedPrefUtils.getString(AppConstants.KEY_SUBJECT_TITLE, "");
-        //tvEventTitle.setText(subjectName);
+        tvTitleSubject.setText(subjectName);
+
     }
 
     @Override
     protected void initEvents() {
-
+        eventViewAdapter.setItemBaseEventListener(this::doItemBaseClick);
     }
 
     @Override
     public void loadEventSuccess(ResponseEvent event) {
         if (event != null) {
+            baseEvents = new ArrayList<>();
             tvEventTitle.setText(event.getEventInfo().getTitle());
             articles = event.getListArticles();
             mostViews = event.getMostViews();
             subEvents = event.getSubEvents();
 
-            articleAdapter = new ArticleAdapter(this, articles);
-            rvArticles.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-            rvArticles.setAdapter(articleAdapter);
+            baseEvents.addAll(subEvents);
+            baseEvents.addAll(articles);
+            eventViewAdapter = new EventViewAdapter(this, baseEvents);
+            rvEvent.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+            rvEvent.setAdapter(eventViewAdapter);
 
-            mostViewAdapter = new MostViewAdapter(this, mostViews);
-            rvMostViews.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-            rvMostViews.setAdapter(mostViewAdapter);
 
-            subEventAdapter = new SubEventAdapter(this, subEvents);
-            rvListSubItem.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-            rvListSubItem.setAdapter(subEventAdapter);
         }
     }
 
     @Override
-    public void loadEventError() {
-
+    public void loadEventError(String message) {
+        Timber.e("%s", message);
     }
 
     @Override
     public void showLoading() {
-
+        pbLoading.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideLoading() {
-
+        pbLoading.setVisibility(View.GONE);
     }
 
     @OnClick({R.id.iv_search})
     void doClick(View v) {
         switch (v.getId()) {
             case R.id.iv_search:
+                tvTitleSubject.setVisibility(View.GONE);
+                mactSearch.setVisibility(View.VISIBLE);
                 break;
         }
     }
 
     @Override
-    public void doItemArticleClick(int articleId) {
-
-    }
-
-    @Override
-    public void doItemMostViewClick(int mostViewId) {
-
-    }
-
-    @Override
-    public void doItemSubEventClick(int subEventId) {
-
+    public void doItemBaseClick(BaseEvent baseEvent) {
+        if (baseEvent instanceof Article){
+            Timber.i("%s",baseEvent.getTitle());
+        }else if (baseEvent instanceof SubEvent){
+            Timber.i("%s",baseEvent.getTitle());
+        }
     }
 }

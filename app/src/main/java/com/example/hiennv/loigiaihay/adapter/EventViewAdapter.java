@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.hiennv.loigiaihay.R;
+import com.example.hiennv.loigiaihay.callback.ItemBaseEventListener;
 import com.example.hiennv.loigiaihay.network.pojo.event.Article;
 import com.example.hiennv.loigiaihay.network.pojo.event.BaseEvent;
 import com.example.hiennv.loigiaihay.network.pojo.event.SubEvent;
@@ -23,10 +24,15 @@ import butterknife.ButterKnife;
 public class EventViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
     private List<BaseEvent> baseEvents;
+    private ItemBaseEventListener itemBaseEventListener;
 
     public EventViewAdapter(Context context, List<BaseEvent> baseEvents) {
         this.context = context;
         this.baseEvents = baseEvents;
+    }
+
+    public void setItemBaseEventListener(ItemBaseEventListener itemBaseEventListener) {
+        this.itemBaseEventListener = itemBaseEventListener;
     }
 
     public static final int TYPE_ARTICLE = 1;
@@ -49,8 +55,12 @@ public class EventViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
         if (baseEvents.get(position) instanceof Article) {
             ((ArticleHolder) viewHolder).bindArticle((Article) baseEvents.get(position));
+
         } else if (baseEvents.get(position) instanceof SubEvent) {
             ((SubEventHolder) viewHolder).bindSubEvent((SubEvent) baseEvents.get(position));
+        }
+        if (itemBaseEventListener != null) {
+            itemBaseEventListener.doItemBaseClick(baseEvents.get(position));
         }
     }
 
