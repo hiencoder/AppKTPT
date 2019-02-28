@@ -305,3 +305,13 @@ https://www.pinterest.com/pin/656399714409113120/?lp=true
 
 //StickerView
 https://github.com/nimengbo
+https://github.com/wuapnjie/StickerView
+
+//ActionSheet Style iOS6,7
+https://github.com/baoyongzhang
+
+//MaterialSheet Tab
+https://android-arsenal.com/details/1/2178?utm_source=twitterfeed&utm_medium=twitter&utm_campaign=Feed:+Android_Arsenal+(The+Android+Arsenal)
+
+//Segment Tab
+https://android-arsenal.com/details/1/3545
