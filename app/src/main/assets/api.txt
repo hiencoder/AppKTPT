@@ -302,3 +302,6 @@ https://github.com/Ramotion/circle-menu-android
 
 //Marker
 https://www.pinterest.com/pin/656399714409113120/?lp=true
+
+//StickerView
+https://github.com/nimengbo

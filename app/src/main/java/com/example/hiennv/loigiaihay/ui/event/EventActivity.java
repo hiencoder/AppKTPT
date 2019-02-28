@@ -8,10 +8,7 @@ import android.widget.TextView;
 
 import com.example.hiennv.loigiaihay.R;
 import com.example.hiennv.loigiaihay.adapter.EventViewAdapter;
-import com.example.hiennv.loigiaihay.callback.ItemArticleListener;
 import com.example.hiennv.loigiaihay.callback.ItemBaseEventListener;
-import com.example.hiennv.loigiaihay.callback.ItemMostViewListener;
-import com.example.hiennv.loigiaihay.callback.ItemSubEventListener;
 import com.example.hiennv.loigiaihay.network.pojo.event.Article;
 import com.example.hiennv.loigiaihay.network.pojo.event.BaseEvent;
 import com.example.hiennv.loigiaihay.network.pojo.event.MostView;

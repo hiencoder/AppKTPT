@@ -160,7 +160,7 @@ dependencies {
     implementation "com.github.zomato:androidphotofilters:$rootProject.photoFilterVersion"
 
     /*GifView*/
-    implementation "com.github.Cutta:GifView:$rootProject.gifViewVersion"
+   //implementation "com.github.Cutta:GifView:1.1"
 
     //EventBus
     implementation "org.greenrobot:eventbus:$rootProject.eventBusVersion"
