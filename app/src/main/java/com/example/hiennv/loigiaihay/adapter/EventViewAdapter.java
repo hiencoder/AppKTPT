@@ -59,9 +59,13 @@ public class EventViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         } else if (baseEvents.get(position) instanceof SubEvent) {
             ((SubEventHolder) viewHolder).bindSubEvent((SubEvent) baseEvents.get(position));
         }
-        if (itemBaseEventListener != null) {
-            itemBaseEventListener.doItemBaseClick(baseEvents.get(position));
-        }
+        viewHolder.itemView.setOnClickListener(v -> {
+                    if (itemBaseEventListener != null) {
+                        itemBaseEventListener.doItemBaseClick(baseEvents.get(position));
+                    }
+                }
+        );
+
     }
 
     @Override

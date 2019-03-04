@@ -38,6 +38,8 @@
 
         <activity android:name=".ui.event.EventActivity"
             android:launchMode="singleInstance"/>
+        <activity android:name=".ui.listarticles.ListArticleActivity" />
+
         <receiver android:name=".receiver.NetworkReceiver"
             android:enabled="true">
             <intent-filter>

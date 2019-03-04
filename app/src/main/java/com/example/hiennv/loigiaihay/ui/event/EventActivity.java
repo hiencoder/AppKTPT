@@ -3,6 +3,7 @@ package com.example.hiennv.loigiaihay.ui.event;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -33,6 +34,8 @@ public class EventActivity extends BaseActivity implements EventContract.EventVi
     public static final String TAG = EventActivity.class.getSimpleName();
     /*@BindView(R.id.tv_title_subject)
     TextView tvTitleSubject;*/
+    @BindView(R.id.btn_back)
+    ImageView btnBack;
     @BindView(R.id.atv_title)
     AutofitTextView atvTitle;
     @BindView(R.id.mact_search)
@@ -120,22 +123,31 @@ public class EventActivity extends BaseActivity implements EventContract.EventVi
         pbLoading.setVisibility(View.GONE);
     }
 
-    @OnClick({R.id.iv_search})
+    @OnClick({R.id.iv_search, R.id.btn_back})
     void doClick(View v) {
         switch (v.getId()) {
             case R.id.iv_search:
                 atvTitle.setVisibility(View.GONE);
                 mactSearch.setVisibility(View.VISIBLE);
                 break;
+            case R.id.btn_back:
+                onBackPressed();
+                break;
         }
     }
 
     @Override
     public void doItemBaseClick(BaseEvent baseEvent) {
-        if (baseEvent instanceof Article){
-            Timber.i("%s",baseEvent.getTitle());
-        }else if (baseEvent instanceof SubEvent){
-            Timber.i("%s",baseEvent.getTitle());
+        if (baseEvent instanceof Article) {
+            Timber.i("%s", baseEvent.getTitle());
+        } else if (baseEvent instanceof SubEvent) {
+            Timber.i("%s", baseEvent.getTitle());
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 }
