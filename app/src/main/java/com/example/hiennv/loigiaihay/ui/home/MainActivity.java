@@ -50,8 +50,8 @@ public class MainActivity extends BaseActivity {
     ImageView btnOpenMenu;*/
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @BindView(R.id.tv_title_subject)
-    TextView tvTitleSubject;
+    /*@BindView(R.id.tv_title_subject)
+    TextView tvTitleSubject;*/
     @BindView(R.id.atv_title)
     AutofitTextView atvTitle;
     @BindView(R.id.mact_search)
@@ -140,7 +140,7 @@ public class MainActivity extends BaseActivity {
 
         tvChangeClass.setText("Đổi lớp (" + titleClass + ")");
         fragmentManager = getSupportFragmentManager();
-        itemId = sharedPrefUtils.getString(AppConstants.KEY_SUBJECT_ID,"");
+        itemId = sharedPrefUtils.getString(AppConstants.KEY_SUBJECT_ID, "");
         replaceFragment(FragmentHome.newInstance(Integer.parseInt(itemId)), "fragment_home");
     }
 
@@ -150,7 +150,7 @@ public class MainActivity extends BaseActivity {
         titleClass = sharedPrefUtils.getString(AppConstants.KEY_CLASS_TITLE, "");
         titleSubject = sharedPrefUtils.getString(AppConstants.KEY_SUBJECT_TITLE, "");
         setSupportActionBar(toolbar);
-        tvTitleSubject.setText(titleClass + " - " + titleSubject);
+        atvTitle.setText(titleClass + " - " + titleSubject);
     }
 
     @Override
@@ -182,7 +182,7 @@ public class MainActivity extends BaseActivity {
     }
 
 
-    @OnClick({/*R.id.btn_open_menu, */R.id.tv_title_subject, R.id.menu_home, R.id.menu_search, R.id.menu_change_subject,
+    @OnClick({/*R.id.btn_open_menu, */R.id.atv_title, R.id.menu_home, R.id.menu_search, R.id.menu_change_subject,
             R.id.menu_change_class, R.id.menu_open_saved, R.id.menu_save_offline, R.id.menu_seen, R.id.menu_rate,
             R.id.menu_share, R.id.menu_feed_back, R.id.menu_notify, R.id.mact_search})
     void doClick(View v) {
@@ -190,7 +190,7 @@ public class MainActivity extends BaseActivity {
             /*case R.id.btn_open_menu:
 
                 break;*/
-            case R.id.tv_title_subject:
+            case R.id.atv_title:
                 break;
             case R.id.menu_home:
                 break;

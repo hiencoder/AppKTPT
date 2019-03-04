@@ -315,3 +315,5 @@ https://android-arsenal.com/details/1/2178?utm_source=twitterfeed&utm_medium=twi
 
 //Segment Tab
 https://android-arsenal.com/details/1/3545
+
+//BlurView

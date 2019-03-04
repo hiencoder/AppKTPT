@@ -31,8 +31,8 @@ public class EventActivity extends BaseActivity implements EventContract.EventVi
         ItemBaseEventListener {
     //Fetch data when click Event
     public static final String TAG = EventActivity.class.getSimpleName();
-    @BindView(R.id.tv_title_subject)
-    TextView tvTitleSubject;
+    /*@BindView(R.id.tv_title_subject)
+    TextView tvTitleSubject;*/
     @BindView(R.id.atv_title)
     AutofitTextView atvTitle;
     @BindView(R.id.mact_search)
@@ -66,13 +66,17 @@ public class EventActivity extends BaseActivity implements EventContract.EventVi
         itemId = getIntent().getIntExtra(AppConstants.KEY_ITEM_ID, 0);
         eventPresenter = new EventPresenterImpl(this);
         eventPresenter.loadEvent(itemId);
+        baseEvents = new ArrayList<>();
+        eventViewAdapter = new EventViewAdapter(this, baseEvents);
+        rvEvent.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        rvEvent.setAdapter(eventViewAdapter);
     }
 
     @Override
     protected void setUpToolbar() {
         sharedPrefUtils = new SharedPrefUtils(this);
         String subjectName = sharedPrefUtils.getString(AppConstants.KEY_SUBJECT_TITLE, "");
-        tvTitleSubject.setText(subjectName);
+        atvTitle.setText(subjectName);
 
     }
 
@@ -84,7 +88,7 @@ public class EventActivity extends BaseActivity implements EventContract.EventVi
     @Override
     public void loadEventSuccess(ResponseEvent event) {
         if (event != null) {
-            baseEvents = new ArrayList<>();
+            //baseEvents = new ArrayList<>();
             tvEventTitle.setText(event.getEventInfo().getTitle());
             articles = event.getListArticles();
             mostViews = event.getMostViews();
@@ -92,9 +96,10 @@ public class EventActivity extends BaseActivity implements EventContract.EventVi
 
             baseEvents.addAll(subEvents);
             baseEvents.addAll(articles);
-            eventViewAdapter = new EventViewAdapter(this, baseEvents);
+            eventViewAdapter.notifyDataSetChanged();
+            /*eventViewAdapter = new EventViewAdapter(this, baseEvents);
             rvEvent.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-            rvEvent.setAdapter(eventViewAdapter);
+            rvEvent.setAdapter(eventViewAdapter);*/
 
 
         }
@@ -119,7 +124,7 @@ public class EventActivity extends BaseActivity implements EventContract.EventVi
     void doClick(View v) {
         switch (v.getId()) {
             case R.id.iv_search:
-                tvTitleSubject.setVisibility(View.GONE);
+                atvTitle.setVisibility(View.GONE);
                 mactSearch.setVisibility(View.VISIBLE);
                 break;
         }
