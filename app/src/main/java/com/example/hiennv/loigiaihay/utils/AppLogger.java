@@ -12,6 +12,8 @@ public class AppLogger {
         if (BuildConfig.DEBUG){
             Timber.plant(new Timber.DebugTree());
             Stetho.initializeWithDefaults(context);
+        }else {
+
         }
     }
 

@@ -263,7 +263,7 @@ page_Object:
 ADMOB_AD_INTERSTITIAL_ID: 
 success_request_post: 
 last_cfg_time: 
-ADMOB_AD_UNIT_ID_DETAIL_TOP: 
+ADMOB_AD_UNIT_ID_DETAIL_TOP:
 number_class: tag_id / dùng khi change class load ra danh sách môn học của lớp
 check_object: 
 itemType: 
@@ -279,9 +279,9 @@ item_id_home: bài học đc lưu khi mở home
 ad.popup_frequency:
 pre_id_ar: articleId - Mở ra thông tin chi tiết bài học.
 
-
-
-
+//Do not add fragment home to back stack
+- Khi dong app thi luu lai thong tin bai hoc trong fragment home
+- Man hinh home chay api https://api.loigiaihay.com/v3/categories/47
 8. Database Sqlite
 android_metadata	CREATE TABLE android_metadata (locale TEXT)
 search	CREATE TABLE search(id_search INTEGER PRIMARY KEY,id_mon_search TEXT,type_mon_search TEXT,name_search TEXT,name_ko_dau_search TEXT,articleId_search TEXT,isLink_search TEXT,redirecLink_search TEXT)
@@ -290,3 +290,28 @@ history	CREATE TABLE history(id_his INTEGER PRIMARY KEY,name_his TEXT,intro_his 
 notification_table	CREATE TABLE notification_table(id_notifi INTEGER PRIMARY KEY,title_notifi TEXT,content_notifi TEXT,url_notifi TEXT,date_notifi TEXT,status_notifi TEXT)
 ticked_table	CREATE TABLE ticked_table(id_ticked INTEGER PRIMARY KEY,id_mon_tai TEXT,ten_mon_tai TEXT)
 oder_id_table	CREATE TABLE oder_id_table(id_oder_id INTEGER PRIMARY KEY,name_oder_id TEXT)
+
+https://blog.iamsuleiman.com/techniques-to-display-text-overlay-background-images/
+https://github.com/survivingwithandroid/Surviving-with-android
+http://tapintonfc.blogspot.com/2012/07/the-above-footage-from-our-nfc-workshop.html
+https://www.survivingwithandroid.com/2016/01/nfc-tag-writer-android.html
+https://www.survivingwithandroid.com/2015/03/android-nfc-app-android-nfc-tutorial.html
+https://android.jlelse.eu/android-networking-in-2019-retrofit-with-kotlins-coroutines-aefe82c4d777
+//coordinatormenu
+https://github.com/Ramotion/circle-menu-android
+
+//Marker
+https://www.pinterest.com/pin/656399714409113120/?lp=true
+
+//StickerView
+https://github.com/nimengbo
+https://github.com/wuapnjie/StickerView
+
+//ActionSheet Style iOS6,7
+https://github.com/baoyongzhang
+
+//MaterialSheet Tab
+https://android-arsenal.com/details/1/2178?utm_source=twitterfeed&utm_medium=twitter&utm_campaign=Feed:+Android_Arsenal+(The+Android+Arsenal)
+
+//Segment Tab
+https://android-arsenal.com/details/1/3545

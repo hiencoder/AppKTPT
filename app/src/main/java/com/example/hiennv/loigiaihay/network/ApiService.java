@@ -1,6 +1,8 @@
 package com.example.hiennv.loigiaihay.network;
 
-import com.example.hiennv.loigiaihay.network.pojo.category.ResponseCateGory;
+import com.example.hiennv.loigiaihay.network.pojo.article.ResponseArticle;
+import com.example.hiennv.loigiaihay.network.pojo.category.ResponseCategory;
+import com.example.hiennv.loigiaihay.network.pojo.event.ResponseEvent;
 import com.example.hiennv.loigiaihay.network.pojo.subject.SubjectResponse;
 import com.example.hiennv.loigiaihay.network.pojo.tag.ResponseTag;
 
@@ -9,7 +11,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 
 public interface ApiService {
-    //Get list class
+    //Get list class ()
     @GET("tags")
     Call<ResponseTag> getListClass();
 
@@ -19,8 +21,16 @@ public interface ApiService {
 
     //Get list Events()
     @GET("categories/{subjectId}")
-    Call<ResponseCateGory> getResponseCategory(@Path("subjectId") String subjectId);
+    Call<ResponseCategory> getResponseCategory(@Path("subjectId") int subjectId);
 
+    //Get list article
+    @GET("events/{itemId}")
+    Call<ResponseEvent> getResponseEventByItemId(@Path("itemId") int itemId);
 
+    //Get ArticleDetail by articleId
+    @GET("articles/{articleId}")
+    Call<ResponseArticle> getArticleByArticleId(@Path("articleId") String articleId);
+
+    //Search article
 
 }

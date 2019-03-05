@@ -3,7 +3,7 @@ package com.example.hiennv.loigiaihay.network.pojo.event;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Article {
+public class Article extends BaseEvent{
     @Expose
     @SerializedName("articleId")
     protected int articleId;
@@ -24,17 +24,17 @@ public class Article {
     @SerializedName("isHot")
     protected int isHot;
 
-    @Expose
+   /* @Expose
     @SerializedName("is_link")
-    protected String isLink;
+    protected String isLink;*/
 
     @Expose
     @SerializedName("thumbnail")
     protected String thumbnail;
 
-    @Expose
+    /*@Expose
     @SerializedName("title")
-    protected String title;
+    protected String title;*/
 
     @Expose
     @SerializedName("alias")
@@ -64,17 +64,17 @@ public class Article {
         return isHot;
     }
 
-    public String getIsLink() {
+    /*public String getIsLink() {
         return isLink;
-    }
+    }*/
 
     public String getThumbnail() {
         return thumbnail;
     }
 
-    public String getTitle() {
+    /*public String getTitle() {
         return title;
-    }
+    }*/
 
     public String getAlias() {
         return alias;

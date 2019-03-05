@@ -7,6 +7,8 @@ import com.example.hiennv.loigiaihay.receiver.NetworkReceiver;
 import com.example.hiennv.loigiaihay.utils.AppLogger;
 import com.squareup.leakcanary.LeakCanary;
 
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 public class MyApplication extends Application{
@@ -27,6 +29,12 @@ public class MyApplication extends Application{
         }
         LeakCanary.install(this);
 
+        //Config realm
+        Realm.init(getApplicationContext());
+        RealmConfiguration configuration = new RealmConfiguration.Builder()
+                .deleteRealmIfMigrationNeeded()
+                .build();
+        Realm.setDefaultConfiguration(configuration);
     }
 
     public static synchronized MyApplication getInstance(){

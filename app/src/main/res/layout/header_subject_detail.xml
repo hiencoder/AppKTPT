@@ -10,7 +10,8 @@
         android:id="@+id/iv_header"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:src="@drawable/nb_icon"/>
+        android:src="@drawable/nb_icon"
+        android:layout_gravity="center_vertical"/>
     <TextView
         android:id="@+id/tv_header_subject"
         android:layout_width="wrap_content"

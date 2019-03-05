@@ -14,72 +14,13 @@
         android:fitsSystemWindows="true"
         android:orientation="vertical">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="?android:attr/actionBarSize">
+        <include layout="@layout/toolbar" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <me.grantland.widget.AutofitTextView
-                    android:id="@+id/atv_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:textSize="18sp"/>
-                <!--<ImageView
-                    android:id="@+id/btn_open_menu"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/menu_grey_192x192"/>-->
-                <TextView
-                    android:id="@+id/tv_title_subject"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:clickable="true"
-                    android:textSize="18sp"
-                    android:visibility="invisible"/>
-                <com.example.hiennv.loigiaihay.ui.customview.MyAutoCompleteTextView
-                    android:id="@+id/mact_search"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="#222222"
-                    android:textColorHint="#777777"
-                    android:background="@drawable/bg_et_search"
-                    android:visibility="gone"
-                    android:layout_toStartOf="@+id/iv_search"
-                    android:hint="Search"
-                    android:layout_marginRight="3dp"/>
-                <ImageView
-                    android:id="@+id/iv_drop"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_toStartOf="@+id/iv_search"
-                    android:src="@drawable/arrow" />
-
-                <ImageView
-                    android:id="@+id/iv_search"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="3dp"
-                    android:src="@drawable/icon_search" />
-            </RelativeLayout>
-        </android.support.v7.widget.Toolbar>
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_lessons"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
+        <!--Ui main-->
         <FrameLayout
             android:id="@+id/fl_main"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone" />
+            android:layout_height="match_parent" />
     </LinearLayout>
 
     <android.support.design.widget.NavigationView

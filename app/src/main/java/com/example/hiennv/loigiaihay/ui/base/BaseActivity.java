@@ -7,9 +7,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.hiennv.loigiaihay.app.MyApplication;
@@ -17,16 +20,23 @@ import com.example.hiennv.loigiaihay.receiver.NetworkReceiver;
 import com.example.hiennv.loigiaihay.utils.SharedPrefUtils;
 
 import butterknife.ButterKnife;
+import es.dmoral.toasty.Toasty;
 
 public abstract class BaseActivity extends AppCompatActivity
         implements NetworkReceiver.ConnectivityReceiverListener {
     public static final String TAG = BaseActivity.class.getSimpleName();
     protected boolean isNetworkConnected;
+
     protected abstract int getLayoutId();
+
     protected abstract void initData();
+
     protected abstract void setUpToolbar();
+
     protected abstract void initEvents();
+
     protected SharedPrefUtils sharedPrefUtils;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,8 +49,8 @@ public abstract class BaseActivity extends AppCompatActivity
     }
 
     //Set color for status bar and navigation bar
-    protected void setColorStatusBar(){
-        if (Build.VERSION.SDK_INT >= 21){
+    protected void setColorStatusBar() {
+        if (Build.VERSION.SDK_INT >= 21) {
             //get window
             Window window = getWindow();
             window.addFlags(Integer.MIN_VALUE);
@@ -52,23 +62,46 @@ public abstract class BaseActivity extends AppCompatActivity
     }
 
     //Hide keyboard
-    protected void hideKeyboard(){
+    protected void hideKeyboard() {
         View currentFocus = getCurrentFocus();
-        if (currentFocus != null){
-            ((InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE))
+        if (currentFocus != null) {
+            ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE))
                     .hideSoftInputFromWindow(currentFocus.getWindowToken(),
                             InputMethodManager.RESULT_UNCHANGED_SHOWN);
         }
     }
 
+    /**
+     * @param view
+     */
+    protected void setUpUi(View view) {
+        if (!(view instanceof EditText)) {
+            view.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    hideKeyboard();
+                    return false;
+                }
+            });
+        }
+        if (view instanceof ViewGroup) {
+            for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
+                View innerView = ((ViewGroup) view).getChildAt(i);
+                setUpUi(innerView);
+            }
+        }
+    }
+
+    //    https://stackoverflow.com/questions/4165414/how-to-hide-soft-keyboard-on-android-after-clicking-outside-edittext?rq=1
     //Check network
-    protected boolean checkNetwork(){
-        if (((ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE))
-                .getActiveNetworkInfo() != null){
+    protected boolean checkNetwork() {
+        if (((ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE))
+                .getActiveNetworkInfo() != null) {
             return true;
         }
         return false;
     }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -78,10 +111,10 @@ public abstract class BaseActivity extends AppCompatActivity
 
     @Override
     public void onNetworkConnectionChanged(boolean isConnected) {
-        if (!isConnected){
-            Toast.makeText(this, "No connection!", Toast.LENGTH_SHORT).show();
-        }else {
-            Toast.makeText(this, "Connecting", Toast.LENGTH_SHORT).show();
+        if (!isConnected) {
+            Toasty.error(this, "No connection!", Toast.LENGTH_SHORT).show();
+        } else {
+            Toasty.info(this, "Connecting", Toast.LENGTH_SHORT).show();
         }
     }
 
