@@ -1,9 +1,9 @@
 package com.example.hiennv.loigiaihay.ui.intro;
 
 import android.content.Intent;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,9 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import me.relex.circleindicator.CircleIndicator;
 
 public class IntroActivity extends BaseActivity {
     @BindView(R.id.vp_intro)
@@ -36,6 +34,8 @@ public class IntroActivity extends BaseActivity {
     ImageView btnNext;
     @BindView(R.id.btn_ok)
     TextView btnOk;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
     private IntroAdapter introAdapter;
     private List<Intro> listIntro;
 
@@ -69,14 +69,14 @@ public class IntroActivity extends BaseActivity {
             @Override
             public void onPageSelected(int position) {
                 pageSelected = position;
-                if (pageSelected == listIntro.size() - 1){
+                if (pageSelected == listIntro.size() - 1) {
                     btnNext.setVisibility(View.GONE);
                     btnOk.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     btnNext.setVisibility(View.VISIBLE);
                     btnOk.setVisibility(View.GONE);
                 }
-                sharedPrefUtils.putBoolean(AppConstants.IS_FIRST_LAUNCH,false);
+                sharedPrefUtils.putBoolean(AppConstants.IS_FIRST_LAUNCH, false);
             }
 
             @Override
@@ -88,7 +88,8 @@ public class IntroActivity extends BaseActivity {
 
     @Override
     protected void setUpToolbar() {
-
+        setSupportActionBar(toolbar);
+        toolbar.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -119,10 +120,10 @@ public class IntroActivity extends BaseActivity {
     }
 
     private void handleNext() {
-        if (pageSelected < listIntro.size() - 1){
+        if (pageSelected < listIntro.size() - 1) {
             pageSelected += 1;
             vpIntro.setCurrentItem(pageSelected);
-        }else {
+        } else {
             btnNext.setVisibility(View.GONE);
             btnOk.setVisibility(View.VISIBLE);
         }
@@ -130,7 +131,7 @@ public class IntroActivity extends BaseActivity {
 
     private void handleSkip() {
         //Save shared
-        sharedPrefUtils.putBoolean(AppConstants.IS_FIRST_LAUNCH,false);
+        sharedPrefUtils.putBoolean(AppConstants.IS_FIRST_LAUNCH, false);
         startActivity(new Intent(this, ChangeClassActivity.class));
     }
 }

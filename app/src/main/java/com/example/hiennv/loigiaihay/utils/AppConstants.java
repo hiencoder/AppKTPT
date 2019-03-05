@@ -100,4 +100,9 @@ public class AppConstants {
     public static final String ORDER_ID = "order_id";
     public static final String ORDER_ID_NAME = "order_id_name";
 
+    //TYPE FOR LOAD BASEVENT
+    public static final int TYPE_BASE_EVENT = 0;
+    public static final int TYPE_ARTICLE = 1;
+    public static final int TYPE_SUB_EVENT = 2;
+    public static final String KEY_ARTICLE_ID = "article_id";
 }

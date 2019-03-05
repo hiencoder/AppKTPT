@@ -60,6 +60,11 @@ public class FragmentTextBook extends BaseFragment implements ItemSubjectListene
     }
 
     @Override
+    protected void initEvents() {
+
+    }
+
+    @Override
     public void onAttach(Context context) {
         super.onAttach(context);
     }

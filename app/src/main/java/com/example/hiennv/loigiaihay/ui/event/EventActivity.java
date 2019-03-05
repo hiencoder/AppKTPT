@@ -1,7 +1,9 @@
 package com.example.hiennv.loigiaihay.ui.event;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -68,11 +70,11 @@ public class EventActivity extends BaseActivity implements EventContract.EventVi
     protected void initData() {
         itemId = getIntent().getIntExtra(AppConstants.KEY_ITEM_ID, 0);
         eventPresenter = new EventPresenterImpl(this);
-        eventPresenter.loadEvent(itemId);
         baseEvents = new ArrayList<>();
         eventViewAdapter = new EventViewAdapter(this, baseEvents);
         rvEvent.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         rvEvent.setAdapter(eventViewAdapter);
+        eventPresenter.loadEvent(itemId, AppConstants.TYPE_BASE_EVENT);
     }
 
     @Override
@@ -89,7 +91,7 @@ public class EventActivity extends BaseActivity implements EventContract.EventVi
     }
 
     @Override
-    public void loadEventSuccess(ResponseEvent event) {
+    public void loadEventSuccess(ResponseEvent event, int type) {
         if (event != null) {
             //baseEvents = new ArrayList<>();
             tvEventTitle.setText(event.getEventInfo().getTitle());
@@ -115,6 +117,7 @@ public class EventActivity extends BaseActivity implements EventContract.EventVi
 
     @Override
     public void showLoading() {
+        Log.i(TAG, "showLoading: ");
         pbLoading.setVisibility(View.VISIBLE);
     }
 
@@ -138,8 +141,19 @@ public class EventActivity extends BaseActivity implements EventContract.EventVi
 
     @Override
     public void doItemBaseClick(BaseEvent baseEvent) {
+        List<Article> articles = new ArrayList<>();
+        List<SubEvent> subEvents = new ArrayList<>();
+        for (BaseEvent event : baseEvents) {
+            if (event instanceof Article) {
+                articles.add((Article) event);
+            } else {
+                subEvents.add((SubEvent) event);
+            }
+        }
         if (baseEvent instanceof Article) {
             Timber.i("%s", baseEvent.getTitle());
+            //Send list articles
+            //Intent intent = new Intent()
         } else if (baseEvent instanceof SubEvent) {
             Timber.i("%s", baseEvent.getTitle());
         }
@@ -147,7 +161,6 @@ public class EventActivity extends BaseActivity implements EventContract.EventVi
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 }

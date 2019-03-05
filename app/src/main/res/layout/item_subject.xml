@@ -5,8 +5,8 @@
     android:orientation="vertical">
     <ImageView
         android:id="@+id/iv_subject"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="@dimen/size_icon_subject"
+        android:layout_height="@dimen/size_icon_subject"
         android:layout_gravity="center"
         android:layout_marginTop="5dp"
         android:scaleType="centerCrop"/>

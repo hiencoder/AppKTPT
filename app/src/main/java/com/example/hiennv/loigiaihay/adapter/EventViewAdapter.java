@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -35,8 +36,9 @@ public class EventViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         this.itemBaseEventListener = itemBaseEventListener;
     }
 
-    public static final int TYPE_ARTICLE = 1;
-    public static final int TYPE_SUB_EVENT = 2;
+    private static final int TYPE_ARTICLE = 1;
+    private static final int TYPE_SUB_EVENT = 2;
+    private static final int TYPE_EVENT_TITLE = 3;
 
     @NonNull
     @Override
@@ -113,6 +115,16 @@ public class EventViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
         public void bindSubEvent(SubEvent subEvent) {
             tvSubEventTitle.setText(subEvent.getTitle());
+        }
+    }
+
+    public class TitleHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.tv_event_title)
+        TextView tvEventTitle;
+
+        public TitleHolder(@NonNull View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
         }
     }
 }
