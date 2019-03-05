@@ -9,20 +9,18 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.hiennv.loigiaihay.R;
-import com.example.hiennv.loigiaihay.adapter.SubjectDetailAdapter;
-import com.example.hiennv.loigiaihay.network.pojo.category.Event;
 import com.example.hiennv.loigiaihay.ui.base.BaseActivity;
 import com.example.hiennv.loigiaihay.ui.changeclass.ChangeClassActivity;
 import com.example.hiennv.loigiaihay.ui.changesubject.ChangeSubjectActivity;
@@ -30,9 +28,8 @@ import com.example.hiennv.loigiaihay.ui.customview.MyAutoCompleteTextView;
 import com.example.hiennv.loigiaihay.utils.AppConstants;
 import com.example.hiennv.loigiaihay.utils.SharedPrefUtils;
 
-import java.util.List;
-
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import es.dmoral.toasty.Toasty;
 import me.grantland.widget.AutofitTextView;
@@ -50,8 +47,8 @@ public class MainActivity extends BaseActivity {
     ImageView btnOpenMenu;*/
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @BindView(R.id.tv_title_subject)
-    TextView tvTitleSubject;
+    /*@BindView(R.id.tv_title_subject)
+    TextView tvTitleSubject;*/
     @BindView(R.id.atv_title)
     AutofitTextView atvTitle;
     @BindView(R.id.mact_search)
@@ -86,6 +83,15 @@ public class MainActivity extends BaseActivity {
     TextView tvChangeClass;
     @BindView(R.id.tv_change_subject)
     TextView tvChangeSubject;
+    @BindView(R.id.btn_back)
+    ImageView btnBack;
+    @BindView(R.id.iv_drop)
+    ImageView ivDrop;
+    @BindView(R.id.iv_search)
+    ImageView ivSearch;
+    @BindView(R.id.fl_main)
+    FrameLayout flMain;
+
     //Id class
     private String tagId;
     //Title class
@@ -140,17 +146,18 @@ public class MainActivity extends BaseActivity {
 
         tvChangeClass.setText("Đổi lớp (" + titleClass + ")");
         fragmentManager = getSupportFragmentManager();
-        itemId = sharedPrefUtils.getString(AppConstants.KEY_SUBJECT_ID,"");
+        itemId = sharedPrefUtils.getString(AppConstants.KEY_SUBJECT_ID, "");
         replaceFragment(FragmentHome.newInstance(Integer.parseInt(itemId)), "fragment_home");
     }
 
     @Override
     protected void setUpToolbar() {
+        setSupportActionBar(toolbar);
+        btnBack.setVisibility(View.GONE);
         sharedPrefUtils = new SharedPrefUtils(this);
         titleClass = sharedPrefUtils.getString(AppConstants.KEY_CLASS_TITLE, "");
         titleSubject = sharedPrefUtils.getString(AppConstants.KEY_SUBJECT_TITLE, "");
-        setSupportActionBar(toolbar);
-        tvTitleSubject.setText(titleClass + " - " + titleSubject);
+        atvTitle.setText(titleClass + " - " + titleSubject);
     }
 
     @Override
@@ -182,7 +189,7 @@ public class MainActivity extends BaseActivity {
     }
 
 
-    @OnClick({/*R.id.btn_open_menu, */R.id.tv_title_subject, R.id.menu_home, R.id.menu_search, R.id.menu_change_subject,
+    @OnClick({/*R.id.btn_open_menu, */R.id.atv_title, R.id.menu_home, R.id.menu_search, R.id.menu_change_subject,
             R.id.menu_change_class, R.id.menu_open_saved, R.id.menu_save_offline, R.id.menu_seen, R.id.menu_rate,
             R.id.menu_share, R.id.menu_feed_back, R.id.menu_notify, R.id.mact_search})
     void doClick(View v) {
@@ -190,7 +197,7 @@ public class MainActivity extends BaseActivity {
             /*case R.id.btn_open_menu:
 
                 break;*/
-            case R.id.tv_title_subject:
+            case R.id.atv_title:
                 break;
             case R.id.menu_home:
                 break;
@@ -270,5 +277,12 @@ public class MainActivity extends BaseActivity {
                 }
             }, 2000);
         }*/
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }

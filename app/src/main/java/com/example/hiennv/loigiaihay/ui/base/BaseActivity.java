@@ -1,11 +1,15 @@
 package com.example.hiennv.loigiaihay.ui.base;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -36,6 +40,8 @@ public abstract class BaseActivity extends AppCompatActivity
     protected abstract void initEvents();
 
     protected SharedPrefUtils sharedPrefUtils;
+
+    protected FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -133,5 +139,10 @@ public abstract class BaseActivity extends AppCompatActivity
         super.onDestroy();
     }
 
+    protected void replaceFragment(int container, Fragment fragment) {
+        fragmentManager = getSupportFragmentManager();
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+        ft.replace(container, fragment).commitAllowingStateLoss();
+    }
 
 }

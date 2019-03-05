@@ -19,7 +19,7 @@ public class EventPresenterImpl implements EventContract.EventPresenter {
     }
 
     @Override
-    public void loadEvent(int itemId) {
+    public void loadEvent(int itemId, int type) {
         eventView.showLoading();
         Call<ResponseEvent> call = apiService.getResponseEventByItemId(itemId);
         call.enqueue(new Callback<ResponseEvent>() {
@@ -28,7 +28,7 @@ public class EventPresenterImpl implements EventContract.EventPresenter {
                 ResponseEvent responseEvent = response.body();
                 if (responseEvent != null) {
                     eventView.hideLoading();
-                    eventView.loadEventSuccess(responseEvent);
+                    eventView.loadEventSuccess(responseEvent,type);
                 }
             }
 

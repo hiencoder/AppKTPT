@@ -58,6 +58,11 @@ public class FragmentWorkBook extends BaseFragment implements ItemSubjectListene
     }
 
     @Override
+    protected void initEvents() {
+
+    }
+
+    @Override
     public void subjectClick(Subject subject) {
         //Save subject
         sharedPrefUtils.putString(AppConstants.KEY_SUBJECT_ID, String.valueOf(subject.getItemId()));

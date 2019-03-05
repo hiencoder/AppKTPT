@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="size_icon_class">60dp</dimen>
+    <dimen name="size_icon_subject">60dp</dimen>
+    <dimen name="size_icon_article">70dp</dimen>
+    <dimen name="size_icon_back">25dp</dimen>
+</resources>

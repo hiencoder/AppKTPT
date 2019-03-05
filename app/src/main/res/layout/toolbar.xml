@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -12,20 +13,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="@dimen/size_icon_back"
+            android:layout_height="@dimen/size_icon_back"
+            android:layout_centerVertical="true"
+            android:src="@drawable/back_icon" />
+
         <me.grantland.widget.AutofitTextView
             android:id="@+id/atv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:textSize="18sp" />
+            android:layout_toLeftOf="@id/iv_drop"
+            android:layout_toRightOf="@+id/btn_back"
+            android:gravity="center"
+            android:textSize="16sp"
+            tools:ignore="RelativeOverlap" />
 
-        <TextView
-            android:id="@+id/tv_title_subject"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:clickable="true"
-            android:textSize="18sp" />
 
         <com.example.hiennv.loigiaihay.ui.customview.MyAutoCompleteTextView
             android:id="@+id/mact_search"

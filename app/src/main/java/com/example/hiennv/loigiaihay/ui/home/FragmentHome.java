@@ -10,6 +10,7 @@ import com.example.hiennv.loigiaihay.adapter.ChapAdapter;
 import com.example.hiennv.loigiaihay.network.pojo.category.Event;
 import com.example.hiennv.loigiaihay.ui.base.BaseFragment;
 import com.example.hiennv.loigiaihay.ui.event.EventActivity;
+import com.example.hiennv.loigiaihay.ui.event.EventActivityVer2;
 import com.example.hiennv.loigiaihay.utils.AppConstants;
 
 import java.util.List;
@@ -56,6 +57,11 @@ public class FragmentHome extends BaseFragment implements MainContract.MainView 
     }
 
     @Override
+    protected void initEvents() {
+
+    }
+
+    @Override
     public void loadListSessionSuccess(List<Event> events) {
         //Fetch data
         if (events.size() > 0) {
@@ -71,13 +77,13 @@ public class FragmentHome extends BaseFragment implements MainContract.MainView 
 
             //Event
             chapAdapter.setItemEventListener(event -> {
-                Intent intent = new Intent(getActivity(), EventActivity.class);
+                Intent intent = new Intent(getActivity(), EventActivityVer2.class);
                 intent.putExtra(AppConstants.KEY_ITEM_ID, event.getItemId());
                 startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             });
             chapAdapter.setSubItemClickListener(subItem -> {
-                Intent intent = new Intent(getActivity(), EventActivity.class);
+                Intent intent = new Intent(getActivity(), EventActivityVer2.class);
                 intent.putExtra(AppConstants.KEY_ITEM_ID, subItem.getItemId());
                 startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);

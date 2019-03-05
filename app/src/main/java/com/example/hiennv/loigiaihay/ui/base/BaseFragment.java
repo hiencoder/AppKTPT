@@ -17,7 +17,10 @@ public abstract class BaseFragment extends Fragment {
 
     protected abstract void initData();
 
+    protected abstract void initEvents();
+
     protected SharedPrefUtils sharedPrefUtils;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +32,7 @@ public abstract class BaseFragment extends Fragment {
         View view = inflater.inflate(getLayoutId(), container, false);
         ButterKnife.bind(this, view);
         initData();
+        initEvents();
         return view;
     }
 }

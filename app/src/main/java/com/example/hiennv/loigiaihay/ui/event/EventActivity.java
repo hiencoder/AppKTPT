@@ -1,8 +1,11 @@
 package com.example.hiennv.loigiaihay.ui.event;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -31,7 +34,10 @@ public class EventActivity extends BaseActivity implements EventContract.EventVi
         ItemBaseEventListener {
     //Fetch data when click Event
     public static final String TAG = EventActivity.class.getSimpleName();
-
+    /*@BindView(R.id.tv_title_subject)
+    TextView tvTitleSubject;*/
+    @BindView(R.id.btn_back)
+    ImageView btnBack;
     @BindView(R.id.atv_title)
     AutofitTextView atvTitle;
     @BindView(R.id.mact_search)
@@ -64,12 +70,11 @@ public class EventActivity extends BaseActivity implements EventContract.EventVi
     protected void initData() {
         itemId = getIntent().getIntExtra(AppConstants.KEY_ITEM_ID, 0);
         eventPresenter = new EventPresenterImpl(this);
-        eventPresenter.loadEvent(itemId);
-
         baseEvents = new ArrayList<>();
         eventViewAdapter = new EventViewAdapter(this, baseEvents);
         rvEvent.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         rvEvent.setAdapter(eventViewAdapter);
+        eventPresenter.loadEvent(itemId, AppConstants.TYPE_BASE_EVENT);
     }
 
     @Override
@@ -86,9 +91,9 @@ public class EventActivity extends BaseActivity implements EventContract.EventVi
     }
 
     @Override
-    public void loadEventSuccess(ResponseEvent event) {
+    public void loadEventSuccess(ResponseEvent event, int type) {
         if (event != null) {
-            baseEvents = new ArrayList<>();
+            //baseEvents = new ArrayList<>();
             tvEventTitle.setText(event.getEventInfo().getTitle());
             articles = event.getListArticles();
             mostViews = event.getMostViews();
@@ -96,8 +101,12 @@ public class EventActivity extends BaseActivity implements EventContract.EventVi
 
             baseEvents.addAll(subEvents);
             baseEvents.addAll(articles);
-
             eventViewAdapter.notifyDataSetChanged();
+            /*eventViewAdapter = new EventViewAdapter(this, baseEvents);
+            rvEvent.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+            rvEvent.setAdapter(eventViewAdapter);*/
+
+
         }
     }
 
@@ -108,6 +117,7 @@ public class EventActivity extends BaseActivity implements EventContract.EventVi
 
     @Override
     public void showLoading() {
+        Log.i(TAG, "showLoading: ");
         pbLoading.setVisibility(View.VISIBLE);
     }
 
@@ -116,22 +126,41 @@ public class EventActivity extends BaseActivity implements EventContract.EventVi
         pbLoading.setVisibility(View.GONE);
     }
 
-    @OnClick({R.id.iv_search})
+    @OnClick({R.id.iv_search, R.id.btn_back})
     void doClick(View v) {
         switch (v.getId()) {
             case R.id.iv_search:
                 atvTitle.setVisibility(View.GONE);
                 mactSearch.setVisibility(View.VISIBLE);
                 break;
+            case R.id.btn_back:
+                onBackPressed();
+                break;
         }
     }
 
     @Override
     public void doItemBaseClick(BaseEvent baseEvent) {
+        List<Article> articles = new ArrayList<>();
+        List<SubEvent> subEvents = new ArrayList<>();
+        for (BaseEvent event : baseEvents) {
+            if (event instanceof Article) {
+                articles.add((Article) event);
+            } else {
+                subEvents.add((SubEvent) event);
+            }
+        }
         if (baseEvent instanceof Article) {
             Timber.i("%s", baseEvent.getTitle());
+            //Send list articles
+            //Intent intent = new Intent()
         } else if (baseEvent instanceof SubEvent) {
             Timber.i("%s", baseEvent.getTitle());
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 }

@@ -11,6 +11,6 @@
     <color name="colorHelpView">#3F51B5</color>
     <color name="colorBlack">#222</color>
     <color name="colorGray">#eeeeee</color>
-    <color name="colorDarkGray">#eeeeee</color>
+    <color name="colorDarkGray">#ccc</color>
     <!--End array color-->
 </resources>
