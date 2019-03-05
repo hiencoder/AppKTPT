@@ -7,15 +7,14 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.example.hiennv.loigiaihay.R;
-import com.example.hiennv.loigiaihay.network.pojo.event.Article;
+import com.example.hiennv.loigiaihay.network.pojo.article.ResponseArticle;
 import com.example.hiennv.loigiaihay.ui.base.BaseActivity;
 import com.example.hiennv.loigiaihay.ui.customview.MyAutoCompleteTextView;
 import com.example.hiennv.loigiaihay.utils.AppConstants;
-import com.example.hiennv.loigiaihay.utils.SharedPrefUtils;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.github.kexanie.library.MathView;
 import me.grantland.widget.AutofitTextView;
 import timber.log.Timber;
 
@@ -39,6 +38,8 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
     private int itemId;
     private ArticleDetailPresenterImpl articleDetailPresenter;
 
+    private boolean checkFirstOpenDetail = false;
+    MathView mvContent;
     @Override
     protected int getLayoutId() {
         return R.layout.activity_article_detail;
@@ -58,7 +59,6 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
     protected void setUpToolbar() {
         setSupportActionBar(toolbar);
         ivSearch.setVisibility(View.INVISIBLE);
-        sharedPrefUtils = new SharedPrefUtils(this);
         String subjectName = sharedPrefUtils.getString(AppConstants.KEY_SUBJECT_TITLE, "");
         atvTitle.setText(subjectName);
     }
@@ -71,8 +71,9 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
+        if (isNetworkConnected){
+            checkFirstOpenDetail = true;
+        }
     }
 
     @OnClick({R.id.atv_title, R.id.iv_drop, R.id.iv_search, R.id.btn_back})
@@ -97,7 +98,7 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
     }
 
     @Override
-    public void loadArticleDetailSuccess(Article article) {
+    public void loadArticleDetailSuccess(ResponseArticle article) {
 
     }
 

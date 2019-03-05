@@ -1,11 +1,11 @@
 package com.example.hiennv.loigiaihay.ui.articledetail;
 
-import com.example.hiennv.loigiaihay.network.pojo.event.Article;
+import com.example.hiennv.loigiaihay.network.pojo.article.ResponseArticle;
 import com.example.hiennv.loigiaihay.ui.base.BaseView;
 
 public interface ArticleDetailContract {
     interface ArticleDetailView extends BaseView {
-        void loadArticleDetailSuccess(Article article);
+        void loadArticleDetailSuccess(ResponseArticle responseArticle);
 
         void loadArticleDetailError(String message);
     }

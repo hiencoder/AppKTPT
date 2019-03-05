@@ -1,7 +1,6 @@
 package com.example.hiennv.loigiaihay.ui.base;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.os.Build;
@@ -48,6 +47,7 @@ public abstract class BaseActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
         ButterKnife.bind(this);
+        sharedPrefUtils = new SharedPrefUtils(this);
         setUpToolbar();
         setColorStatusBar();
         initData();
@@ -117,6 +117,7 @@ public abstract class BaseActivity extends AppCompatActivity
 
     @Override
     public void onNetworkConnectionChanged(boolean isConnected) {
+        this.isNetworkConnected = isConnected;
         if (!isConnected) {
             Toasty.error(this, "No connection!", Toast.LENGTH_SHORT).show();
         } else {

@@ -29,7 +29,7 @@ public interface ApiService {
 
     //Get ArticleDetail by articleId
     @GET("articles/{articleId}")
-    Call<ResponseArticle> getArticleByArticleId(@Path("articleId") String articleId);
+    Call<ResponseArticle> getArticleByArticleId(@Path("articleId") int articleId);
 
     //Search article
 

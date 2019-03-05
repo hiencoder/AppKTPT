@@ -1,7 +1,5 @@
 package com.example.hiennv.loigiaihay.utils;
 
-import java.sql.Struct;
-
 public class AppConstants {
     public static final String BASE_URL = "https://api.loigiaihay.com/v3/";
     //Get list class
@@ -105,4 +103,7 @@ public class AppConstants {
     public static final int TYPE_ARTICLE = 1;
     public static final int TYPE_SUB_EVENT = 2;
     public static final String KEY_ARTICLE_ID = "article_id";
+
+    //FIRST OPEN ACTIVITY DETAIL
+    public static final String KEY_FIRST_OPEN_DETAIL = "first_open_detail";
 }
