@@ -6,11 +6,21 @@
 
     <!--Array Edit color-->
     <color name="colorTranslationText">#3F51B5</color>
+    <color name="colorDownloadOffline">#ffb04c</color>
+    <color name="colorDownloadOfflinePress">#ffb08d</color>
     <color name="colorShare">#3F51B5</color>
-    <color name="colorComment">#3F51B5</color>
+    <color name="colorSharePress">#3F51A5</color>
+    <color name="colorComment">#64d8cb</color>
+    <color name="colorCommentPress">#64d8ab</color>
+    <color name="colorFeedback">#8b6b61</color>
+    <color name="colorFeedbackPress">#8b6b51</color>
     <color name="colorHelpView">#3F51B5</color>
     <color name="colorBlack">#222</color>
     <color name="colorGray">#eeeeee</color>
     <color name="colorDarkGray">#ccc</color>
     <!--End array color-->
+    <color name="colorTextTitle">#bf360c</color>
+    <color name="colorWhite">#FFFFFFFF</color>
+    <!--Color button-->
+
 </resources>

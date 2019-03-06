@@ -32,6 +32,27 @@
         <item name="android:textSize">12sp</item>
         <item name="android:layout_margin">0dp</item>
         <item name="android:listPreferredItemHeightSmall">30dp</item>
+    </style>
 
+    <!--Style BaseText-->
+    <style name="BaseText">
+        <item name="android:maxLines">2</item>
+        <item name="android:padding">3dp</item>
+    </style>
+    <!--Style text header-->
+    <style name="BaseText.TextHeader">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/colorTextTitle</item>
+    </style>
+    <!--Style IntroText-->
+    <style name="BaseText.IntroText">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
+
+    <!--Style button-->
+    <style name="ButtonStyle">
+        <item name="android:padding">5dp</item>
+        <item name="android:layout_margin">3dp</item>
     </style>
 </resources>

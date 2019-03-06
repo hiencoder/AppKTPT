@@ -2,4 +2,12 @@
     <string name="app_name">Clone App</string>
     <string name="txt_open">Open</string>
     <string name="txt_close">Close</string>
+
+    <!--String for button-->
+    <string name="txt_save_offline">Tải Offline</string>
+    <string name="txt_share">Chia sẻ</string>
+    <string name="txt_comment">Bình luận</string>
+    <string name="txt_feedback">Phản hồi</string>
+    <string name="txt_next_lesson">Bài tiếp theo</string>
+    <string name="txt_other_cat">Các bài viết liên quan</string>
 </resources>

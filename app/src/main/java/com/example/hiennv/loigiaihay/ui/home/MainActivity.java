@@ -153,11 +153,19 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void setUpToolbar() {
         setSupportActionBar(toolbar);
-        btnBack.setVisibility(View.GONE);
+        btnBack.setVisibility(View.INVISIBLE);
+        atvTitle.setVisibility(View.VISIBLE);
         sharedPrefUtils = new SharedPrefUtils(this);
         titleClass = sharedPrefUtils.getString(AppConstants.KEY_CLASS_TITLE, "");
         titleSubject = sharedPrefUtils.getString(AppConstants.KEY_SUBJECT_TITLE, "");
         atvTitle.setText(titleClass + " - " + titleSubject);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+       /* btnBack.setVisibility(View.INVISIBLE);
+        atvTitle.setVisibility(View.VISIBLE);*/
     }
 
     @Override
