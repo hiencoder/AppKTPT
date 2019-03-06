@@ -14,7 +14,6 @@ import com.example.hiennv.loigiaihay.utils.AppConstants;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import io.github.kexanie.library.MathView;
 import me.grantland.widget.AutofitTextView;
 import timber.log.Timber;
 
@@ -39,7 +38,7 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
     private ArticleDetailPresenterImpl articleDetailPresenter;
 
     private boolean checkFirstOpenDetail = false;
-    MathView mvContent;
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_article_detail;
