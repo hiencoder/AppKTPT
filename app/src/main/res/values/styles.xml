@@ -36,12 +36,12 @@
 
     <!--Style BaseText-->
     <style name="BaseText">
-        <item name="android:maxLines">2</item>
-        <item name="android:padding">3dp</item>
+        <item name="android:padding">5dp</item>
     </style>
     <!--Style text header-->
     <style name="BaseText.TextHeader">
-        <item name="android:textSize">18sp</item>
+
+        <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/colorTextTitle</item>
     </style>
     <!--Style IntroText-->
@@ -52,7 +52,10 @@
 
     <!--Style button-->
     <style name="ButtonStyle">
-        <item name="android:padding">5dp</item>
+        <item name="android:paddingTop">3dp</item>
+        <item name="android:paddingBottom">3dp</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:paddingRight">5dp</item>
         <item name="android:layout_margin">3dp</item>
     </style>
 </resources>

@@ -106,4 +106,5 @@ public class AppConstants {
 
     //FIRST OPEN ACTIVITY DETAIL
     public static final String KEY_FIRST_OPEN_DETAIL = "first_open_detail";
+    public static final String SPACE = " ";
 }

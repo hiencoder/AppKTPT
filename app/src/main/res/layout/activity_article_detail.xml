@@ -22,19 +22,13 @@
         android:background="@color/colorDarkGray"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
-    <ProgressBar
-        android:id="@+id/pb_loading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
+        android:id="@+id/sv_lesson"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:fillViewport="true"
+        android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/line">
 
@@ -42,6 +36,7 @@
             android:id="@+id/ll_detail_lesson"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:visibility="invisible"
             android:orientation="vertical">
 
             <TextView
@@ -49,20 +44,23 @@
                 style="@style/BaseText.TextHeader"
                 fontPath="gtw.ttf"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:lineSpacingMultiplier="1.1" />
 
             <TextView
                 android:id="@+id/tv_lesson_intro_text"
                 style="@style/BaseText.IntroText"
                 fontPath="gtw.ttf"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:lineSpacingMultiplier="1.1" />
 
             <io.github.kexanie.library.MathView
                 android:id="@+id/mv_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="8dp"
                 app:engine="MathJax" />
 
             <LinearLayout
@@ -137,60 +135,85 @@
                         android:text="@string/txt_comment"
                         android:textColor="@color/colorWhite" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/btn_feedback"
                     style="@style/ButtonStyle"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:background="@drawable/bg_button_feedback"
-                    android:orientation="vertical"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:orientation="vertical">
+
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_feedback" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/txt_feedback"
-                        android:textColor="@color/colorWhite"/>
+                        android:textColor="@color/colorWhite" />
                 </LinearLayout>
             </LinearLayout>
+
             <LinearLayout
-                android:id="@+id/btn_"
+                android:id="@+id/btn_next_lesson"
                 style="@style/ButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_button_download_offline"
-                android:orientation="horizontal"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:text="@string/txt_next_lesson"
                     android:textColor="@color/colorWhite"
-                    android:textSize="20sp"
-                    android:gravity="center"/>
+                    android:textSize="20sp" />
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_arrow_right"
-                    android:layout_gravity="center_vertical"/>
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_arrow_right" />
             </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:text="@string/txt_other_cat"
                 android:background="@color/colorGray"
                 android:padding="8dp"
-                android:textStyle="bold"/>
+                android:text="@string/txt_other_cat"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_other_article"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="wrap_content" />
         </LinearLayout>
     </ScrollView>
+
+    <FrameLayout
+        android:id="@+id/fl_loading"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/colorWhite"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+        <ProgressBar
+            android:id="@+id/pb_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            android:layout_gravity="center"/>
+    </FrameLayout>
+
 </android.support.constraint.ConstraintLayout>
