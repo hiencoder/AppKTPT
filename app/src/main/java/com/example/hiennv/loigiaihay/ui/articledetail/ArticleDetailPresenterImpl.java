@@ -26,7 +26,6 @@ public class ArticleDetailPresenterImpl implements ArticleDetailContract.Article
             public void onResponse(Call<ResponseArticle> call, Response<ResponseArticle> response) {
                 ResponseArticle responseArticle = response.body();
                 if (responseArticle != null){
-                    view.hideLoading();
                     view.loadArticleDetailSuccess(responseArticle);
                 }
             }
@@ -34,6 +33,7 @@ public class ArticleDetailPresenterImpl implements ArticleDetailContract.Article
             @Override
             public void onFailure(Call<ResponseArticle> call, Throwable t) {
                 view.hideLoading();
+                view.loadArticleDetailError(t.getMessage());
             }
         });
     }

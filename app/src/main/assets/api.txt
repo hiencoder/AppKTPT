@@ -291,6 +291,9 @@ notification_table	CREATE TABLE notification_table(id_notifi INTEGER PRIMARY KEY
 ticked_table	CREATE TABLE ticked_table(id_ticked INTEGER PRIMARY KEY,id_mon_tai TEXT,ten_mon_tai TEXT)
 oder_id_table	CREATE TABLE oder_id_table(id_oder_id INTEGER PRIMARY KEY,name_oder_id TEXT)
 
+//api search
+https://api.loigiaihay.com/v3/article/search?limit=8&page=1&keyword=hinh%20hoc&catId=47
+
 https://blog.iamsuleiman.com/techniques-to-display-text-overlay-background-images/
 https://github.com/survivingwithandroid/Surviving-with-android
 http://tapintonfc.blogspot.com/2012/07/the-above-footage-from-our-nfc-workshop.html

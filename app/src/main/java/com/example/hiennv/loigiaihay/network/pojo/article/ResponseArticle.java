@@ -29,7 +29,7 @@ public class ResponseArticle {
 
     @Expose
     @SerializedName("banner")
-    private Banner banner;
+    private List<Banner> banner;
 
     public ConfigInfo getConfigInfo() {
         return configInfo;
@@ -51,7 +51,7 @@ public class ResponseArticle {
         return eventInfo;
     }
 
-    public Banner getBanner() {
+    public List<Banner> getBanner() {
         return banner;
     }
 }
