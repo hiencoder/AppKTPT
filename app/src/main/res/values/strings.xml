@@ -10,4 +10,7 @@
     <string name="txt_feedback">Phản hồi</string>
     <string name="txt_next_lesson">Bài tiếp theo</string>
     <string name="txt_other_cat">Các bài viết liên quan</string>
+    
+    <!--String for message -->
+    <string name="txt_network">Kiểm tra kết nối mạng</string>
 </resources>

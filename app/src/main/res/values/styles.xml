@@ -40,12 +40,13 @@
     </style>
     <!--Style text header-->
     <style name="BaseText.TextHeader">
-
+        <item name="android:textStyle">bold</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/colorTextTitle</item>
     </style>
     <!--Style IntroText-->
     <style name="BaseText.IntroText">
+        <item name="android:textStyle">bold</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/colorBlack</item>
     </style>

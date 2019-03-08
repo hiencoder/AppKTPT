@@ -21,6 +21,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import me.biubiubiu.justifytext.library.JustifyTextView;
 
 public class EventViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;

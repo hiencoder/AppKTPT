@@ -1,4 +1,4 @@
-package com.example.hiennv.loigiaihay.ui.seen;
+package com.example.hiennv.loigiaihay.ui.history;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -17,7 +17,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import me.grantland.widget.AutofitTextView;
 
-public class SeenActivity extends BaseActivity implements ItemArticleListener {
+public class HistoryActivity extends BaseActivity implements ItemArticleListener {
     @BindView(R.id.btn_back)
     ImageView btnBack;
     @BindView(R.id.atv_title)
@@ -42,7 +42,7 @@ public class SeenActivity extends BaseActivity implements ItemArticleListener {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_seen;
+        return R.layout.activity_history;
     }
 
     @Override
@@ -52,6 +52,7 @@ public class SeenActivity extends BaseActivity implements ItemArticleListener {
 
     @Override
     protected void setUpToolbar() {
+        setSupportActionBar(toolbar);
 
     }
 
@@ -71,6 +72,7 @@ public class SeenActivity extends BaseActivity implements ItemArticleListener {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_back:
+                onBackPressed();
                 break;
             case R.id.iv_drop:
                 break;
@@ -79,5 +81,11 @@ public class SeenActivity extends BaseActivity implements ItemArticleListener {
             case R.id.btn_delete:
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 }

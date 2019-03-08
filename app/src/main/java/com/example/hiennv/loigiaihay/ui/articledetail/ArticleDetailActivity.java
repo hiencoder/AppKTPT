@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.hiennv.loigiaihay.R;
 import com.example.hiennv.loigiaihay.adapter.OtherInCatAdapter;
@@ -29,7 +30,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import es.dmoral.toasty.Toasty;
 import io.github.kexanie.library.MathView;
+import me.biubiubiu.justifytext.library.JustifyTextView;
 import me.grantland.widget.AutofitTextView;
 import timber.log.Timber;
 
@@ -154,11 +157,22 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
     //Handle download
     private void handleDownloadOffline() {
         //Check runtime permission
-        if (!PermissionUtils.checkPermissionStorageGranted(this)){
-            PermissionUtils.requestStoragePermission(this);
-        }else {
-
+        if (isNetworkConnected) {
+            if (!PermissionUtils.checkPermissionStorageGranted(this)) {
+                PermissionUtils.requestStoragePermission(this);
+            } else {
+                handleDownload(articleInfoSelected.getZipLink());
+            }
+        } else {
+            Toasty.error(this, getResources().getString(R.string.txt_network), Toast.LENGTH_LONG).show();
         }
+    }
+
+    /**
+     * @param zipLink
+     */
+    private void handleDownload(String zipLink) {
+        Timber.i("Link: %s",zipLink);
     }
 
     //Handle next lesson

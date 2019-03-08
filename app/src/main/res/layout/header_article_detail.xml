@@ -1,35 +1,236 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res-auto" app:id="@+id/rl_header" app:background="#fafafa" app:layout_width="match_parent" app:layout_height="match_parent"
-<RelativeLayout app:id="@+id/rl_intro" app:layout_width="wrap_content" app:layout_height="wrap_content">
-<me.biubiubiu.justifytext.library.JustifyTextView app:textSize="25dp" app:textColor="#880000" app:id="@+id/tv_title_lesson" app:paddingBottom="15dp" app:layout_width="wrap_content" app:layout_height="wrap_content" app:layout_marginLeft="10dp" app:text="Đây là tiêu đề" app:layout_toRightOf="@+id/img_mon" app:layout_alignTop="@+id/img_mon" />
-<me.biubiubiu.justifytext.library.JustifyTextView app:textSize="18dp" app:textStyle="bold" app:textColor="#000000" app:id="@+id/tv_intro_lesson" app:paddingBottom="10dp" app:layout_width="match_parent" app:layout_height="wrap_content" app:layout_marginLeft="10dp" app:layout_marginRight="-5dp" app:layout_below="@+id/tv_title_lesson" />
-<FrameLayout app:id="@+id/fl_adplaceholder_top" app:visibility="gone" app:layout_width="match_parent" app:layout_height="wrap_content" app:layout_marginTop="2dp" app:layout_below="@+id/tv_intro_lesson" />
-</RelativeLayout>
-<com.tp.loigiaihay.activitys.MathJaxWebView app:textSize="15dp" app:id="@+id/tv_body_lesson" app:paddingBottom="10dp" app:layout_width="match_parent" app:layout_height="wrap_content" app:layout_below="@+id/rl_intro" app:layout_alignLeft="@+id/ll_next_post" app:hardwareAccelerated="true" />
-<LinearLayout app:gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end" app:orientation="horizontal" app:id="@+id/ll_button_detail" app:visibility="visible" app:layout_width="match_parent" app:layout_height="wrap_content" app:layout_below="@+id/tv_body_lesson" app:layout_alignLeft="@+id/tv_body_lesson"
-<LinearLayout app:gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end" app:orientation="vertical" app:id="@+id/ll_save" app:background="@drawable/boder_layout_chiase" app:layout_width="UNKNOWN_DATA_0x1" app:layout_height="wrap_content" app:layout_marginLeft="5dp" app:layout_marginRight="5dp" app:layout_weight="1.0">
-<ImageView app:id="@+id/im_icon_save" app:paddingTop="2dp" app:layout_width="UNKNOWN_DATA_0x1201" app:layout_height="UNKNOWN_DATA_0x1201" app:src="@drawable/icon_save" />
-<TextView app:textColor="@color/white" app:id="@+id/tv_save" app:paddingBottom="2dp" app:layout_width="wrap_content" app:layout_height="wrap_content" app:text="Tải offline" />
-</LinearLayout>
-<LinearLayout app:gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end" app:orientation="vertical" app:id="@+id/ll_share" app:background="@drawable/boder_layout_bogoc" app:layout_width="UNKNOWN_DATA_0x1" app:layout_height="wrap_content" app:layout_marginRight="5dp" app:layout_weight="1.0">
-<ImageView app:id="@+id/im_icon_share" app:paddingTop="2dp" app:layout_width="UNKNOWN_DATA_0x1201" app:layout_height="UNKNOWN_DATA_0x1201" app:src="@drawable/icon_share" />
-<TextView app:textColor="@color/white" app:id="@+id/tv_share" app:paddingBottom="2dp" app:layout_width="wrap_content" app:layout_height="wrap_content" app:text="Chia sẻ" />
-</LinearLayout>
-<LinearLayout app:gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end" app:orientation="vertical" app:id="@+id/ll_comment" app:background="@drawable/boder_layout_binhluan" app:layout_width="UNKNOWN_DATA_0x1" app:layout_height="wrap_content" app:layout_marginRight="5dp" app:layout_weight="1.0">
-<ImageView app:id="@+id/im_icon_comment" app:paddingTop="2dp" app:layout_width="UNKNOWN_DATA_0x1301" app:layout_height="UNKNOWN_DATA_0x1301" app:src="@drawable/icon_comment" />
-<TextView app:textColor="@color/white" app:id="@+id/tv_comment" app:paddingBottom="2dp" app:layout_width="wrap_content" app:layout_height="wrap_content" app:text="14 Bluận" />
-</LinearLayout>
-<LinearLayout app:gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end" app:orientation="vertical" app:id="@+id/ll_gopy" app:background="@drawable/boder_layout_gopy" app:layout_width="UNKNOWN_DATA_0x1" app:layout_height="wrap_content" app:layout_marginRight="5dp" app:layout_weight="1.0">
-<ImageView app:id="@+id/im_icon_gopy" app:paddingTop="2dp" app:layout_width="UNKNOWN_DATA_0x1201" app:layout_height="UNKNOWN_DATA_0x1201" app:src="@drawable/icon_gopy" />
-<TextView app:textColor="@color/white" app:paddingBottom="2dp" app:layout_width="wrap_content" app:layout_height="wrap_content" app:text="Góp ý" />
-</LinearLayout>
-    </LinearLayout>
-<RelativeLayout app:orientation="vertical" app:id="@+id/ll_ad_bottom" app:visibility="gone" app:layout_width="match_parent" app:layout_height="wrap_content" app:layout_below="@+id/ll_button_detail" app:layout_alignParentLeft="true" />
-<FrameLayout app:id="@+id/fl_adplaceholder" app:visibility="visible" app:layout_width="match_parent" app:layout_height="wrap_content" app:layout_marginTop="2dp" app:layout_below="@+id/ll_button_detail" />
-<RelativeLayout app:gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end" app:layout_gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end" app:orientation="horizontal" app:id="@+id/ll_next_post" app:background="@drawable/boder_layout_bogoc_next_post" app:layout_width="match_parent" app:layout_height="wrap_content" app:layout_marginLeft="5dp" app:layout_marginTop="5dp" app:layout_marginRight="5dp" app:layout_below="@+id/fl_adplaceholder">
-<TextView app:textSize="20dp" app:textColor="@color/white" app:id="@+id/tv_next_post" app:paddingTop="10dp" app:paddingBottom="10dp" app:layout_width="wrap_content" app:layout_height="wrap_content" app:text="Bài tiếp theo" />
-<ImageView app:layout_gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end" app:layout_width="UNKNOWN_DATA_0x1401" app:layout_height="UNKNOWN_DATA_0x1401" app:src="@drawable/arrow_next_post" app:layout_toRightOf="@+id/tv_next_post" app:layout_centerVertical="true" />
-</RelativeLayout>
-<android.support.v7.widget.RecyclerView app:id="@+id/rv_banner_tuyensinh" app:layout_width="match_parent" app:layout_height="wrap_content" app:layout_below="@+id/ll_next_post" />
-<TextView app:textSize="17dp" app:textColor="#222222" app:id="@+id/tv_lq" app:background="#eeeeee" app:padding="10dp" app:layout_width="match_parent" app:layout_height="wrap_content" app:layout_marginTop="10dp" app:text="Các bài viết liên quan" app:layout_below="@+id/rv_banner_tuyensinh" />
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rl_header"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fafafa">
+
+    <RelativeLayout
+        android:id="@+id/rl_intro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <me.biubiubiu.justifytext.library.JustifyTextView
+            android:id="@+id/tv_title_lesson"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:paddingBottom="15dp"
+            android:text="Đây là tiêu đề"
+            android:textColor="#880000"
+            android:textSize="25dp" />
+
+        <me.biubiubiu.justifytext.library.JustifyTextView
+            android:id="@+id/tv_intro_lesson"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_title_lesson"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="-5dp"
+            android:paddingBottom="10dp"
+            android:textColor="#000000"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <FrameLayout
+            android:id="@+id/fl_adplaceholder_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_intro_lesson"
+            android:layout_marginTop="2dp"
+            android:visibility="gone" />
     </RelativeLayout>
+
+    <com.tp.loigiaihay.activitys.MathJaxWebView
+        android:id="@+id/tv_body_lesson"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_intro"
+        android:layout_alignLeft="@+id/ll_next_post"
+        android:hardwareAccelerated="true"
+        android:paddingBottom="10dp"
+        android:textSize="15dp" />
+
+    <!--Layout for button-->
+    <LinearLayout
+        android:id="@+id/ll_button_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_body_lesson"
+        android:layout_alignLeft="@+id/tv_body_lesson"
+        android:gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
+        android:orientation="horizontal"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:id="@+id/ll_save"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1.0"
+            android:background="@drawable/bg_button_download_offline"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/im_icon_save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="2dp"
+                android:src="@drawable/ic_save_offline_white" />
+
+            <TextView
+                android:id="@+id/tv_save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="2dp"
+                android:text="Tải offline"
+                android:textColor="@color/colorWhite" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_share"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1.0"
+            android:background="@drawable/bg_button_share"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/im_icon_share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="2dp"
+                android:src="@drawable/ic_share_white" />
+
+            <TextView
+                android:id="@+id/tv_share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="2dp"
+                android:text="Chia sẻ"
+                android:textColor="@color/colorWhite" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_comment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1.0"
+            android:background="@drawable/bg_button_comment"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/im_icon_comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="2dp"
+                android:src="@drawable/ic_comment_white" />
+
+            <TextView
+                android:id="@+id/tv_comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="2dp"
+                android:text="14 Bluận"
+                android:textColor="@color/colorWhite" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_gopy"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1.0"
+            android:background="@drawable/bg_button_feedback"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/im_icon_gopy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="2dp"
+                android:src="@drawable/ic_feedback" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="2dp"
+                android:text="Góp ý"
+                android:textColor="@color/colorWhite" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/ll_ad_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_button_detail"
+        android:layout_alignParentLeft="true"
+        android:orientation="vertical"
+        android:visibility="gone" />
+
+    <FrameLayout
+        android:id="@+id/fl_adplaceholder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_button_detail"
+        android:layout_marginTop="2dp"
+        android:visibility="visible" />
+
+    <RelativeLayout
+        android:id="@+id/ll_next_post"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fl_adplaceholder"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/bg_button_download_offline"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_next_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="Bài tiếp theo"
+            android:textColor="@color/colorWhite"
+            android:textSize="20dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_toRightOf="@+id/tv_next_post"
+            android:src="@drawable/ic_arrow_right" />
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_banner_tuyensinh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_next_post" />
+
+    <TextView
+        android:id="@+id/tv_lq"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rv_banner_tuyensinh"
+        android:layout_marginTop="10dp"
+        android:background="#eeeeee"
+        android:padding="10dp"
+        android:text="Các bài viết liên quan"
+        android:textColor="#222222"
+        android:textSize="17dp" />
+</RelativeLayout>

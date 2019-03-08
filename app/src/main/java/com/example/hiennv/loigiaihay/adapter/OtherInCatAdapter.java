@@ -16,8 +16,10 @@ import com.example.hiennv.loigiaihay.network.pojo.article.OtherInCat;
 import com.example.hiennv.loigiaihay.utils.CommonUtils;
 
 import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import me.biubiubiu.justifytext.library.JustifyTextView;
 
 public class OtherInCatAdapter extends RecyclerView.Adapter<OtherInCatAdapter.OtherInCatHolder> {
     private Context context;
@@ -70,8 +72,8 @@ public class OtherInCatAdapter extends RecyclerView.Adapter<OtherInCatAdapter.Ot
 
         public void bindOtherInCat(OtherInCat article) {
             CommonUtils.loadImage(context, article.getThumbnail(), ivOtherInCat);
-            tvOtherInCatTitle.setText(CommonUtils.subStringByCharacter(article.getTitle()," "));
-            tvOtherInCatIntroText.setText(CommonUtils.subStringByCharacter(article.getIntrotext()," "));
+            tvOtherInCatTitle.setText(CommonUtils.subStringByCharacter(article.getTitle(), " "));
+            tvOtherInCatIntroText.setText(CommonUtils.subStringByCharacter(article.getIntrotext(), " "));
         }
     }
 }

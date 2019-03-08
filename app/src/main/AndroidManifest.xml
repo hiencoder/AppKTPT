@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.hiennv.loigiaihay">
 
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -46,8 +47,9 @@
         <activity
             android:name=".ui.articledetail.ArticleDetailActivity"
             android:parentActivityName=".ui.home.MainActivity" />
-        <activity android:name=".ui.event.EventActivityVer2"
-            android:parentActivityName=".ui.home.MainActivity"/>
+        <activity
+            android:name=".ui.event.EventActivityVer2"
+            android:parentActivityName=".ui.home.MainActivity" />
 
         <receiver
             android:name=".receiver.NetworkReceiver"
