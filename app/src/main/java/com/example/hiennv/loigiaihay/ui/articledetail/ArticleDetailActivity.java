@@ -5,6 +5,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -17,6 +18,9 @@ import android.widget.Toast;
 import com.example.hiennv.loigiaihay.R;
 import com.example.hiennv.loigiaihay.adapter.OtherInCatAdapter;
 import com.example.hiennv.loigiaihay.callback.ItemArticleListener;
+import com.example.hiennv.loigiaihay.callback.PostDownload;
+import com.example.hiennv.loigiaihay.download.Decompress;
+import com.example.hiennv.loigiaihay.download.DownloadFileAsync;
 import com.example.hiennv.loigiaihay.network.pojo.article.ArticleInfo;
 import com.example.hiennv.loigiaihay.network.pojo.article.OtherInCat;
 import com.example.hiennv.loigiaihay.network.pojo.article.ResponseArticle;
@@ -25,6 +29,7 @@ import com.example.hiennv.loigiaihay.ui.customview.MyAutoCompleteTextView;
 import com.example.hiennv.loigiaihay.utils.AppConstants;
 import com.example.hiennv.loigiaihay.utils.PermissionUtils;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +37,6 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import es.dmoral.toasty.Toasty;
 import io.github.kexanie.library.MathView;
-import me.biubiubiu.justifytext.library.JustifyTextView;
 import me.grantland.widget.AutofitTextView;
 import timber.log.Timber;
 
@@ -227,5 +231,22 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
         Timber.i("OtherCatId: %d", articleId);
         articleDetailPresenter.loadArticleDetail(articleId);
         svLesson.fullScroll(View.FOCUS_UP);
+    }
+
+    private void downloadAndUnzipContent(){
+        String url = "https://github.com/NanoHttpd/nanohttpd/archive/master.zip";
+        DownloadFileAsync download = new DownloadFileAsync(this,"/sdcard/content.zip", new PostDownload(){
+            @Override
+            public void downloadDone(File file) {
+                Log.i(TAG, "file download completed");
+
+                // check unzip file now
+                Decompress unzip = new Decompress(ArticleDetailActivity.this, file);
+                unzip.unzip();
+
+                Log.i(TAG, "file unzip completed");
+            }
+        });
+        download.execute(url);
     }
 }
