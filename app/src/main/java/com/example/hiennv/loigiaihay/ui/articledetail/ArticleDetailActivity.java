@@ -5,7 +5,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
+
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -19,6 +19,7 @@ import com.example.hiennv.loigiaihay.R;
 import com.example.hiennv.loigiaihay.adapter.OtherInCatAdapter;
 import com.example.hiennv.loigiaihay.callback.ItemArticleListener;
 import com.example.hiennv.loigiaihay.callback.PostDownload;
+import com.example.hiennv.loigiaihay.db.model.Save;
 import com.example.hiennv.loigiaihay.download.Decompress;
 import com.example.hiennv.loigiaihay.download.DownloadFileAsync;
 import com.example.hiennv.loigiaihay.network.pojo.article.ArticleInfo;
@@ -30,6 +31,7 @@ import com.example.hiennv.loigiaihay.utils.AppConstants;
 import com.example.hiennv.loigiaihay.utils.PermissionUtils;
 
 import java.io.File;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -96,6 +98,7 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
 
     @Override
     protected void initData() {
+        svLesson.fullScroll(View.FOCUS_UP);
         itemId = getIntent().getIntExtra(AppConstants.KEY_ARTICLE_ID, 0);
         Timber.i("%s", "ItemId: " + itemId);
         otherInCats = new ArrayList<>();
@@ -104,7 +107,7 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
         rvOtherArticle.setItemAnimator(new DefaultItemAnimator());
         rvOtherArticle.setAdapter(otherInCatAdapter);
 
-        articleDetailPresenter = new ArticleDetailPresenterImpl(this);
+        articleDetailPresenter = new ArticleDetailPresenterImpl(this, this);
         articleDetailPresenter.loadArticleDetail(itemId);
     }
 
@@ -147,10 +150,13 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
                 handleDownloadOffline();
                 break;
             case R.id.btn_share:
+                handleShare();
                 break;
             case R.id.btn_comment:
+                handleComment();
                 break;
             case R.id.btn_feedback:
+                handleFeedback();
                 break;
             case R.id.btn_next_lesson:
                 handleNextLesson();
@@ -158,14 +164,47 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
         }
     }
 
+    /**
+     * Handle comment
+     */
+    private void handleComment() {
+
+    }
+
+    //Handle share
+    private void handleShare() {
+
+    }
+
+    /**
+     * Handle feedback
+     */
+    private void handleFeedback() {
+
+    }
+
+    @Override
+    public void onNetworkConnectionChanged(boolean isConnected) {
+        super.onNetworkConnectionChanged(isConnected);
+        //isNetworkConnected = isConnected;
+    }
+
     //Handle download
     private void handleDownloadOffline() {
         //Check runtime permission
-        if (isNetworkConnected) {
+        if (checkNetwork()) {
             if (!PermissionUtils.checkPermissionStorageGranted(this)) {
                 PermissionUtils.requestStoragePermission(this);
             } else {
                 handleDownload(articleInfoSelected.getZipLink());
+                //Handle save lesson
+                Save save = new Save();
+                save.setSaveName(articleInfoSelected.getTitle());
+                save.setSaveIntro(articleInfoSelected.getIntroText());
+                save.setSaveBody(articleInfoSelected.getContent());
+                save.setSaveArticleId(String.valueOf(articleInfoSelected.getArticleId()));
+                save.setSaveUrl(articleInfoSelected.getOriginUrl());
+                articleDetailPresenter.saveLesson(save);
             }
         } else {
             Toasty.error(this, getResources().getString(R.string.txt_network), Toast.LENGTH_LONG).show();
@@ -176,7 +215,8 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
      * @param zipLink
      */
     private void handleDownload(String zipLink) {
-        Timber.i("Link: %s",zipLink);
+        Timber.i("Link: %s", zipLink);
+        downloadAndUnzipContent(zipLink);
     }
 
     //Handle next lesson
@@ -216,6 +256,16 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
     }
 
     @Override
+    public void saveLessonSuccess() {
+
+    }
+
+    @Override
+    public void saveLessonError() {
+        Timber.e("%s", "Error");
+    }
+
+    @Override
     public void showLoading() {
         llDetailLesson.setVisibility(View.GONE);
         flLoading.setVisibility(View.VISIBLE);
@@ -233,20 +283,22 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
         svLesson.fullScroll(View.FOCUS_UP);
     }
 
-    private void downloadAndUnzipContent(){
+    private void downloadAndUnzipContent(String zipLink) {
         String url = "https://github.com/NanoHttpd/nanohttpd/archive/master.zip";
-        DownloadFileAsync download = new DownloadFileAsync(this,"/sdcard/content.zip", new PostDownload(){
-            @Override
-            public void downloadDone(File file) {
-                Log.i(TAG, "file download completed");
+        String fileLocation = "/sdcard/";
+        int lastIndex = zipLink.lastIndexOf("/");
+        String fileName = zipLink.substring(lastIndex + 1);
+        fileLocation = fileLocation + fileName;
+        Timber.i("FileName: %s", fileName);
+        DownloadFileAsync download = new DownloadFileAsync(this, fileLocation, file -> {
+            Timber.i(TAG, "file download completed");
 
-                // check unzip file now
-                Decompress unzip = new Decompress(ArticleDetailActivity.this, file);
-                unzip.unzip();
+            // check unzip file now
+            Decompress unzip = new Decompress(ArticleDetailActivity.this, file);
+            unzip.unzip();
 
-                Log.i(TAG, "file unzip completed");
-            }
+            Timber.i(TAG, "file unzip completed");
         });
-        download.execute(url);
+        //download.execute(zipLink);
     }
 }

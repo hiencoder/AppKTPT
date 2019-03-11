@@ -23,7 +23,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String createTableSearch = "CREATE TABLE " + AppConstants.TABLE_SEARCH + "(" +
-                AppConstants.SEARCH_ID + " INTEGER PRIMARY KEY, " +
+                AppConstants.SEARCH_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 AppConstants.SEARCH_SUBJECT_ID + " TEXT, " +
                 AppConstants.SEARCH_SUBJECT_TYPE + " TEXT, " +
                 AppConstants.SEARCH_NAME_TEXT + " TEXT, " +
@@ -33,7 +33,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 AppConstants.SEARCH_REDIRECT_LINK + " TEXT);";
 
         String createTableSave = "CREATE TABLE " + AppConstants.TABLE_SAVE + "(" +
-                AppConstants.SAVE_ID + " INTEGER PRIMARY KEY, " +
+                AppConstants.SAVE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 AppConstants.SAVE_NAME + " TEXT NOT NULL, " +
                 AppConstants.SAVE_INTRO + " TEXT NOT NULL, " +
                 AppConstants.SAVE_BODY + " TEXT NOT NULL, " +
@@ -41,7 +41,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 AppConstants.SAVE_ARTICLE_ID + " TEXT NOT NULL);";
 
         String createTableHistory = "CREATE TABLE " + AppConstants.TABLE_HISTORY + "(" +
-                AppConstants.HISTORY_ID + " INTEGER PRIMARY KEY, " +
+                AppConstants.HISTORY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 AppConstants.HISTORY_NAME + " TEXT NOT NULL, " +
                 AppConstants.HISTORY_INTRO + " TEXT NOT NULL, " +
                 AppConstants.HISTORY_AVATAR + " TEXT NOT NULL, " +
@@ -49,7 +49,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 AppConstants.HISTORY_ARTICLE_ID + " TEXT NOT NULL);";
 
         String createTableNotify = "CREATE TABLE " + AppConstants.TABLE_NOTIFICATION + "(" +
-                AppConstants.NOTIFICATION_ID + " INTEGER PRIMARY KEY, " +
+                AppConstants.NOTIFICATION_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 AppConstants.NOTIFICATION_TITLE + " TEXT NOT NULL, " +
                 AppConstants.NOTIFICATION_CONTENT + " TEXT NOT NULL, " +
                 AppConstants.NOTIFICATION_URL + " TEXT NOT NULL, " +
@@ -57,12 +57,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 AppConstants.NOTIFICATION_STATUS + " TEXT NOT NULL);";
 
         String createTableTicked = "CREATE TABLE " + AppConstants.TABLE_TICKED + "(" +
-                AppConstants.TICKED_ID + " INTEGER PRIMARY KEY, " +
+                AppConstants.TICKED_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 AppConstants.TICKED_SUBJECT_ID + " TEXT NOT NULL, " +
                 AppConstants.TICKED_SUBJECT_DOWNLOAD + " TEXT NOT NULL);";
 
         String createTableOrderId = "CREATE TABLE " + AppConstants.TABLE_ORDER_ID + "(" +
-                AppConstants.ORDER_ID + " INTEGER PRIMARY KEY, " +
+                AppConstants.ORDER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 AppConstants.ORDER_ID_NAME + " TEXT NOT NULL);";
 
         db.execSQL(createTableSearch);
@@ -105,10 +105,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * @return
      */
     public List<Search> getListSearch() {
-       List<Search> list = new ArrayList<>();
-       String query = "SELECT * FROM " + AppConstants.TABLE_SEARCH;
+        List<Search> list = new ArrayList<>();
+        String query = "SELECT * FROM " + AppConstants.TABLE_SEARCH;
 
-       return list;
+        return list;
     }
 
     /**
@@ -116,7 +116,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * @return
      */
     public boolean insertSave(Save save) {
-        this.getWritableDatabase();
+        database = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(AppConstants.SAVE_ID, save.getSaveId());
         values.put(AppConstants.SAVE_ARTICLE_ID, save.getSaveArticleId());
@@ -125,7 +125,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(AppConstants.SAVE_INTRO, save.getSaveIntro());
         values.put(AppConstants.SAVE_URL, save.getSaveUrl());
         long result = database.insert(AppConstants.TABLE_SAVE, null, values);
-        return (result != 0) ? true : false;
+        return (result > 0);
     }
 
     @Override

@@ -2,11 +2,14 @@ package com.example.hiennv.loigiaihay.ui.splash;
 
 import android.content.Intent;
 import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.hiennv.loigiaihay.R;
 
+import com.example.hiennv.loigiaihay.db.DatabaseHelper;
+import com.example.hiennv.loigiaihay.db.realmdb.controller.RealmController;
 import com.example.hiennv.loigiaihay.ui.base.BaseActivity;
 import com.example.hiennv.loigiaihay.ui.changeclass.ChangeClassActivity;
 import com.example.hiennv.loigiaihay.ui.home.MainActivity;
@@ -29,6 +32,14 @@ public class SplashActivity extends BaseActivity {
     }
 
     @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        realm = RealmController.with(this).getRealm();
+        databaseHelper = new DatabaseHelper(this);
+        databaseHelper.open();
+    }
+
+    @Override
     protected void initData() {
         sharedPrefUtils = new SharedPrefUtils(this);
         isFirstLaunch = sharedPrefUtils.getBoolean(AppConstants.IS_FIRST_LAUNCH, true);
@@ -37,12 +48,10 @@ public class SplashActivity extends BaseActivity {
         subjectId = sharedPrefUtils.getString(AppConstants.KEY_SUBJECT_ID, "");
         AppLogger.i(TAG, isFirstLaunch + "\n" + classTitle + "\n" + subjectId);
         if (isFirstLaunch) {
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    startActivity(new Intent(SplashActivity.this, IntroActivity.class));
-                    finish();
-                }
+            new Handler().postDelayed(() -> {
+                startActivity(new Intent(SplashActivity.this, IntroActivity.class));
+                overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
+                finish();
             }, 2000);
         } else {
             if (subjectId != null && !subjectId.equals("")) {
@@ -51,6 +60,7 @@ public class SplashActivity extends BaseActivity {
                     public void run() {
                         //open main
                         startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                        overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
                         finish();
                     }
                 }, 2000);

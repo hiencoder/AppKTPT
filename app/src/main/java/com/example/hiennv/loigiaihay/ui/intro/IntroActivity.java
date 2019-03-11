@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.hiennv.loigiaihay.R;
 import com.example.hiennv.loigiaihay.adapter.IntroAdapter;
+import com.example.hiennv.loigiaihay.db.realmdb.controller.RealmController;
 import com.example.hiennv.loigiaihay.model.Intro;
 import com.example.hiennv.loigiaihay.ui.base.BaseActivity;
 import com.example.hiennv.loigiaihay.ui.changeclass.ChangeClassActivity;
@@ -100,6 +101,7 @@ public class IntroActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 /*        setContentView(R.layout.activity_intro);
         ButterKnife.bind(this);*/
     }
@@ -133,5 +135,6 @@ public class IntroActivity extends BaseActivity {
         //Save shared
         sharedPrefUtils.putBoolean(AppConstants.IS_FIRST_LAUNCH, false);
         startActivity(new Intent(this, ChangeClassActivity.class));
+        overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
     }
 }

@@ -19,11 +19,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.hiennv.loigiaihay.app.MyApplication;
+import com.example.hiennv.loigiaihay.db.DatabaseHelper;
+import com.example.hiennv.loigiaihay.db.realmdb.controller.RealmController;
 import com.example.hiennv.loigiaihay.receiver.NetworkReceiver;
 import com.example.hiennv.loigiaihay.utils.SharedPrefUtils;
 
 import butterknife.ButterKnife;
 import es.dmoral.toasty.Toasty;
+import io.realm.Realm;
 
 public abstract class BaseActivity extends AppCompatActivity
         implements NetworkReceiver.ConnectivityReceiverListener {
@@ -42,12 +45,16 @@ public abstract class BaseActivity extends AppCompatActivity
 
     protected FragmentManager fragmentManager;
 
+    protected Realm realm;
+
+    protected DatabaseHelper databaseHelper;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
         ButterKnife.bind(this);
         sharedPrefUtils = new SharedPrefUtils(this);
+
         setUpToolbar();
         setColorStatusBar();
         initData();

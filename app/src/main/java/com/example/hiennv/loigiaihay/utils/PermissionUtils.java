@@ -147,6 +147,10 @@ public class PermissionUtils {
         activity.startActivityForResult(intent, 101);
     }
 
+    /**
+     *
+     * @param activity
+     */
     public static void openCamera(Activity activity) {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         activity.startActivityForResult(intent, 100);

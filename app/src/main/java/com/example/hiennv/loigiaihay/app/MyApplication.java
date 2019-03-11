@@ -32,7 +32,9 @@ public class MyApplication extends Application{
         //Config realm
         Realm.init(getApplicationContext());
         RealmConfiguration configuration = new RealmConfiguration.Builder()
+                .name(Realm.DEFAULT_REALM_NAME)
                 .deleteRealmIfMigrationNeeded()
+                .schemaVersion(0)
                 .build();
         Realm.setDefaultConfiguration(configuration);
     }
