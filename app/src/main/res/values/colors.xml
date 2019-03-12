@@ -16,6 +16,7 @@
     <color name="colorFeedbackPress">#8b6b51</color>
     <color name="colorHelpView">#3F51B5</color>
     <color name="colorBlack">#222</color>
+    <color name="colorIntro">#333</color>
     <color name="colorGray">#eeeeee</color>
     <color name="colorDarkGray">#ccc</color>
     <!--End array color-->
