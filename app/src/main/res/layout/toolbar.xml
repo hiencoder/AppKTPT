@@ -18,7 +18,8 @@
             android:layout_width="@dimen/size_icon_back"
             android:layout_height="@dimen/size_icon_back"
             android:layout_centerVertical="true"
-            android:src="@drawable/back_icon" />
+            android:src="@drawable/back_icon"
+            android:layout_marginLeft="10dp"/>
 
         <me.grantland.widget.AutofitTextView
             android:id="@+id/atv_title"

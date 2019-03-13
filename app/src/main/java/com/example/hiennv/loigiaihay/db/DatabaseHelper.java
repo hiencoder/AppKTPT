@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.hiennv.loigiaihay.db.model.History;
 import com.example.hiennv.loigiaihay.db.model.Save;
 import com.example.hiennv.loigiaihay.db.model.Search;
 import com.example.hiennv.loigiaihay.utils.AppConstants;
@@ -184,6 +185,113 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         database = this.getWritableDatabase();
         int result = database.delete(AppConstants.TABLE_SAVE, AppConstants.SAVE_ID + "=?", new String[]{String.valueOf(id)});
         return result > 0;
+    }
+
+    /**
+     * Get save by id
+     *
+     * @param id
+     * @return
+     */
+    public Save getSaveById(int id) {
+        database = this.getReadableDatabase();
+        Save save = null;
+        String query = "SELECT * FROM " + AppConstants.TABLE_SAVE + " WHERE " + AppConstants.SAVE_ID + " ='" + id + "'";
+        Cursor cursor = database.rawQuery(query, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                String name = cursor.getString(cursor.getColumnIndex(AppConstants.SAVE_NAME));
+                String intro = cursor.getString(cursor.getColumnIndex(AppConstants.SAVE_INTRO));
+                String body = cursor.getString(cursor.getColumnIndex(AppConstants.SAVE_BODY));
+                String url = cursor.getString(cursor.getColumnIndex(AppConstants.SAVE_URL));
+                String articleId = cursor.getString(cursor.getColumnIndex(AppConstants.SAVE_ARTICLE_ID));
+                save = new Save(id, name, intro, body, url, articleId);
+                cursor.moveToNext();
+            }
+        }
+        return save;
+    }
+
+    /**
+     * Delete all save
+     *
+     * @return
+     */
+    public void deleteAllSave() {
+        database = this.getWritableDatabase();
+        String delete = "DELETE FROM " + AppConstants.TABLE_SAVE;
+        database.execSQL(delete);
+    }
+
+    /**
+     * @param articleId
+     * @return
+     */
+    public boolean checkLessonDownload(String articleId) {
+        database = this.getReadableDatabase();
+        String query = "SELECT * FROM " + AppConstants.TABLE_SAVE + " WHERE " + AppConstants.SAVE_ARTICLE_ID + " ='" + articleId + "'";
+        Cursor cursor = database.rawQuery(query, null);
+        return cursor.getCount() > 0;
+    }
+
+    /**
+     * @param history
+     * @return
+     */
+    public boolean insertHistory(History history) {
+        database = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(AppConstants.HISTORY_NAME, history.getHistoryName());
+        values.put(AppConstants.HISTORY_INTRO, history.getHistoryIntro());
+        values.put(AppConstants.HISTORY_AVATAR, history.getHistoryAvatar());
+        values.put(AppConstants.HISTORY_ARTICLE_ID, history.getHistoryArticleId());
+        values.put(AppConstants.HISTORY_URL, history.getHistoryUrl());
+        long result = database.insert(AppConstants.TABLE_HISTORY, null, values);
+        return result > 0;
+    }
+
+    /**
+     * @return
+     */
+    public List<History> getAllHistory() {
+        database = this.getReadableDatabase();
+        List<History> histories = new ArrayList<>();
+        String query = "SELECT * FROM " + AppConstants.TABLE_HISTORY;
+        Cursor cursor = database.rawQuery(query, null);
+        if (cursor != null && cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                int id = cursor.getInt(cursor.getColumnIndex(AppConstants.HISTORY_ID));
+                String name = cursor.getString(cursor.getColumnIndex(AppConstants.HISTORY_NAME));
+                String intro = cursor.getString(cursor.getColumnIndex(AppConstants.HISTORY_INTRO));
+                String avatar = cursor.getString(cursor.getColumnIndex(AppConstants.HISTORY_AVATAR));
+                String url = cursor.getString(cursor.getColumnIndex(AppConstants.HISTORY_URL));
+                String articleId = cursor.getString(cursor.getColumnIndex(AppConstants.HISTORY_ARTICLE_ID));
+
+                histories.add(new History(id, name, intro, avatar, url, articleId));
+
+                cursor.moveToNext();
+            }
+        }
+        cursor.close();
+        return histories;
+    }
+
+    /**
+     * @param articleId
+     * @return
+     */
+    public boolean checkHistoryByArticleId(String articleId) {
+        database = this.getReadableDatabase();
+        String query = "SELECT * FROM " + AppConstants.TABLE_HISTORY + " WHERE " + AppConstants.HISTORY_ARTICLE_ID + " ='" + articleId + "'";
+        Cursor cursor = database.rawQuery(query, null);
+        return cursor.getCount() > 0;
+    }
+
+    //Delete all history
+    public void deleteAllHistory() {
+        database = this.getWritableDatabase();
+        String query = "DELETE FROM " + AppConstants.TABLE_HISTORY;
+        database.execSQL(query);
     }
 
     @Override

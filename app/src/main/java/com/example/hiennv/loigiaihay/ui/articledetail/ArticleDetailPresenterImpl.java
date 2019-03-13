@@ -46,10 +46,25 @@ public class ArticleDetailPresenterImpl implements ArticleDetailContract.Article
 
     @Override
     public void saveLesson(Save save) {
-        if (databaseHelper.insertSave(save)){
+        if (databaseHelper.insertSave(save)) {
             view.saveLessonSuccess();
-        }else {
+        } else {
             view.saveLessonError();
         }
+    }
+
+    @Override
+    public void checkLessonDownloaded(String articleId) {
+        if (databaseHelper.checkLessonDownload(articleId)) {
+            view.lessonDownloaded(true);
+        } else {
+            view.lessonDownloaded(false);
+        }
+    }
+
+    @Override
+    public void checkHistory(String articleId) {
+        boolean value = databaseHelper.checkHistoryByArticleId(articleId);
+        view.checkHistory(value);
     }
 }

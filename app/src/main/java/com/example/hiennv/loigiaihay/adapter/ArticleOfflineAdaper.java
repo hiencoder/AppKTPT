@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.hiennv.loigiaihay.R;
+import com.example.hiennv.loigiaihay.callback.ItemArticleOfflineListener;
 import com.example.hiennv.loigiaihay.db.model.Save;
 
 import java.util.List;
@@ -20,10 +21,15 @@ import butterknife.ButterKnife;
 public class ArticleOfflineAdaper extends RecyclerView.Adapter<ArticleOfflineAdaper.ArticleOfflineHolder> {
     private Context context;
     private List<Save> saves;
+    private ItemArticleOfflineListener listener;
 
     public ArticleOfflineAdaper(Context context, List<Save> saves) {
         this.context = context;
         this.saves = saves;
+    }
+
+    public void setListener(ItemArticleOfflineListener listener) {
+        this.listener = listener;
     }
 
     @NonNull
@@ -37,6 +43,9 @@ public class ArticleOfflineAdaper extends RecyclerView.Adapter<ArticleOfflineAda
     public void onBindViewHolder(@NonNull ArticleOfflineHolder articleOfflineHolder, int position) {
         Save save = saves.get(position);
         articleOfflineHolder.bindArticleOffline(save);
+        if (listener != null) {
+            articleOfflineHolder.itemView.setOnClickListener(v -> listener.itemArticleOfflineClick(save.getSaveId()));
+        }
     }
 
     @Override
@@ -77,7 +86,7 @@ public class ArticleOfflineAdaper extends RecyclerView.Adapter<ArticleOfflineAda
         @BindView(R.id.view_background)
         RelativeLayout viewBackground;
         @BindView(R.id.view_foreground)
-         RelativeLayout viewForeground;
+        RelativeLayout viewForeground;
 
         public ArticleOfflineHolder(@NonNull View itemView) {
             super(itemView);

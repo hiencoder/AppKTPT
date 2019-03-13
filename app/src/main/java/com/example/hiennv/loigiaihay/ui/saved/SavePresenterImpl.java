@@ -25,4 +25,20 @@ public class SavePresenterImpl implements SaveContract.SavePresenter {
             saveView.loadAllSaveError();
         }
     }
+
+    @Override
+    public void deleteSaveById(int id) {
+        if (databaseHelper.deleteSaveById(id)){
+            saveView.deleteSaveSuccess();
+        }else {
+            saveView.deleteSaveError();
+        }
+    }
+
+    @Override
+    public void deleteAllSave() {
+
+        databaseHelper.deleteAllSave();
+
+    }
 }

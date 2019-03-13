@@ -204,5 +204,5 @@ dependencies {
 
     implementation 'me.biubiubiu.justifytext:library:1.1'
     implementation 'com.github.bluejamesbond:textjustify-android:2.1.6'
-
+    //implementation 'jp.wasabeef:recyclerview-animators:3.0.0'
 }

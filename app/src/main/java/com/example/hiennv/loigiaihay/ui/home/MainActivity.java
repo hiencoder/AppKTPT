@@ -25,6 +25,7 @@ import com.example.hiennv.loigiaihay.ui.base.BaseActivity;
 import com.example.hiennv.loigiaihay.ui.changeclass.ChangeClassActivity;
 import com.example.hiennv.loigiaihay.ui.changesubject.ChangeSubjectActivity;
 import com.example.hiennv.loigiaihay.ui.customview.MyAutoCompleteTextView;
+import com.example.hiennv.loigiaihay.ui.saved.SaveActivity;
 import com.example.hiennv.loigiaihay.utils.AppConstants;
 import com.example.hiennv.loigiaihay.utils.SharedPrefUtils;
 
@@ -213,34 +214,45 @@ public class MainActivity extends BaseActivity {
                 mactSearch.setVisibility(View.VISIBLE);
                 break;
             case R.id.menu_change_subject:
+                //Mở màn hình chọn môn
+                dlMain.closeDrawer(Gravity.START);
                 startActivity(new Intent(this, ChangeSubjectActivity.class));
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                dlMain.closeDrawer(Gravity.START);
                 break;
             case R.id.menu_change_class:
+                //Mở màn hình chọn lớp
+                dlMain.closeDrawer(Gravity.START);
                 startActivity(new Intent(this, ChangeClassActivity.class));
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                dlMain.closeDrawer(Gravity.START);
                 break;
             case R.id.menu_open_saved:
+                //Mở ra màn hình thông tin các bài học đã tải về
                 dlMain.closeDrawer(Gravity.START);
+                startActivity(new Intent(this, SaveActivity.class));
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 break;
             case R.id.menu_save_offline:
+                //Mở màn hình lưu cả môn học
                 dlMain.closeDrawer(Gravity.START);
                 break;
             case R.id.menu_seen:
+                //Mở màn hình các bài học đã xem
                 dlMain.closeDrawer(Gravity.START);
                 break;
             case R.id.menu_rate:
+                //Đánh giá ứng dụng
                 dlMain.closeDrawer(Gravity.START);
                 break;
             case R.id.menu_share:
+                //Chia sẻ ứng dụng
                 dlMain.closeDrawer(Gravity.START);
                 break;
             case R.id.menu_feed_back:
+                //Phản hồi ứng dụng
                 dlMain.closeDrawer(Gravity.START);
                 break;
             case R.id.menu_notify:
+                //Mở màn hình thông báo
                 dlMain.closeDrawer(Gravity.START);
                 break;
         }

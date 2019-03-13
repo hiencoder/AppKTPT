@@ -9,15 +9,18 @@ import android.widget.ImageView;
 
 import com.example.hiennv.loigiaihay.R;
 import com.example.hiennv.loigiaihay.callback.ItemArticleListener;
+import com.example.hiennv.loigiaihay.db.model.History;
 import com.example.hiennv.loigiaihay.ui.base.BaseActivity;
 import com.example.hiennv.loigiaihay.ui.customview.MyAutoCompleteTextView;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import me.grantland.widget.AutofitTextView;
 
-public class HistoryActivity extends BaseActivity implements ItemArticleListener {
+public class HistoryActivity extends BaseActivity implements ItemArticleListener,HistoryContract.HistoryView {
     @BindView(R.id.btn_back)
     ImageView btnBack;
     @BindView(R.id.atv_title)
@@ -87,5 +90,20 @@ public class HistoryActivity extends BaseActivity implements ItemArticleListener
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+    }
+
+    @Override
+    public void getAllHistory(List<History> histories) {
+        
+    }
+
+    @Override
+    public void deleteAllHistorySuccess() {
+
+    }
+
+    @Override
+    public void deleteAllHistoryError() {
+
     }
 }

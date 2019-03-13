@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Clone App</string>
+    <string name="app_name">Ôn tập</string>
     <string name="txt_open">Open</string>
     <string name="txt_close">Close</string>
 
@@ -10,10 +10,17 @@
     <string name="txt_feedback">Phản hồi</string>
     <string name="txt_next_lesson">Bài tiếp theo</string>
     <string name="txt_other_cat">Các bài viết liên quan</string>
-    
+
     <!--String for message -->
     <string name="txt_network">Kiểm tra kết nối mạng</string>
     <string name="txt_downloading">Đang tải và giải nén</string>
     <string name="txt_download_success">Tải bài học thành công</string>
     <string name="txt_delete">Xóa</string>
+    <string name="txt_save_success">Lưu bài học thành công</string>
+    <string name="txt_save_error">Lưu bài học thất bại</string>
+    <string name="txt_title_save_offline">Các bài đã tải offline</string>
+    <string name="txt_message_dialog">Bạn chắc chắn muốn xóa bài học này</string>
+    <string name="txt_downloaded">Đã tải</string>
+    <string name="txt_title_saved">Xem bài viết đã lưu</string>
+    <string name="txt_message_delete_all">Bạn có muốn xóa tất cả bài đã lưu</string>
 </resources>

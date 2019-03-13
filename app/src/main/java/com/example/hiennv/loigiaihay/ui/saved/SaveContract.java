@@ -9,9 +9,21 @@ public interface SaveContract {
         void loadAllSaveSuccess(List<Save> saves);
 
         void loadAllSaveError();
+
+        void deleteSaveSuccess();
+
+        void deleteSaveError();
+
+        void deleteAllSaveSuccess();
+
+        void deleteAllSaveError();
     }
 
     interface SavePresenter {
         void loadAllSave();
+
+        void deleteSaveById(int id);
+
+        void deleteAllSave();
     }
 }

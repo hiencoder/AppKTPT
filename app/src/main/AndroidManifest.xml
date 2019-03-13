@@ -46,10 +46,18 @@
             android:parentActivityName=".ui.home.MainActivity" />
         <activity
             android:name=".ui.articledetail.ArticleDetailActivity"
+            android:launchMode="singleInstance"
             android:parentActivityName=".ui.home.MainActivity" />
         <activity
             android:name=".ui.event.EventActivityVer2"
+            android:launchMode="singleInstance"
             android:parentActivityName=".ui.home.MainActivity" />
+        <activity
+            android:name=".ui.saved.SaveActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".ui.articleoffline.ArticleOfflineActivity"
+            android:launchMode="singleInstance" />
 
         <receiver
             android:name=".receiver.NetworkReceiver"

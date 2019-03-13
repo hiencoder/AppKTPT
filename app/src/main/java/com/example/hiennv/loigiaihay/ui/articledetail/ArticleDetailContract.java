@@ -13,11 +13,19 @@ public interface ArticleDetailContract {
         void saveLessonSuccess();
 
         void saveLessonError();
+
+        void lessonDownloaded(boolean downloaded);
+
+        void checkHistory(boolean value);
     }
 
     interface ArticleDetailPresenter {
         void loadArticleDetail(int itemId);
 
         void saveLesson(Save save);
+
+        void checkLessonDownloaded(String articleId);
+
+        void checkHistory(String articleId);
     }
 }

@@ -1,11 +1,11 @@
 package com.example.hiennv.loigiaihay.ui.articledetail;
 
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -18,7 +18,7 @@ import android.widget.Toast;
 import com.example.hiennv.loigiaihay.R;
 import com.example.hiennv.loigiaihay.adapter.OtherInCatAdapter;
 import com.example.hiennv.loigiaihay.callback.ItemArticleListener;
-import com.example.hiennv.loigiaihay.callback.PostDownload;
+import com.example.hiennv.loigiaihay.db.model.History;
 import com.example.hiennv.loigiaihay.db.model.Save;
 import com.example.hiennv.loigiaihay.download.Decompress;
 import com.example.hiennv.loigiaihay.download.DownloadFileAsync;
@@ -30,8 +30,6 @@ import com.example.hiennv.loigiaihay.ui.customview.MyAutoCompleteTextView;
 import com.example.hiennv.loigiaihay.utils.AppConstants;
 import com.example.hiennv.loigiaihay.utils.PermissionUtils;
 
-import java.io.File;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,6 +80,12 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
     LinearLayout llDetailLesson;
     @BindView(R.id.fl_loading)
     FrameLayout flLoading;
+    @BindView(R.id.tv_title_button_download)
+    TextView tvTitleButtonDownload;
+    @BindView(R.id.btn_next_lesson)
+    LinearLayout btnNextLesson;
+    @BindView(R.id.cl_list_article)
+    ConstraintLayout clListArticle;
     private int itemId;
     private ArticleDetailPresenterImpl articleDetailPresenter;
 
@@ -90,6 +94,7 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
     private ArticleInfo articleInfoSelected;
     private OtherInCatAdapter otherInCatAdapter;
     private List<OtherInCat> otherInCats;
+    private History history;
 
     @Override
     protected int getLayoutId() {
@@ -109,6 +114,7 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
 
         articleDetailPresenter = new ArticleDetailPresenterImpl(this, this);
         articleDetailPresenter.loadArticleDetail(itemId);
+        articleDetailPresenter.checkLessonDownloaded(String.valueOf(itemId));
     }
 
     @Override
@@ -197,7 +203,7 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
                 PermissionUtils.requestStoragePermission(this);
             } else {
                 handleDownload(articleInfoSelected.getZipLink());
-                //Handle save lesson
+                //Handle save lesson to database
                 Save save = new Save();
                 save.setSaveName(articleInfoSelected.getTitle());
                 save.setSaveIntro(articleInfoSelected.getIntroText());
@@ -242,6 +248,12 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
         tvLessonTitle.setText(articleInfoSelected.getTitle());
         tvLessonIntroText.setText(articleInfoSelected.getIntroText());
         mvContent.setText(articleInfoSelected.getContent());
+        history = new History(articleInfoSelected.getTitle(),
+                articleInfoSelected.getIntroText(),
+                articleInfoSelected.getPicture(),
+                articleInfoSelected.getOriginUrl(),
+                String.valueOf(articleInfoSelected.getArticleId()));
+        articleDetailPresenter.checkLessonDownloaded(String.valueOf(articleInfoSelected.getArticleId()));
 
         otherInCats.clear();
         otherInCats.addAll(article.getOtherInCats());
@@ -257,12 +269,37 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
 
     @Override
     public void saveLessonSuccess() {
-
+        Toasty.success(this, getResources().getString(R.string.txt_save_success), Toast.LENGTH_SHORT).show();
+        btnDownloadOffline.setBackgroundResource(R.drawable.bg_button_downloaded);
+        tvTitleButtonDownload.setText(getResources().getString(R.string.txt_downloaded));
     }
 
     @Override
     public void saveLessonError() {
+        Toasty.error(this, getResources().getString(R.string.txt_save_error), Toast.LENGTH_SHORT).show();
         Timber.e("%s", "Error");
+        btnDownloadOffline.setBackgroundResource(R.drawable.bg_button_download_offline);
+        tvTitleButtonDownload.setText(getResources().getString(R.string.txt_save_offline));
+    }
+
+    @Override
+    public void lessonDownloaded(boolean downloaded) {
+        if (downloaded) {
+            btnDownloadOffline.setBackgroundResource(R.drawable.bg_button_downloaded);
+            tvTitleButtonDownload.setText(getResources().getString(R.string.txt_downloaded));
+        } else {
+            btnDownloadOffline.setBackgroundResource(R.drawable.bg_button_download_offline);
+            tvTitleButtonDownload.setText(getResources().getString(R.string.txt_save_offline));
+        }
+    }
+
+    @Override
+    public void checkHistory(boolean value) {
+        if (value) {
+            //Đã tồn tại k insert vào db
+        } else {
+            databaseHelper.insertHistory(history);
+        }
     }
 
     @Override
