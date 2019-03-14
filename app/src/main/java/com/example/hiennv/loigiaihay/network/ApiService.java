@@ -3,12 +3,14 @@ package com.example.hiennv.loigiaihay.network;
 import com.example.hiennv.loigiaihay.network.pojo.article.ResponseArticle;
 import com.example.hiennv.loigiaihay.network.pojo.category.ResponseCategory;
 import com.example.hiennv.loigiaihay.network.pojo.event.ResponseEvent;
+import com.example.hiennv.loigiaihay.network.pojo.search.ResponseSearch;
 import com.example.hiennv.loigiaihay.network.pojo.subject.SubjectResponse;
 import com.example.hiennv.loigiaihay.network.pojo.tag.ResponseTag;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ApiService {
     //Get list class ()
@@ -32,5 +34,9 @@ public interface ApiService {
     Call<ResponseArticle> getArticleByArticleId(@Path("articleId") int articleId);
 
     //Search article
-
+    @GET("article/search")
+    Call<ResponseSearch> getSearch(@Query("limit") int limit,
+                                   @Query("page") int page,
+                                   @Query("keyword") String keyWord,
+                                   @Query("catId") int catId);
 }

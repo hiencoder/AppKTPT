@@ -8,6 +8,8 @@ public interface HistoryContract {
     interface HistoryView {
         void getAllHistory(List<History> histories);
 
+        void getAllHistoryError();
+
         void deleteAllHistorySuccess();
 
         void deleteAllHistoryError();

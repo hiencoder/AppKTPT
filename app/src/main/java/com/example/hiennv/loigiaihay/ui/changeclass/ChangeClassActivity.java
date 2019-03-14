@@ -48,7 +48,7 @@ public class ChangeClassActivity extends BaseActivity implements ChangeClassCont
         sharedPrefUtils = new SharedPrefUtils(this);
         listClass = new ArrayList<>();
         apiService = ApiClient.getClient().create(ApiService.class);
-        listClassPresenter = new ChangeClassPresenterImpl(this, apiService);
+        listClassPresenter = new ChangeClassPresenterImpl(this);
         listClassPresenter.loadListClass();
     }
 
@@ -91,19 +91,19 @@ public class ChangeClassActivity extends BaseActivity implements ChangeClassCont
 
     @Override
     public void classClick(ClassEntity classEntity) {
-        sharedPrefUtils.putString(AppConstants.KEY_CLASS_ID,classEntity.getTagId());
-        sharedPrefUtils.putString(AppConstants.KEY_CLASS_TITLE,classEntity.getTitle());
+        sharedPrefUtils.putString(AppConstants.KEY_CLASS_ID, classEntity.getTagId());
+        sharedPrefUtils.putString(AppConstants.KEY_CLASS_TITLE, classEntity.getTitle());
         //Put classEntity -> ChangeSubjectActivity
         /*Bundle bundle = new Bundle();
         bundle.putSerializable("class_entity",classEntity);*/
         Intent intent = new Intent(this, ChangeSubjectActivity.class);
-        intent.putExtra("class_entity",classEntity);
+        intent.putExtra("class_entity", classEntity);
         startActivity(intent);
     }
 
     @OnClick(R.id.btn_back)
-    void doClick(View v){
-        switch (v.getId()){
+    void doClick(View v) {
+        switch (v.getId()) {
             case R.id.btn_back:
                 //Open MainActivity
                 break;

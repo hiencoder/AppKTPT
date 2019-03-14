@@ -1,5 +1,6 @@
 package com.example.hiennv.loigiaihay.ui.changesubject;
 
+import com.example.hiennv.loigiaihay.network.ApiClient;
 import com.example.hiennv.loigiaihay.network.ApiService;
 import com.example.hiennv.loigiaihay.network.pojo.subject.SubjectResponse;
 
@@ -9,13 +10,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ChangeSubjectPresenterImpl implements ChangeSubjectContract.ChangeSubjectPresenter{
+public class ChangeSubjectPresenterImpl implements ChangeSubjectContract.ChangeSubjectPresenter {
     private ChangeSubjectContract.ChangeSubjectView subjectView;
     private ApiService apiService;
 
-    public ChangeSubjectPresenterImpl(ChangeSubjectContract.ChangeSubjectView subjectView, ApiService apiService) {
+    public ChangeSubjectPresenterImpl(ChangeSubjectContract.ChangeSubjectView subjectView) {
         this.subjectView = subjectView;
-        this.apiService = apiService;
+        apiService = ApiClient.getClient().create(ApiService.class);
     }
 
     @Override
@@ -25,14 +26,14 @@ public class ChangeSubjectPresenterImpl implements ChangeSubjectContract.ChangeS
             @Override
             public void onResponse(Call<SubjectResponse> call, Response<SubjectResponse> response) {
                 SubjectResponse subjectResponse = response.body();
-                if (subjectResponse != null){
+                if (subjectResponse != null) {
                     subjectView.loadListSubjectSuccess(subjectResponse);
                 }
             }
 
             @Override
             public void onFailure(Call<SubjectResponse> call, Throwable t) {
-                AppLogger.e("Error",t);
+                AppLogger.e("Error", t);
             }
         });
     }

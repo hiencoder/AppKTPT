@@ -3,6 +3,7 @@ package com.example.hiennv.loigiaihay.ui.articledetail;
 import android.content.Context;
 
 import com.example.hiennv.loigiaihay.db.DatabaseHelper;
+import com.example.hiennv.loigiaihay.db.model.History;
 import com.example.hiennv.loigiaihay.db.model.Save;
 import com.example.hiennv.loigiaihay.network.ApiClient;
 import com.example.hiennv.loigiaihay.network.ApiService;
@@ -66,5 +67,10 @@ public class ArticleDetailPresenterImpl implements ArticleDetailContract.Article
     public void checkHistory(String articleId) {
         boolean value = databaseHelper.checkHistoryByArticleId(articleId);
         view.checkHistory(value);
+    }
+
+    @Override
+    public void insertHistory(History history) {
+        databaseHelper.insertHistory(history);
     }
 }

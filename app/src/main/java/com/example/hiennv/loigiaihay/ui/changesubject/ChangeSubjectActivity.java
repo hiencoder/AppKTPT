@@ -1,6 +1,7 @@
 package com.example.hiennv.loigiaihay.ui.changesubject;
 
 
+import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.ImageView;
@@ -17,6 +18,8 @@ import com.example.hiennv.loigiaihay.utils.SharedPrefUtils;
 import com.viewpagerindicator.TabPageIndicator;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class ChangeSubjectActivity extends BaseActivity implements ChangeSubjectContract.ChangeSubjectView {
     private static final String TAG = ChangeSubjectActivity.class.getSimpleName();
@@ -47,8 +50,8 @@ public class ChangeSubjectActivity extends BaseActivity implements ChangeSubject
         } else {
             tagId = sharedPrefUtils.getString(AppConstants.KEY_CLASS_ID, "");
         }
-        apiService = ApiClient.getClient().create(ApiService.class);
-        changeSubjectPresenter = new ChangeSubjectPresenterImpl(this, apiService);
+
+        changeSubjectPresenter = new ChangeSubjectPresenterImpl(this);
         changeSubjectPresenter.loadListSubject(tagId);
     }
 
@@ -74,6 +77,12 @@ public class ChangeSubjectActivity extends BaseActivity implements ChangeSubject
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+    }
+
+    @Override
     public void loadListSubjectError() {
 
     }
@@ -86,5 +95,11 @@ public class ChangeSubjectActivity extends BaseActivity implements ChangeSubject
     @Override
     public void hideLoading() {
 
+    }
+
+
+    @OnClick(R.id.btn_back)
+    public void doClick() {
+        onBackPressed();
     }
 }

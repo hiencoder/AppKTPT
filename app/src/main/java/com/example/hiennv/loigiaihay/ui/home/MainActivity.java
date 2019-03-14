@@ -21,11 +21,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.hiennv.loigiaihay.R;
+import com.example.hiennv.loigiaihay.db.model.History;
 import com.example.hiennv.loigiaihay.ui.base.BaseActivity;
 import com.example.hiennv.loigiaihay.ui.changeclass.ChangeClassActivity;
 import com.example.hiennv.loigiaihay.ui.changesubject.ChangeSubjectActivity;
 import com.example.hiennv.loigiaihay.ui.customview.MyAutoCompleteTextView;
+import com.example.hiennv.loigiaihay.ui.history.HistoryActivity;
 import com.example.hiennv.loigiaihay.ui.saved.SaveActivity;
+import com.example.hiennv.loigiaihay.ui.search.SearchActivity;
 import com.example.hiennv.loigiaihay.utils.AppConstants;
 import com.example.hiennv.loigiaihay.utils.SharedPrefUtils;
 
@@ -172,6 +175,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initEvents() {
         //Event for autocompletetextview
+        setUpUi(mactSearch);
         mactSearch.setOnEditorActionListener((textView, i, keyEvent) -> false);
     }
 
@@ -198,22 +202,32 @@ public class MainActivity extends BaseActivity {
     }
 
 
-    @OnClick({/*R.id.btn_open_menu, */R.id.atv_title, R.id.menu_home, R.id.menu_search, R.id.menu_change_subject,
+    @OnClick({/*R.id.btn_open_menu, */R.id.atv_title, R.id.iv_drop, R.id.menu_home, R.id.menu_search, R.id.menu_change_subject,
             R.id.menu_change_class, R.id.menu_open_saved, R.id.menu_save_offline, R.id.menu_seen, R.id.menu_rate,
-            R.id.menu_share, R.id.menu_feed_back, R.id.menu_notify, R.id.mact_search})
+            R.id.menu_share, R.id.menu_feed_back, R.id.menu_notify, R.id.mact_search, R.id.iv_search})
     void doClick(View v) {
         switch (v.getId()) {
-            /*case R.id.btn_open_menu:
-
-                break;*/
-            case R.id.atv_title:
-                break;
             case R.id.menu_home:
                 break;
             case R.id.menu_search:
-                mactSearch.setVisibility(View.VISIBLE);
+                break;
+            case R.id.iv_search:
+                if (mactSearch.getVisibility() != View.VISIBLE) {
+                    mactSearch.setVisibility(View.VISIBLE);
+                    atvTitle.setVisibility(View.GONE);
+                    //ivSearch.setVisibility(View.INVISIBLE);
+                    ivDrop.setVisibility(View.GONE);
+                }else {
+                    //Put key sang bên màn hình search
+                    String keyWord = mactSearch.getText().toString().trim();
+                    Intent intent = new Intent(this,SearchActivity.class);
+                    intent.putExtra(AppConstants.KEY_WORD_SEARCH,keyWord);
+                    startActivity(intent);
+                }
                 break;
             case R.id.menu_change_subject:
+            case R.id.atv_title:
+            case R.id.iv_drop:
                 //Mở màn hình chọn môn
                 dlMain.closeDrawer(Gravity.START);
                 startActivity(new Intent(this, ChangeSubjectActivity.class));
@@ -238,6 +252,8 @@ public class MainActivity extends BaseActivity {
             case R.id.menu_seen:
                 //Mở màn hình các bài học đã xem
                 dlMain.closeDrawer(Gravity.START);
+                startActivity(new Intent(this, HistoryActivity.class));
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 break;
             case R.id.menu_rate:
                 //Đánh giá ứng dụng

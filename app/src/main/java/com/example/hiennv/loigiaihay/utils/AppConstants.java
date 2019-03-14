@@ -110,4 +110,8 @@ public class AppConstants {
 
     //articleOfflineId
     public static final String KEY_ARTICLE_OFFLINE_ID = "article_offline_id";
+
+    //KeyWord
+    public static final String KEY_WORD_SEARCH = "key_word";
+
 }

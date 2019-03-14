@@ -254,7 +254,7 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
                 articleInfoSelected.getOriginUrl(),
                 String.valueOf(articleInfoSelected.getArticleId()));
         articleDetailPresenter.checkLessonDownloaded(String.valueOf(articleInfoSelected.getArticleId()));
-
+        articleDetailPresenter.checkHistory(String.valueOf(articleInfoSelected.getArticleId()));
         otherInCats.clear();
         otherInCats.addAll(article.getOtherInCats());
         Timber.i("OtherInCat: %d", otherInCats.size());
@@ -298,7 +298,7 @@ public class ArticleDetailActivity extends BaseActivity implements ArticleDetail
         if (value) {
             //Đã tồn tại k insert vào db
         } else {
-            databaseHelper.insertHistory(history);
+            articleDetailPresenter.insertHistory(history);
         }
     }
 

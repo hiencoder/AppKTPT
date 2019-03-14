@@ -42,22 +42,17 @@
 
         <activity
             android:name=".ui.event.EventActivity"
-            android:launchMode="singleInstance"
             android:parentActivityName=".ui.home.MainActivity" />
         <activity
             android:name=".ui.articledetail.ArticleDetailActivity"
-            android:launchMode="singleInstance"
             android:parentActivityName=".ui.home.MainActivity" />
         <activity
             android:name=".ui.event.EventActivityVer2"
-            android:launchMode="singleInstance"
             android:parentActivityName=".ui.home.MainActivity" />
-        <activity
-            android:name=".ui.saved.SaveActivity"
-            android:launchMode="singleInstance" />
-        <activity
-            android:name=".ui.articleoffline.ArticleOfflineActivity"
-            android:launchMode="singleInstance" />
+        <activity android:name=".ui.saved.SaveActivity" />
+        <activity android:name=".ui.articleoffline.ArticleOfflineActivity" />
+        <activity android:name=".ui.history.HistoryActivity" />
+        <activity android:name=".ui.search.SearchActivity" />
 
         <receiver
             android:name=".receiver.NetworkReceiver"

@@ -14,6 +14,8 @@ import com.example.hiennv.loigiaihay.utils.AppConstants;
 import java.util.ArrayList;
 import java.util.List;
 
+import timber.log.Timber;
+
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private SQLiteDatabase database;
@@ -247,6 +249,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(AppConstants.HISTORY_ARTICLE_ID, history.getHistoryArticleId());
         values.put(AppConstants.HISTORY_URL, history.getHistoryUrl());
         long result = database.insert(AppConstants.TABLE_HISTORY, null, values);
+        Timber.i("Insert history: %s", result);
         return result > 0;
     }
 

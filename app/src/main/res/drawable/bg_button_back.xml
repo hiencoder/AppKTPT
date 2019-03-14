@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="false">
+        <layer-list>
+            <item>
+                <bitmap android:gravity="center" android:src="@drawable/back_icon" />
+            </item>
+        </layer-list>
+    </item>
+    <item android:state_pressed="true">
+        <layer-list>
+            <item>
+                <bitmap android:gravity="center" android:src="@drawable/back_icon" />
+            </item>
+            <item>
+                <shape android:shape="oval">
+                    <size android:width="@dimen/size_icon_subject" android:height="@dimen/size_icon_subject" />
+                    <solid android:color="@color/colorDarkGray" />
+                    <padding android:top="10dp"
+                        android:left="10dp"
+                        android:right="10dp"
+                        android:bottom="10dp"/>
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+</selector>

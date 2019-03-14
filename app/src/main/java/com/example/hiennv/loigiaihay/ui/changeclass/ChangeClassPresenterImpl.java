@@ -1,5 +1,6 @@
 package com.example.hiennv.loigiaihay.ui.changeclass;
 
+import com.example.hiennv.loigiaihay.network.ApiClient;
 import com.example.hiennv.loigiaihay.network.ApiService;
 import com.example.hiennv.loigiaihay.network.pojo.tag.ClassEntity;
 import com.example.hiennv.loigiaihay.network.pojo.tag.ResponseTag;
@@ -15,9 +16,9 @@ public class ChangeClassPresenterImpl implements ChangeClassContract.ChangeClass
     private ChangeClassContract.ChangeClassView listClassView;
     private ApiService apiService;
 
-    public ChangeClassPresenterImpl(ChangeClassContract.ChangeClassView listClassView, ApiService apiService) {
+    public ChangeClassPresenterImpl(ChangeClassContract.ChangeClassView listClassView) {
         this.listClassView = listClassView;
-        this.apiService = apiService;
+        apiService = ApiClient.getClient().create(ApiService.class);
     }
 
     @Override

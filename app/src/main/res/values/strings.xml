@@ -23,4 +23,18 @@
     <string name="txt_downloaded">Đã tải</string>
     <string name="txt_title_saved">Xem bài viết đã lưu</string>
     <string name="txt_message_delete_all">Bạn có muốn xóa tất cả bài đã lưu</string>
+    <string name="txt_title_history">Bài viết đã xem</string>
+    <string name="txt_message_dialog_history">Bạn có muốn xóa các bài đã xem</string>
+    <string name="txt_message_delete_history_success">Xóa các bài đã xem thành công</string>
+    <string name="txt_message_delete_history_error">Xóa các bài đã xem thất bại</string>
+    <string name="txt_title_dialog_feedback">Báo lỗi-góp ý</string>
+    <string name="txt_feedback_question">Vấn đề bạn gặp phải là gì?</string>
+    <string name="txt_saichinhta">Sai chính tả</string>
+    <string name="txt_giaikhohieu">Giải khó hiểu</string>
+    <string name="txt_giaisai">Giải sai</string>
+    <string name="txt_other_error">Lỗi khác</string>
+    <string name="txt_title_detail_feedback">Cho biết chi tiết góp ý của bạn</string>
+    <string name="txt_hint_detail_feedback">Nhập góp ý</string>
+    <string name="txt_see_more">Xem thêm</string>
+    <string name="txt_search">Tìm kiếm</string>
 </resources>
