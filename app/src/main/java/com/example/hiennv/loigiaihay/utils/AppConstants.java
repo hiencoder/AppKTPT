@@ -113,5 +113,5 @@ public class AppConstants {
 
     //KeyWord
     public static final String KEY_WORD_SEARCH = "key_word";
-
+    public static final int LIMIT = 8;
 }

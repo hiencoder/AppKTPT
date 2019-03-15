@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.hiennv.loigiaihay.R;
+import com.example.hiennv.loigiaihay.callback.ItemArticleListener;
 import com.example.hiennv.loigiaihay.callback.ItemArticleOfflineListener;
 import com.example.hiennv.loigiaihay.db.model.History;
 import com.example.hiennv.loigiaihay.utils.CommonUtils;
@@ -22,14 +23,14 @@ import butterknife.ButterKnife;
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryHolder> {
     private Context context;
     private List<History> histories;
-    private ItemArticleOfflineListener listener;
+    private ItemArticleListener listener;
 
     public HistoryAdapter(Context context, List<History> histories) {
         this.context = context;
         this.histories = histories;
     }
 
-    public void setListener(ItemArticleOfflineListener listener) {
+    public void setListener(ItemArticleListener listener) {
         this.listener = listener;
     }
 
@@ -45,7 +46,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryH
         History history = histories.get(position);
         historyHolder.bindHistory(history);
         if (listener != null) {
-            historyHolder.itemView.setOnClickListener(v -> listener.itemArticleOfflineClick(Integer.parseInt(history.getHistoryArticleId())));
+            historyHolder.itemView.setOnClickListener(v -> listener.doItemArticleClick(Integer.parseInt(history.getHistoryArticleId())));
         }
     }
 

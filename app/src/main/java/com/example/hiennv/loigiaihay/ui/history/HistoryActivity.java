@@ -1,5 +1,6 @@
 package com.example.hiennv.loigiaihay.ui.history;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
@@ -15,8 +16,11 @@ import com.example.hiennv.loigiaihay.R;
 import com.example.hiennv.loigiaihay.adapter.HistoryAdapter;
 import com.example.hiennv.loigiaihay.callback.ItemArticleListener;
 import com.example.hiennv.loigiaihay.db.model.History;
+import com.example.hiennv.loigiaihay.ui.articledetail.ArticleDetailActivity;
+import com.example.hiennv.loigiaihay.ui.articledetail.ArticleDetailPresenterImpl;
 import com.example.hiennv.loigiaihay.ui.base.BaseActivity;
 import com.example.hiennv.loigiaihay.ui.customview.MyAutoCompleteTextView;
+import com.example.hiennv.loigiaihay.utils.AppConstants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +55,11 @@ public class HistoryActivity extends BaseActivity implements ItemArticleListener
 
     @Override
     public void doItemArticleClick(int articleId) {
-
+        //Mở màn hình ArticleDetailActivity
+        Intent intent = new Intent(this, ArticleDetailActivity.class);
+        intent.putExtra(AppConstants.KEY_ARTICLE_ID, articleId);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
     }
 
     @Override
@@ -66,8 +74,7 @@ public class HistoryActivity extends BaseActivity implements ItemArticleListener
         rvArticles.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         rvArticles.setItemAnimator(new DefaultItemAnimator());
         rvArticles.setAdapter(historyAdapter);
-        historyPresenter = new HistoryPresenterImpl(this, this);
-        historyPresenter.getAllHistory();
+
     }
 
     @Override
@@ -82,7 +89,7 @@ public class HistoryActivity extends BaseActivity implements ItemArticleListener
 
     @Override
     protected void initEvents() {
-
+        historyAdapter.setListener(this);
     }
 
     @Override
@@ -90,6 +97,13 @@ public class HistoryActivity extends BaseActivity implements ItemArticleListener
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        historyPresenter = new HistoryPresenterImpl(this, this);
+        historyPresenter.getAllHistory();
     }
 
     @OnClick({R.id.btn_back, R.id.iv_drop, R.id.iv_search, R.id.btn_delete})
