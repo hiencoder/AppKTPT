@@ -60,6 +60,10 @@ public class SaveActivity extends BaseActivity implements SaveContract.SaveView,
     private List<Save> listSaves;
     private ArticleOfflineAdaper articleOfflineAdaper;
 
+    //Dung luong app
+    private float dataApp;
+    private float internalData;
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_saved;
@@ -243,4 +247,55 @@ public class SaveActivity extends BaseActivity implements SaveContract.SaveView,
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
+
+    //K cho lưu quá 50 bài
+    /*  public void showCharData() {
+        float folderSize = (((float) ActivityBase.getFolderSize(new File(Constants.folderSave))) / 1024.0f) / 1024.0f;
+        List arrayList = new ArrayList();
+        arrayList.add(new Entry(folderSize, 0));
+        arrayList.add(new Entry(MainActivity.useExternalValue, 1));
+        arrayList.add(new Entry(MainActivity.freeExternalValue, 2));
+        int[] iArr = new int[]{Color.parseColor("#4763b2"), Color.parseColor("#666666"), Color.parseColor("#BDBDBD")};
+        List arrayList2 = new ArrayList();
+        for (int valueOf : iArr) {
+            arrayList2.add(Integer.valueOf(valueOf));
+        }
+        Object pieDataSet = new PieDataSet(arrayList, "");
+        pieDataSet.setDrawValues(false);
+        arrayList = new ArrayList();
+        arrayList.add("");
+        arrayList.add("");
+        arrayList.add("");
+        if (MainActivity.freeExternalValue > 1024.0f) {
+            this.dungLuongTrong = MainActivity.freeExternalValue / 1024.0f;
+            this.dungLuongTrong = ((float) Math.round(this.dungLuongTrong * 100.0f)) / 100.0f;
+            this.tvChuaDung = " Gb";
+        } else {
+            this.dungLuongTrong = MainActivity.freeExternalValue;
+            this.tvChuaDung = " Mb";
+        }
+        if (MainActivity.useExternalValue > 1024.0f) {
+            this.dungLuongDaDung = MainActivity.useExternalValue / 1024.0f;
+            this.dungLuongDaDung = ((float) Math.round(this.dungLuongDaDung * 100.0f)) / 100.0f;
+            this.tvDaDung = " Gb";
+        } else {
+            this.dungLuongDaDung = MainActivity.useExternalValue;
+            this.tvDaDung = " Mb";
+        }
+        folderSize = ((float) Math.round(folderSize * 100.0f)) / 100.0f;
+        this.tvDadung.setText("Khác " + this.dungLuongDaDung + this.tvDaDung);
+        this.tvChuadung.setText("Còn trống " + this.dungLuongTrong + this.tvChuaDung);
+        this.tvPhantram.setText((((MainActivity.freeExternalValue * 100.0f) / MainActivity.totalExternalValue) + "").substring(0, 3) + "%");
+        this.tvLGH.setText("Lời Giải Hay: " + folderSize + " Mb");
+        ChartData pieData = new PieData(arrayList, pieDataSet);
+        pieData.setValueTextColor(-16776961);
+        pieData.setValueFormatter(new PercentFormatter());
+        pieDataSet.setColors(arrayList2);
+        this.pieChart.setDescription("");
+        this.pieChart.setData(pieData);
+        this.pieChart.setUsePercentValues(false);
+        this.pieChart.animateY(1000);
+        this.pieChart.getLegend().setEnabled(false);
+    }
+*/
 }

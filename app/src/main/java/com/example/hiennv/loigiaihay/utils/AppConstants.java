@@ -114,4 +114,71 @@ public class AppConstants {
     //KeyWord
     public static final String KEY_WORD_SEARCH = "key_word";
     public static final int LIMIT = 8;
+
+    /*package com.tp.loigiaihay.ultils;
+
+import android.content.SharedPreferences;
+import com.google.android.gms.analytics.ecommerce.ProductAction;
+import com.google.firebase.analytics.FirebaseAnalytics.Param;
+
+public class Constants {
+    public static String ADMOB_AD_INTERSTITIAL_ID = "ADMOB_AD_INTERSTITIAL_ID";
+    public static String ADMOB_AD_UNIT_ID_DETAIL_BOTTOM = "ADMOB_AD_UNIT_ID_DETAIL_BOTTOM";
+    public static String ADMOB_AD_UNIT_ID_DETAIL_TOP = "ADMOB_AD_UNIT_ID_DETAIL_TOP";
+    public static String ADMOB_AD_UNIT_ID_EVENT = "ADMOB_AD_UNIT_ID_EVENT";
+    public static String ADMOB_APP_ID = "ADMOB_APP_ID";
+    public static String DETAIL_LESSON = "articles/%s";
+    public static String GET_CATEGORY = "%s/%s";
+    public static String GET_EVENT = "events/";
+    public static final String SERVER = "https://api.loigiaihay.com/v3/";
+    public static final String TAG = "LGH";
+    public static String checkShowInterstitial = "checkShow";
+    public static String coutNotifyNotSeen = "cout_notify_not_seen";
+    public static String emailOder = "emailOder";
+    public static String fileNameSlideChange = "fileNameSlideChange";
+    public static String folderSave = "/sdcard/.xUtils/";
+    public static String listItemIdSize = "listItemIdSize";
+    public static int menuSearch = 0;
+    public static String pageObject = "page_Object";
+    public static String preToken = null;
+    public static String pre_comment = null;
+    public static SharedPreferences prefs = null;
+    public static String purchaseData = "purchaseData";
+    public static String purchaseToken = "purchaseToken";
+    public static String selectSpinner = "select_spinner";
+    public static String signatures = "signatures";
+    public static String strArticleId = "article_id";
+    public static String strCallSearch = "call_search";
+    public static String strCaptchaComment = "capcha";
+    public static String strCheckObject = "check_object";
+    public static String strCountClickEvent = "count_click_event";
+    public static String strCurrentPreference = "curent_prefrence";
+    public static String strDetaiComment = ProductAction.ACTION_DETAIL;
+    public static String strFinish = "finish";
+    public static String strFirst = "lan_dau_mo";
+    public static String strFirstPermission = "lan_dau_mo_permission";
+    public static String strIdAr = "pre_id_ar";
+    public static String strInfoComment = "info";
+    public static String strItemId = Param.ITEM_ID;
+    public static String strItemIdHome = "item_id_home";
+    public static String strItemIdHomeCategory = "item_id_home_category";
+    public static String strItemIdHomeNext = "item_id_home_next";
+    public static String strItemIdHomeNextTemp = "item_id_home_next_temp";
+    public static String strItemIdMonTai = "item_id_montai";
+    public static String strItemType = "item_type";
+    public static String strMaThietBi = "ma_thiet_bi";
+    public static String strMuaLop = "mua_lop";
+    public static String strNumberClass = "number_class";
+    public static String strOrderId = "order_id";
+    public static String strPageSearch = "page_search";
+    public static String strProductId = "product_id";
+    public static String strSearch = "pre_search";
+    public static String strSoMonMotLop = "so_mon_mot_lop";
+    public static String strSuccessRequestPost = "success_request_post";
+    public static String strTitleClass = "title_class";
+    public static String strTitleObject = "title_object";
+    public static String strXbookType = "X-book-type";
+    public static final String tag_service = "LGH_service";
+    public static String timeOder = "timeOder";
+}*/
 }

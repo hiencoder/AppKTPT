@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.hiennv.loigiaihay.R;
 import com.example.hiennv.loigiaihay.callback.ItemArticleOfflineListener;
 import com.example.hiennv.loigiaihay.db.model.Save;
+import com.example.hiennv.loigiaihay.utils.CommonUtils;
 
 import java.util.List;
 
@@ -97,8 +98,8 @@ public class ArticleOfflineAdaper extends RecyclerView.Adapter<ArticleOfflineAda
          * @param save
          */
         public void bindArticleOffline(Save save) {
-            tvLessonTitle.setText(save.getSaveName());
-            tvLessonIntro.setText(save.getSaveIntro());
+            tvLessonTitle.setText(CommonUtils.subStringByCharacter(save.getSaveName()," "));
+            tvLessonIntro.setText(CommonUtils.subStringByCharacter(save.getSaveIntro()," "));
         }
     }
 }

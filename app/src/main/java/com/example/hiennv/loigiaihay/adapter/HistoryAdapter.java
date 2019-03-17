@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.example.hiennv.loigiaihay.R;
 import com.example.hiennv.loigiaihay.callback.ItemArticleListener;
-import com.example.hiennv.loigiaihay.callback.ItemArticleOfflineListener;
 import com.example.hiennv.loigiaihay.db.model.History;
 import com.example.hiennv.loigiaihay.utils.CommonUtils;
 
@@ -97,8 +96,8 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryH
          * @param history
          */
         public void bindHistory(History history) {
-            tvLessonTitle.setText(history.getHistoryName());
-            tvLessonIntro.setText(history.getHistoryIntro());
+            tvLessonTitle.setText(CommonUtils.subStringByCharacter(history.getHistoryName()," "));
+            tvLessonIntro.setText(CommonUtils.subStringByCharacter(history.getHistoryIntro()," "));
             CommonUtils.loadImage(context, history.getHistoryAvatar(), ivArticle);
         }
     }
