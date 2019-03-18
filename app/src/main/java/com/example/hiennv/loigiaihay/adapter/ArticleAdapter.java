@@ -72,8 +72,8 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleH
 
         public void bindArticle(Article article) {
             CommonUtils.loadImage(context, article.getThumbnail(), ivArticle);
-            tvArticleTitle.setText(article.getTitle());
-            tvArticleIntroText.setText(article.getIntrotext());
+            tvArticleTitle.setText(CommonUtils.subStringByCharacter(article.getTitle(), " "));
+            tvArticleIntroText.setText(CommonUtils.subStringByCharacter(article.getIntrotext(), " "));
         }
     }
 }

@@ -2,6 +2,8 @@ package com.example.hiennv.loigiaihay.ui.search;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -10,17 +12,21 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.hiennv.loigiaihay.R;
+import com.example.hiennv.loigiaihay.adapter.ArticleAdapter;
+import com.example.hiennv.loigiaihay.network.pojo.event.Article;
 import com.example.hiennv.loigiaihay.network.pojo.search.ArticleSearch;
 import com.example.hiennv.loigiaihay.ui.base.BaseActivity;
 import com.example.hiennv.loigiaihay.ui.customview.MyAutoCompleteTextView;
 import com.example.hiennv.loigiaihay.utils.AppConstants;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import me.grantland.widget.AutofitTextView;
+import timber.log.Timber;
 
 public class SearchActivity extends BaseActivity implements SearchContract.SearchView {
     @BindView(R.id.btn_back)
@@ -54,6 +60,8 @@ public class SearchActivity extends BaseActivity implements SearchContract.Searc
     private int page = 1;
     private int limit = 8;
     private SearchPresenterImpl searchPresenter;
+    private List<Article> articleSearches;
+    private ArticleAdapter articleAdapter;
 
     @Override
     protected int getLayoutId() {
@@ -67,6 +75,14 @@ public class SearchActivity extends BaseActivity implements SearchContract.Searc
         keyWord = getIntent().getStringExtra(AppConstants.KEY_WORD_SEARCH);
         mactSearchResult.setText(keyWord);
         mactSearchResult.setSelection(keyWord.length());
+
+        this.articleSearches = new ArrayList<>();
+        articleAdapter = new ArticleAdapter(this, articleSearches);
+        rvArticles.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        rvArticles.setItemAnimator(new DefaultItemAnimator());
+        rvArticles.setAdapter(articleAdapter);
+        searchPresenter = new SearchPresenterImpl(this, this);
+        searchPresenter.searchArticle(AppConstants.LIMIT, page, keyWord, catId);
     }
 
     @Override
@@ -110,7 +126,12 @@ public class SearchActivity extends BaseActivity implements SearchContract.Searc
 
     @Override
     public void searchArticleSuccess(List<ArticleSearch> articleSearches) {
-
+        this.articleSearches.clear();
+        for (ArticleSearch articleSearch : articleSearches) {
+            this.articleSearches.add(articleSearch);
+            Timber.i("Title: %s", articleSearch.getTitle());
+        }
+        articleAdapter.notifyDataSetChanged();
     }
 
     @Override

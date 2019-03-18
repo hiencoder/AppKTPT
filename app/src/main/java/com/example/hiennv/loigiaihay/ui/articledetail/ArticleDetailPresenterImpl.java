@@ -1,6 +1,7 @@
 package com.example.hiennv.loigiaihay.ui.articledetail;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import com.example.hiennv.loigiaihay.db.DatabaseHelper;
 import com.example.hiennv.loigiaihay.db.model.History;
@@ -9,6 +10,7 @@ import com.example.hiennv.loigiaihay.network.ApiClient;
 import com.example.hiennv.loigiaihay.network.ApiService;
 import com.example.hiennv.loigiaihay.network.pojo.article.ResponseArticle;
 
+import es.dmoral.toasty.Toasty;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -17,8 +19,10 @@ public class ArticleDetailPresenterImpl implements ArticleDetailContract.Article
     private ArticleDetailContract.ArticleDetailView view;
     private ApiService apiService;
     private DatabaseHelper databaseHelper;
+    private Context context;
 
     public ArticleDetailPresenterImpl(Context context, ArticleDetailContract.ArticleDetailView view) {
+        this.context = context;
         this.view = view;
         apiService = ApiClient.getClient().create(ApiService.class);
         databaseHelper = new DatabaseHelper(context);
@@ -47,10 +51,14 @@ public class ArticleDetailPresenterImpl implements ArticleDetailContract.Article
 
     @Override
     public void saveLesson(Save save) {
-        if (databaseHelper.insertSave(save)) {
-            view.saveLessonSuccess();
+        if (databaseHelper.countSave() < 50) {
+            if (databaseHelper.insertSave(save)) {
+                view.saveLessonSuccess();
+            } else {
+                view.saveLessonError();
+            }
         } else {
-            view.saveLessonError();
+            Toasty.info(context, "Chỉ được lưu 50 bài! Vui lòng xóa bớt", Toast.LENGTH_SHORT).show();
         }
     }
 

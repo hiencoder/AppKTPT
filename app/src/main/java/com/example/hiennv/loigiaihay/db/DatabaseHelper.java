@@ -214,6 +214,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return save;
     }
 
+    //Count lessons saved
+    public int countSave() {
+        database = this.getReadableDatabase();
+        String query = "SELECT * FROM " + AppConstants.TABLE_SAVE;
+        Cursor cursor = database.rawQuery(query, null);
+        return cursor.getCount();
+    }
+
+
     /**
      * Delete all save
      *
