@@ -111,7 +111,10 @@ public class AppConstants {
     //articleOfflineId
     public static final String KEY_ARTICLE_OFFLINE_ID = "article_offline_id";
 
-    //KeyWord
+    //Key title categories
+    public static final String KEY_CATEGORY_TITLE = "category_title";
+
+    //KeyWord when search
     public static final String KEY_WORD_SEARCH = "key_word";
     public static final int LIMIT = 8;
 

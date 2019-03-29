@@ -6,6 +6,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -55,7 +56,10 @@ public class SearchActivity extends BaseActivity implements SearchContract.Searc
     TextView btnSeeMore;
     @BindView(R.id.pb_loading)
     ProgressBar pbLoading;
+    //Biến categories đang đc chọn
     private int catId;
+    //Biến title của categories
+    private String title;
     private String keyWord;
     private int page = 1;
     private int limit = 8;
@@ -72,6 +76,10 @@ public class SearchActivity extends BaseActivity implements SearchContract.Searc
     protected void initData() {
         //Lấy catId từ shared
         catId = Integer.parseInt(sharedPrefUtils.getString(AppConstants.KEY_SUBJECT_ID, ""));
+        //Lấy title của cat từ sharedPreferences
+        title = sharedPrefUtils.getString(AppConstants.KEY_SUBJECT_TITLE, "");
+        Timber.i("Title: %s", title);
+
         keyWord = getIntent().getStringExtra(AppConstants.KEY_WORD_SEARCH);
         mactSearchResult.setText(keyWord);
         mactSearchResult.setSelection(keyWord.length());

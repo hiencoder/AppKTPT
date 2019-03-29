@@ -37,4 +37,5 @@
     <string name="txt_hint_detail_feedback">Nhập góp ý</string>
     <string name="txt_see_more">Xem thêm</string>
     <string name="txt_search">Tìm kiếm</string>
+    <string name="txt_search_result">Kết quả tìm kiếm của từ khóa <font fgcolor='#FF4CD964'>&#34;%s&#34;</font> trong <font fgcolor='#FF4CD964'>%s</font></string>
 </resources>
